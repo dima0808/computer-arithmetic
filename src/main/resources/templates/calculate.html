@@ -63,16 +63,16 @@
             </ul>
         </nav>
     </header>
-    <main class="content">
+    <main class="content ">
         <h1 class="visually-hidden">Заповніть поля</h1>
-        <section class="calculate">
+        <section class="calculate min-content-width">
             <div class="calculate-inners container">
                 <div class="calculate-bodys">
-                    <h2 class="calculate-titles title-mediums">
+                    <h2 class="purple calculate-titles title-mediums">
                         Введіть свої параметри
                     </h2>
                     <div class="calculate-descriptions">
-                        <p>Коли ви заповните всі поля, натисність кнопку "Відправити", потім ви отримаєте готовий варіант роботи.</p>
+                        <p class="wd-70">Коли ви заповните всі поля, натисність кнопку "Відправити".</p>
                     </div>
                     <form class="calculate-forms" th:object="${labData}" th:action="@{/processForm}" method="POST">
 
@@ -106,7 +106,7 @@
 
                         </div>
 
-                        <button type="submit" class="calculate-buttons buttons transparent" title="Відправити">
+                        <button type="submit" class="calculate-buttons buttons transparent purple" title="Відправити">
                             Відправити
                         </button>
 
