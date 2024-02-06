@@ -38,7 +38,7 @@
                     <a th:href="@{/calculate}" class="header-menu-link">Розрахунок</a>
                 </li>
                 <li class="header-menu-item">
-                    <a href="" class="header-link-donate">
+                    <a href="https://send.monobank.ua/jar/8mtbdEWgid" class="header-link-donate">
                         <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
                             width="25px" height="25px" viewBox="0 0 1280.000000 1189.000000"
                             preserveAspectRatio="xMidYMid meet">
@@ -68,8 +68,8 @@
             <div class="info-main container">
                 <div class="content-info">
                     <h2 class="h2">Вривайся в Комп'ютерну Арифметику!</h2>
-                    <p class="p">Ви випадково натрапляєте на цей захопливий веб-сайт, який вам допоможе з виконанням деяких завдань.
-                        Ви розумієте, що у вас більше не буде нескінченно довгих вечорів написання складних лабораторних робіт. Замість цього ви легко й швидко можете згенерувати потрібні вам завдання, будучи вільними від гірких розрахунків.
+                    <p class="p">Ви випадково натрапляєте на цей захопливий веб-сайт, який вам допоможе зі звіренням результатів ваших лабораторних робіт.
+                        Ви легко й швидко можете згенерувати потрібні вам завдання, будучи вільними від гірких розрахунків.
                     </p>
                 </div>
                 <div class="img-info">
@@ -99,10 +99,10 @@
                 <div class="content-info">
                     <h2 class="h2">Подякуй нам за роботу</h2>
                     <p class="p mb10">Шановні друзі та користувачі нашого сайту!</p>
-                    <p class="p mb10">Ми звертаємося до вас з великим проханням про підтримку. Ваша підтримка - це не лише визнання нашої роботи, але й справжній рушій для того, щоб ми робили щось нове та цікаве. Ми хочемо надавати вам контент, який дійсно цікавий та корисний. Нехай ваші враження від користування нашим сайтом будуть теплими та позитивними.</p>
+                    <p class="p mb10">Ми звертаємося до вас з великим проханням про підтримку. Хост сайту не безкоштовний, тому ваша підтримка - це не лише визнання нашої роботи, але й можливість для вас користуватись представленими матеріалами. Ми хочемо надавати вам контент, який дійсно цікавий та корисний. Нехай ваші враження від користування нашим сайтом будуть теплими та позитивними.</p>
                     <p class="p mb10 color-donate"><i>З повагою, Команда CivKA</i></p>
                     <div class="button-donate">
-                        <a class="section-link-donate" href="/">
+                        <a class="section-link-donate" href="https://send.monobank.ua/jar/8mtbdEWgid">
                             <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
                             width="25px" height="25px" viewBox="0 0 1280.000000 1189.000000"
                             preserveAspectRatio="xMidYMid meet">
@@ -133,7 +133,7 @@
                     <h2 class="h2-explanation">До роботи</h2>
                     <p class="p mb16">Для генерації ви вписуєте номер залікової книжки та вибираєте номер лабораторної роботи.
                         Варіант для роботи вираховується через номер залікової книжки згідно методички.
-                        Після цього зможете отримати готовий варіант роботи.
+                        Після цього зможете отримати готовий варіант роботи, з яким ви зможете звіритись.
                     </p>
                     <img 
                         src="images/foto-in-section/foto44.jpg" 
@@ -146,22 +146,22 @@
                 </div>
                 <div class="calculate-body shadow-box">
                     <div class="form-calculate">
-                        <h2 class="calculate-title title-medium text-align">
+                        <h2 class="purple calculate-title title-medium text-align">
                             Введіть свої параметри
                         </h2>
                         <div class="calculate-description">
-                            <p class="text-align">Коли ви заповните всі поля, натисність кнопку "Відправити".</p>
+                            <p class="text-align wd-70">Коли ви заповните всі поля, натисність кнопку "Відправити".</p>
                         </div>
                         <form class="calculate-form text-align" th:object="${labData}" th:action="@{/processForm}" method="POST">
 
                             <div class="calculate-form-body">
-                                <label for="name" class="visually-hidden">ПІБ</label>
+<!--                                 <label for="name" class="visually-hidden">ПІБ</label>
                                 <input required
                                     placeholder="Прізвище Ім'я (Миколайчук Андрій)"
                                     id="name"
                                     type="text"
                                     class="calculate-input input"
-                                    th:field="*{name}">
+                                    th:field="*{name}"> -->
 
                                 <label for="number" class="visually-hidden">№ Залік.книги</label>
                                 <input required
@@ -182,8 +182,8 @@
                                 </div>
                             </div>
 
-                            <button type="submit" class="calculate-button button transparent" title="Відправити">
-                                Відправити
+                            <button type="submit" class="purple calculate-button button transparent" title="Відправити">
+                                Згенерувати
                             </button>
 
                         </form>
