@@ -220,6 +220,9 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 35px;
     padding: 2rem;
     max-width: 50%;
+    display: flex;
+    align-items: center;
+    color: #333;
 }
 
 .autor {
@@ -255,6 +258,16 @@ h1, h2, h3, h4, h5, h6 {
 .calculate-description:not(:last-child) {
     margin-bottom: 2rem;
     max-width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.purple {
+    color: #5637b0;
+}
+
+.wd70 {
+    width: 90%;
 }
 
 .calculate-form-body:not(:last-child) {
@@ -357,7 +370,7 @@ button {
 
 .button {
     display: inline-flex;
-    height: 3.8rem;
+    height: 5rem;
     align-items: center;
     justify-content: center;
     padding-inline: 2.6rem;
