@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Civka</title>
+    <title>CivKA</title>
     <link rel="stylesheet" href="/styles.css">
     <link rel="shortcut icon" href="images/title-foto3.png" type="image/x-icon">
 </head>
+
 <body>
     <header class="header">
         <a href="/" class="logo-link">
@@ -25,20 +27,11 @@
                 <li class="header-menu-item">
                     <a th:href="@{/}" class="header-menu-link">Головна</a>
                 </li>
-<!--                <li class="header-menu-item">-->
-<!--                    <a href="#donate" class="header-menu-link">Підтримка</a>-->
-<!--                </li>-->
-                <!-- <li class="header-menu-item">
-                    <a href="/" class="header-menu-link">Як працює?</a>
-                </li> -->
                 <li class="header-menu-item">
                     <a th:href="@{/calculate}" class="header-menu-link">Розрахунок</a>
                 </li>
-<!--                <li class="header-menu-item">-->
-<!--                    <a href="#autors" class="header-menu-link">Автори</a>-->
-<!--                </li>-->
                 <li class="header-menu-item">
-                    <a href="/" class="header-link-donate">
+                    <a href="https://send.monobank.ua/jar/8mtbdEWgid" class="header-link-donate" target="_blank">
                         <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
                              width="25px" height="25px" viewBox="0 0 1280.000000 1189.000000"
                              preserveAspectRatio="xMidYMid meet">
@@ -63,28 +56,28 @@
             </ul>
         </nav>
     </header>
-    <main class="content">
+    <main class="content ">
         <h1 class="visually-hidden">Заповніть поля</h1>
-        <section class="calculate">
+        <section class="calculate min-content-height">
             <div class="calculate-inners container">
                 <div class="calculate-bodys">
-                    <h2 class="calculate-titles title-mediums">
+                    <h2 class="purple calculate-titles title-mediums">
                         Введіть свої параметри
                     </h2>
                     <div class="calculate-descriptions">
-                        <p>Коли ви заповните всі поля, натисність кнопку "Відправити", потім ви отримаєте готовий варіант роботи.</p>
+                        <p class="wd-70">Коли ви заповните всі поля, натисність кнопку "Відправити".</p>
                     </div>
                     <form class="calculate-forms" th:object="${labData}" th:action="@{/processForm}" method="POST">
 
                         <div class="calculate-form-bods">
 
-                            <label for="name" class="visually-hidden">ПІБ</label>
+<!--                             <label for="name" class="visually-hidden">ПІБ</label>
                             <input required
                                 placeholder="Прізвище Ім'я (Миколайчук Андрій)" 
                                 id="name" 
                                 type="text" 
                                 class="calculate-inputs inputs"
-                                th:field="*{name}">
+                                th:field="*{name}"> -->
 
                             <label for="number" class="visually-hidden">№ Залік.книги</label>
                             <input required
@@ -106,7 +99,7 @@
 
                         </div>
 
-                        <button type="submit" class="calculate-buttons buttons transparent" title="Відправити">
+                        <button type="submit" class="calculate-buttons buttons transparent purple" title="Відправити">
                             Відправити
                         </button>
 

@@ -220,6 +220,13 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 35px;
     padding: 2rem;
     max-width: 50%;
+    display: flex;
+    align-items: center;
+    color: #333;
+}
+
+.calculate-operation {
+    width: 50%;
 }
 
 .autor {
@@ -244,6 +251,11 @@ h1, h2, h3, h4, h5, h6 {
     max-width: 50%;
 }
 
+/* for calculate.html */
+.min-content-height {
+    min-height: 55rem;
+}
+
 .calculate-form-input {
     margin: 0 auto;
 }
@@ -255,6 +267,8 @@ h1, h2, h3, h4, h5, h6 {
 .calculate-description:not(:last-child) {
     margin-bottom: 2rem;
     max-width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .calculate-form-body:not(:last-child) {
@@ -357,7 +371,7 @@ button {
 
 .button {
     display: inline-flex;
-    height: 3.8rem;
+    height: 5rem;
     align-items: center;
     justify-content: center;
     padding-inline: 2.6rem;
@@ -495,6 +509,10 @@ button {
     margin-bottom: 1.6rem;
 }
 
+.wd70 {
+    width: 90%;
+}
+
 .mt8 {
     margin-top: 0.8rem;
 }
@@ -572,6 +590,91 @@ button {
     box-shadow: 0 6px 12px 0 rgb(86, 55, 176, 0.4);
 }
 
+.burger-svg {
+    fill: var(--color-donate);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.none {
+    display: none;
+}
+
+/* Додаткові класи */
+
+.purple {
+    color: #5637b0;
+}
+
+@media (max-width: 1280px) {
+    .description {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width:1010px) {
+    .info-main {
+        column-gap: 2rem;
+    }
+    .header-menu-list {
+        column-gap: 2rem;
+    }
+}
+
+@media (max-width:767px) {
+    .info-main {
+        flex-direction: column;
+        align-items: center;
+        row-gap: 2rem;
+    }
+
+    .revers {
+        flex-direction: column-reverse;
+      }
+    
+    .info-text, .explanation, .autors {
+        padding-block: 2rem;
+    }
+
+    .calculate-body, .content-info {
+        max-width: 100%;
+        margin: 0.5rem;
+    }
+
+    .foto {
+        width: 300px;
+        height: 300px;
+    }
+
+    .autor .foto {
+        width: 200px;
+        height: 200px;
+    }
+
+    .autor {
+        width: 34rem;
+    }
+
+    .header {
+        margin-top: 1rem;
+    }
+
+    .header-menu-list {
+        display: none;
+    }
+
+    .burger-menu {
+        padding-right: 1rem;
+    }
+
+    .none {
+        display: block;
+    }
+}
+
 /* До calculate 
 ---------------------------------------------------------------------------------------------*/
 
@@ -581,7 +684,7 @@ button {
 
 .calculate-bodys {
     flex-grow: 1;
-    max-width: 627px;
+    max-width: 62.7rem;
 }
 
 .calculate-titles:not(:last-child) {
@@ -706,72 +809,4 @@ button {
 
 .buttons:hover {
     box-shadow: 0 0 12px var(--primary-color);
-}
-
-@media (max-width: 1280px) {
-    .description {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-}
-
-@media (max-width:1010px) {
-    .info-main {
-        column-gap: 2rem;
-    }
-    .header-menu-list {
-        column-gap: 2rem;
-    }
-}
-
-@media (max-width:767px) {
-    .info-main {
-        flex-direction: column;
-        align-items: center;
-        row-gap: 2rem;
-    }
-
-    .revers {
-        flex-direction: column-reverse;
-    }
-
-    .info-text, .explanation, .autors {
-        padding-block: 2rem;
-    }
-
-    .calculate-body, .content-info {
-        max-width: 100%;
-        margin: 0.5rem;
-    }
-
-    .foto {
-        width: 300px;
-        height: 300px;
-    }
-
-    .autor .foto {
-        width: 200px;
-        height: 200px;
-    }
-
-    .autor {
-        width: 34rem;
-    }
-
-    .header {
-        margin-top: 1rem;
-    }
-
-    .header-menu-list {
-        display: none;
-    }
-
-    .burger-menu {
-        padding-right: 1rem;
-    }
-
-    .none {
-        display: block;
-    }
 }
