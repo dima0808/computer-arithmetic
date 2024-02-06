@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.civka.calculatordemo.CalculatorDemoApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.073 s -- in com.civka.calculatordemo.CalculatorDemoApplicationTests

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiply 1</title>
+    <link rel="stylesheet" href="/multiply-result-styles.css">
+    <link rel="shortcut icon" href="images/title-foto3.png" type="image/x-icon">
+</head>
+<body>
+<div class="main">
+    <p>1) Номер залікової книжки:</p>
+
+    <p>
+        <span th:text="${labData.creditNumber}"></span><sub>10</sub>  ,  <span th:text="${labData.creditNumberBinary}"></span><sub> 2</sub>
+        => <span th:each="tempA, iterationStat : ${labData.getA(6)}" th:utext="'a<sub>' + ${iterationStat.index + 1} + '</sub> = ' + ${tempA} + ' , '"></span>
+    </p>
+
+    <br>
+
+    <p>2) Варіант:</p>
+    <table class="table-baby">
+        <thead>
+        <tr>
+            <th class="fw300" rowspan="2"><i>a</i><sub>3</sub></th>
+            <th class="fw300" rowspan="2"><i>a</i><sub>2</sub></th>
+            <th class="fw300" rowspan="2"><i>a</i><sub>1</sub></th>
+            <th rowspan="2">Cпросіб множення, <br> розрядність <br>операндів</th>
+            <th colspan="3">Значення додатник операндів</th>
+            <th rowspan="2">Повна <br>операція</th>
+        </tr>
+        <tr>
+            <th class="fw300"><i>X</i></th>
+            <th class="fw300"><i>Y</i></th>
+            <th class="fw300"><i>G</i></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+            <td><span th:text="${a.get(2)}"></span></td>
+            <td><span th:text="${a.get(1)}"></span></td>
+            <td><span th:text="${a.get(0)}"></span></td>
+            <td><span>1</span>-й, <span th:text="${firstMultiply.n}"></span></td>
+            <td>,<span th:text="${firstMultiply.x}"></span></td>
+            <td>,<span th:text="${firstMultiply.y}"></span></td>
+            <td><span>-</span></td>
+            <td><i>F = XY</i></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <br>
+    <br>
+
+    <p>3) Операційна схема множення:</p>
+    <img height="350" th:src="'/images/lab2/multiply-1/op-schema-n=' + ${firstMultiply.n} + '.png'" alt="operational schema">
+
+    <br>
+    <br>
+
+    <p>4) Функціональний мікроалгоритм множення:</p>
+    <img height="600" th:src="'/images/lab2/multiply-1/func-alg-n=' + ${firstMultiply.n} + '.png'" alt="functional micro-algorithm">
+
+    <br>
+    <br>
+
+    <p>5) Таблиця станів регістрів:</p>
+    <table>
+        <thead>
+        <tr>
+            <th class="number-center-row">№</th>
+            <th>RG<sub>1</sub>
+                <br>
+                <div class="number">
+                    <span th:text="${firstMultiply.n + 1}"></span>
+                    <span>1</span>
+                </div>
+            </th>
+            <th>RG<sub>2</sub>
+                <br>
+                <div class="number">
+                    <span th:text="${firstMultiply.n}"></span>
+                    <span style="padding-left: 13px;">1</span>
+                </div>
+            </th>
+            <th>RG<sub>3</sub>
+                <br>
+                <div class="number">
+                    <span th:text="${firstMultiply.n + 1}"></span>
+                    <span style="padding-left: 13px; padding-right: 1px;">1</span>
+                </div>
+            </th>
+            <th>CT</th>
+            <th>Мікрооперації</th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+        <tr>
+            <td class="number-center-row" th:text="0"></td>
+            <td th:text="${firstMultiply.rg1}"></td>
+            <td th:utext="${firstMultiply.rg2.substring(0, firstMultiply.n - 1) +
+        '<b>' + firstMultiply.rg2.charAt(firstMultiply.n - 1) + '</b>'}"></td>
+            <td th:text="${firstMultiply.rg3}"></td>
+            <td class="number-center-row" th:text="${firstMultiply.ct}"></td>
+            <td class="micro-operation" th:utext="${firstMultiply.valuesDescription}"></td>
+        </tr>
+
+        <tr th:each="tempRow, iterationStat : ${firstMultiply.makeTable()}">
+            <td class="number-center-row" th:utext="${iterationStat.index + 1}"></td>
+            <td th:utext="${tempRow.get(0)}"></td>
+            <td th:utext="${tempRow.get(1)}"></td>
+            <td th:utext="${tempRow.get(2)}"></td>
+            <td class="number-center-row" th:utext="${tempRow.get(3)}"></td>
+            <td class="micro-operation" th:utext="${tempRow.get(4)}"></td>
+        </tr>
+
+        </tbody>
+
+    </table>
+
+    <br>
+    <p><i><span>X ⋅ Y</span></i> = <span th:text="',' + ${firstMultiply.result}"></span></p>
+
+    <br>
+    <br>
+
+    <p>6) Функціональна схема множення:</p>
+    <img height="380" th:src="'/images/lab2/multiply-1/func-schema-n=' + ${firstMultiply.n} + '.png'" alt="functional schema">
+    <br>
+    <br>
+    <p>𝑅: скидання даних в регістрах на 0<br>
+        𝑆𝑈𝑀: збереження даних в регістр RG<sub>1</sub> та RG<sub>2</sub><br>
+        𝑊: збереження даних в регістр RG<sub>3</sub> та лічильник CT<br>
+        𝑆𝑅: зсув вправо регістра RG<sub>1</sub> та RG<sub>2</sub>, декремент<br>
+
+    <br>
+
+    <p>7) Структурний мікроалгоритм множення:</p>
+    <img height="580" src="/images/lab2/multiply-1/struct-alg.png" alt="structural micro-algorithm">
+
+</div>
+</body>
+</html>

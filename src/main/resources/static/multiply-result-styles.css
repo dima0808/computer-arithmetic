@@ -1,0 +1,97 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    border-collapse: collapse;
+}
+
+body {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+}
+
+.text-align-left {
+    text-align: left;
+}
+
+.mb0 {
+    margin-bottom: 0;
+}
+
+.main {
+    padding: 50px;
+    max-width: 1100px;
+}
+
+table, th, td {
+    border: 2px solid black;
+}
+
+th, td {
+    padding-right: 3px;
+    padding-left: 10px;
+}
+
+td {
+    text-align: right;
+}
+
+.number {
+    display: flex;
+    justify-content: space-around;
+    font-weight: 300;
+}
+
+.number-center-row {
+    text-align: center;
+    padding: 10px;
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+.micro-operation {
+    text-align: left;
+}
+
+.add {
+    display: flex;
+}
+
+.block1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+.block2 p {
+    text-align: right;
+    margin-bottom: 5px;
+}
+
+.block2 p .mb0 {
+    margin-bottom: 0;
+}
+
+/* До таблички з варіантом */
+
+.fw300 {
+    font-weight: 300;
+}
+
+.text-align-center {
+    text-align: center;
+}
+
+.table-baby {
+    margin-bottom: 10px;
+}
+
+.table-baby td {
+    text-align: center;
+}
+
+.table-baby th, td {
+    padding: 10px;
+}
