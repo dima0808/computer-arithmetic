@@ -1,7 +1,5 @@
 package com.civka.calculatordemo.utils.multiply;
 
-import com.civka.calculatordemo.utils.BasicBinary;
-
 import java.util.ArrayList;
 import java.util.List;
 
