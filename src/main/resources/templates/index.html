@@ -1,55 +1,70 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Civka</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <link
+      rel="shortcut icon"
+      href="images/title-foto3.png"
+      type="image/x-icon"
+    />
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CivKA</title>
-    <link rel="stylesheet" href="/styles.css">
-    <link rel="shortcut icon" href="images/title-foto3.png" type="image/x-icon">
-</head>
-
-<body>
+  <body>
     <header class="header">
-        <a th:href="@{/}" class="logo-link">
-            <img 
-                src="/images/logo-44.png" 
-                alt="Civka Logo"
-                class="header-logo-image"
-                width="80"
-                height="80"
-                loading="lazy"
-            />
-            
-        </a>
-        <nav class="header-menu">
-            <ul class="header-menu-list">
-                <li class="header-menu-item">
-                    <a th:href="@{/}" class="header-menu-link">Головна</a>
-                </li>
-                <li class="header-menu-item">
-                    <a href="#donate" class="header-menu-link">Підтримка</a>
-                </li>
-                <!-- <li class="header-menu-item">
+      <a th:href="@{/}" class="logo-link">
+        <img
+          src="/images/logo-44.png"
+          alt="Civka Logo"
+          class="header-logo-image"
+          width="80"
+          height="80"
+          loading="lazy"
+        />
+      </a>
+      <nav class="header-menu">
+        <ul class="header-menu-list">
+          <li class="header-menu-item">
+            <a th:href="@{/}" class="header-menu-link">Головна</a>
+          </li>
+          <li class="header-menu-item">
+            <a href="#donate" class="header-menu-link">Підтримка</a>
+          </li>
+          <!-- <li class="header-menu-item">
                     <a href="/" class="header-menu-link">Як працює?</a>
                 </li> -->
-<!--                 <li class="header-menu-item">
+          <!--                 <li class="header-menu-item">
                     <a href="#autors" class="header-menu-link">Автори</a>
                 </li> -->
-                <li class="header-menu-item">
-                    <a th:href="@{/calculate}" class="header-menu-link">Розрахунок</a>
-                </li>
-                <li class="header-menu-item">
-                    <a href="https://send.monobank.ua/jar/8mtbdEWgid" class="header-link-donate" target="_blank">
-                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-                            width="25px" height="25px" viewBox="0 0 1280.000000 1189.000000"
-                            preserveAspectRatio="xMidYMid meet">
-                            <metadata>
-                            Created by potrace 1.15, written by Peter Selinger 2001-2017
-                            </metadata>
-                            <g transform="translate(0.000000,1189.000000) scale(0.100000,-0.100000)"
-                            fill="#3147b3" stroke="none">
-                            <path d="M3250 11884 c-25 -2 -106 -11 -180 -20 -1485 -172 -2704 -1295 -3001
+          <li class="header-menu-item">
+            <a th:href="@{/calculate}" class="header-menu-link">Розрахунок</a>
+          </li>
+          <li class="header-menu-item">
+            <a
+              href="https://send.monobank.ua/jar/8mtbdEWgid"
+              class="header-link-donate"
+              target="_blank"
+            >
+              <svg
+                version="1.0"
+                xmlns="http://www.w3.org/2000/svg"
+                width="25px"
+                height="25px"
+                viewBox="0 0 1280.000000 1189.000000"
+                preserveAspectRatio="xMidYMid meet"
+              >
+                <metadata>
+                  Created by potrace 1.15, written by Peter Selinger 2001-2017
+                </metadata>
+                <g
+                  transform="translate(0.000000,1189.000000) scale(0.100000,-0.100000)"
+                  fill="#3147b3"
+                  stroke="none"
+                >
+                  <path
+                    d="M3250 11884 c-25 -2 -106 -11 -180 -20 -1485 -172 -2704 -1295 -3001
                             -2764 -133 -660 -67 -1507 171 -2223 252 -753 675 -1411 1397 -2172 342 -360
                             634 -630 1588 -1470 231 -203 488 -430 570 -505 1024 -920 1735 -1692 2346
                             -2547 l130 -183 132 0 132 1 130 192 c557 822 1212 1560 2185 2461 191 178
@@ -57,63 +72,87 @@
                             196 17 665 -5 835 -105 805 -441 1497 -998 2054 -557 557 -1250 894 -2054 998
                             -193 24 -613 24 -810 0 -733 -93 -1379 -387 -1920 -874 -191 -172 -406 -417
                             -535 -610 -30 -45 -57 -82 -60 -82 -3 0 -30 37 -60 82 -129 193 -344 438 -535
-                            610 -531 478 -1170 773 -1878 867 -146 20 -562 34 -677 24z"/>
-                            </g>
-                        </svg>Підтримати
-                    </a>
-                </li>
-            </ul>
-        </nav>
+                            610 -531 478 -1170 773 -1878 867 -146 20 -562 34 -677 24z"
+                  />
+                </g></svg
+              >Підтримати
+            </a>
+          </li>
+        </ul>
+      </nav>
     </header>
     <main class="content">
-        <section class="info-text">
-            <div class="info-main container">
-                <div class="content-info">
-                    <h2 class="h2">Вривайся в Комп'ютерну Арифметику!</h2>
-                    <p class="p">Ви випадково натрапляєте на цей захопливий веб-сайт, який вам допоможе зі звіренням результатів ваших лабораторних робіт.
-                        Ви легко й швидко можете згенерувати потрібні вам завдання, будучи вільними від гірких розрахунків.
-                    </p>
-                </div>
-                <div class="img-info">
-                    <img 
-                        src="/images/foto-in-section/foto1.jpg" 
-                        alt="Foto helicopter"
-                        class="foto"
-                        width="400"
-                        height="400"
-                        loading="lazy"
-                    />
-                </div>
-            </div>
-        </section>
-        <section class="info-donate" id="donate">
-            <div class="info-main container pb9">
-                <div class="img-info">
-                    <img 
-                        src="/images/foto-in-section/foto2.jpg" 
-                        alt="Foto helicopter"
-                        class="foto"
-                        width="400"
-                        height="400"
-                        loading="lazy"
-                    />
-                </div>
-                <div class="content-info">
-                    <h2 class="h2">Подякуй нам за роботу</h2>
-                    <p class="p mb10">Шановні друзі та користувачі нашого сайту!</p>
-                    <p class="p mb10">Ми звертаємося до вас з великим проханням про підтримку. Хост сайту не безкоштовний, тому ваша підтримка - це не лише визнання нашої роботи, але й можливість для вас користуватись представленими матеріалами. Ми хочемо надавати вам контент, який дійсно цікавий та корисний. Нехай ваші враження від користування нашим сайтом будуть теплими та позитивними.</p>
-                    <p class="p mb10 color-donate"><i>З повагою, Команда CivKA</i></p>
-                    <div class="button-donate">
-                        <a class="section-link-donate" href="https://send.monobank.ua/jar/8mtbdEWgid" target="_blank">
-                            <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-                            width="25px" height="25px" viewBox="0 0 1280.000000 1189.000000"
-                            preserveAspectRatio="xMidYMid meet">
-                            <metadata>
-                            Created by potrace 1.15, written by Peter Selinger 2001-2017
-                            </metadata>
-                            <g transform="translate(0.000000,1189.000000) scale(0.100000,-0.100000)"
-                            fill="#e64980" stroke="none">
-                            <path d="M3250 11884 c-25 -2 -106 -11 -180 -20 -1485 -172 -2704 -1295 -3001
+      <section class="info-text">
+        <div class="info-main container">
+          <div class="content-info">
+            <h2 class="h2">Вривайся в Комп'ютерну Арифметику!</h2>
+            <p class="p">
+              Ви випадково натрапляєте на цей захопливий веб-сайт, який вам
+              допоможе зі звіренням результатів ваших лабораторних робіт. Ви
+              легко й швидко можете згенерувати потрібні вам завдання, будучи
+              вільними від гірких розрахунків.
+            </p>
+          </div>
+          <div class="img-info">
+            <img
+              src="/images/foto-in-section/foto1.jpg"
+              alt="Foto helicopter"
+              class="foto"
+              width="400"
+              height="400"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </section>
+      <section class="info-donate" id="donate">
+        <div class="info-main container pb9">
+          <div class="img-info">
+            <img
+              src="/images/foto-in-section/foto2.jpg"
+              alt="Foto helicopter"
+              class="foto"
+              width="400"
+              height="400"
+              loading="lazy"
+            />
+          </div>
+          <div class="content-info">
+            <h2 class="h2">Подякуй нам за роботу</h2>
+            <p class="p mb10">Шановні друзі та користувачі нашого сайту!</p>
+            <p class="p mb10">
+              Ми звертаємося до вас з великим проханням про підтримку. Хост
+              сайту не безкоштовний, тому ваша підтримка - це не лише визнання
+              нашої роботи, але й можливість для вас користуватись
+              представленими матеріалами. Ми хочемо надавати вам контент, який
+              дійсно цікавий та корисний. Нехай ваші враження від користування
+              нашим сайтом будуть теплими та позитивними.
+            </p>
+            <p class="p mb10 color-donate"><i>З повагою, Команда CivKA</i></p>
+            <div class="button-donate">
+              <a
+                class="section-link-donate"
+                href="https://send.monobank.ua/jar/8mtbdEWgid"
+                target="_blank"
+              >
+                <svg
+                  version="1.0"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="25px"
+                  height="25px"
+                  viewBox="0 0 1280.000000 1189.000000"
+                  preserveAspectRatio="xMidYMid meet"
+                >
+                  <metadata>
+                    Created by potrace 1.15, written by Peter Selinger 2001-2017
+                  </metadata>
+                  <g
+                    transform="translate(0.000000,1189.000000) scale(0.100000,-0.100000)"
+                    fill="#e64980"
+                    stroke="none"
+                  >
+                    <path
+                      d="M3250 11884 c-25 -2 -106 -11 -180 -20 -1485 -172 -2704 -1295 -3001
                             -2764 -133 -660 -67 -1507 171 -2223 252 -753 675 -1411 1397 -2172 342 -360
                             634 -630 1588 -1470 231 -203 488 -430 570 -505 1024 -920 1735 -1692 2346
                             -2547 l130 -183 132 0 132 1 130 192 c557 822 1212 1560 2185 2461 191 178
@@ -121,43 +160,53 @@
                             196 17 665 -5 835 -105 805 -441 1497 -998 2054 -557 557 -1250 894 -2054 998
                             -193 24 -613 24 -810 0 -733 -93 -1379 -387 -1920 -874 -191 -172 -406 -417
                             -535 -610 -30 -45 -57 -82 -60 -82 -3 0 -30 37 -60 82 -129 193 -344 438 -535
-                            610 -531 478 -1170 773 -1878 867 -146 20 -562 34 -677 24z"/>
-                            </g>
-                        </svg>Підтримати</a>
-<!--                        <a class="header-link-donate hg6" href="#autors">Про Нас</a>-->
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="explanation">
-            <div class="info-main container">
-                <div class="content-info text-align ">
-                    <h2 class="h2-explanation">До роботи</h2>
-                    <p class="p mb16">Для генерації ви вписуєте номер залікової книжки та вибираєте номер лабораторної роботи.
-                        Варіант для роботи вираховується через номер залікової книжки згідно методички.
-                        Після цього зможете отримати готовий варіант роботи, з яким ви зможете звіритись.
-                    </p>
-                    <img 
-                        src="images/foto-in-section/foto44.jpg" 
-                        alt="Gilgames"
-                        class="foto br3 mt8"
-                        width="300"
-                        height="300"
-                        loading="lazy"
+                            610 -531 478 -1170 773 -1878 867 -146 20 -562 34 -677 24z"
                     />
-                </div>
-                <div class="calculate-body shadow-box">
-                    <div class="form-calculate">
-                        <h2 class="purple calculate-title title-medium text-align">
-                            Введіть свої параметри
-                        </h2>
-                        <div class="calculate-description">
-                            <p class="text-align wd-70">Коли ви заповните всі поля, натисність кнопку "Відправити".</p>
-                        </div>
-                        <form class="calculate-form text-align" th:object="${labData}" th:action="@{/processForm}" method="POST">
-
-                            <div class="calculate-form-body">
-<!--                                 <label for="name" class="visually-hidden">ПІБ</label>
+                  </g></svg
+                >Підтримати</a
+              >
+              <!--                        <a class="header-link-donate hg6" href="#autors">Про Нас</a>-->
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="explanation">
+        <div class="info-main container">
+          <div class="content-info text-align">
+            <h2 class="h2-explanation">До роботи</h2>
+            <p class="p mb16">
+              Для генерації ви вписуєте номер залікової книжки та вибираєте
+              номер лабораторної роботи. Варіант для роботи вираховується через
+              номер залікової книжки згідно методички. Після цього зможете
+              отримати готовий варіант роботи, з яким ви зможете звіритись.
+            </p>
+            <img
+              src="images/foto-in-section/foto44.jpg"
+              alt="Gilgames"
+              class="foto br3 mt8"
+              width="300"
+              height="300"
+              loading="lazy"
+            />
+          </div>
+          <div class="calculate-body shadow-box">
+            <div class="form-calculate">
+              <h2 class="purple calculate-title title-medium text-align">
+                Введіть свої параметри
+              </h2>
+              <div class="calculate-description">
+                <p class="text-align wd-70">
+                  Коли ви заповните всі поля, натисність кнопку "Відправити".
+                </p>
+              </div>
+              <form
+                class="calculate-form text-align"
+                th:object="${labData}"
+                th:action="@{/processForm}"
+                method="POST"
+              >
+                <div class="calculate-form-body">
+                  <!--                                 <label for="name" class="visually-hidden">ПІБ</label>
                                 <input required
                                     placeholder="Прізвище Ім'я (Миколайчук Андрій)"
                                     id="name"
@@ -165,35 +214,51 @@
                                     class="calculate-input input"
                                     th:field="*{name}"> -->
 
-                                <label for="number" class="visually-hidden">№ Залік.книги</label>
-                                <input required
-                                    placeholder="№ Залікової книги (3603)"
-                                    id="number"
-                                    type="number"
-                                    class="calculate-input input"
-                                    th:field="*{creditNumber}">
+                  <label for="number" class="visually-hidden"
+                    >№ Залік.книги</label
+                  >
+                  <input
+                    required
+                    placeholder="№ Залікової книги (3603)"
+                    id="number"
+                    type="number"
+                    class="calculate-input input"
+                    th:field="*{creditNumber}"
+                  />
 
-                                <p>Виберіть номер лабораторної роботи:</p>
-                                <div class="radio-tile-group">
-                                    <div th:each="tempLab : ${labs}" class="input-container">
-                                        <input type="radio" name="radio" th:id="'lab' + ${tempLab}" th:value="${tempLab}" th:field="*{labNumber}">
-                                        <div class="radio-tile">
-                                            <label th:for="'lab' + ${tempLab}" th:text="${tempLab}" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <button type="submit" class="calculate-button button transparent purple" title="Відправити">
-                                Згенерувати
-                            </button>
-
-                        </form>
+                  <p>Виберіть номер лабораторної роботи:</p>
+                  <div class="radio-tile-group">
+                    <div th:each="tempLab : ${labs}" class="input-container">
+                      <input
+                        type="radio"
+                        name="radio"
+                        th:id="'lab' + ${tempLab}"
+                        th:value="${tempLab}"
+                        th:field="*{labNumber}"
+                      />
+                      <div class="radio-tile">
+                        <label
+                          th:for="'lab' + ${tempLab}"
+                          th:text="${tempLab}"
+                        />
+                      </div>
                     </div>
+                  </div>
                 </div>
+
+                <button
+                  type="submit"
+                  class="calculate-button button transparent purple"
+                  title="Відправити"
+                >
+                  Згенерувати
+                </button>
+              </form>
             </div>
-        </section>
-<!--         <section class="autors">
+          </div>
+        </div>
+      </section>
+      <!--         <section class="autors">
             <h1 class="h2 text-align" id="autors">Автори цього сайту</h1>
             <div class="description container">
                 <div class="autor autor1 shadow-box">
@@ -360,17 +425,72 @@
         </section> -->
     </main>
     <div class="scroll-container">
-        <a href="#top"><svg class="arrow" xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="41"><path d="M17.71,9.88l-4.3-4.29a2,2,0,0,0-2.82,0L6.29,9.88a1,1,0,0,0,0,1.41,1,1,0,0,0,1.42,0L11,8V19a1,1,0,0,0,2,0V8l3.29,3.29a1,1,0,1,0,1.42-1.41Z"/></svg>
-        </a>
+      <a href="#top"
+        ><svg
+          class="arrow"
+          xmlns="http://www.w3.org/2000/svg"
+          id="Outline"
+          viewBox="0 0 24 24"
+          width="41"
+        >
+          <path
+            d="M17.71,9.88l-4.3-4.29a2,2,0,0,0-2.82,0L6.29,9.88a1,1,0,0,0,0,1.41,1,1,0,0,0,1.42,0L11,8V19a1,1,0,0,0,2,0V8l3.29,3.29a1,1,0,1,0,1.42-1.41Z"
+          />
+        </svg>
+      </a>
     </div>
-    <footer class="footer">
-        <div class="footer-extra">
-            <div class="footer-extra-inner container">
-                <div class="footer-copyright">
-                    © <time datetime="2024">2024</time> <p class="p">CivKA.</p> <p class="p">Ми не відповідальні за ваші оцінки. Сайт створений лише з метою перевірки знань та звірення відповідей.</p>
-                </div>
-            </div>
+    <!-- NAZAR`S NEWS -->
+    <div class="news-container">
+      <!-- №2 NEWS -->
+      <div class="grid-news">
+        <div class="img-div-news">
+          <img
+            class="img-news"
+            src="images/news/news2.jpg"
+            alt="Bimo from cimana"
+          />
         </div>
+        <div class="text-news">
+          <h3 class="header-news">Бінарний Калькулятор</h3>
+          <p class="p-news">
+            Для перевірки ваших обичслень на сайті буде представлений
+            <a href="/calculate" class="news-link">калькулятор</a>, який
+            допоможе вам у цьому. Гойда, вчитися!
+          </p>
+          <p class="data-news">08.02.2024</p>
+        </div>
+      </div>
+      <!-- №2 NEWS -->
+      <div class="grid-news">
+        <div class="img-div-news">
+          <img class="img-news" src="images/news/news1-1.jpg" alt="Deadlines" />
+        </div>
+        <div class="text-news">
+          <h3 class="header-news">Дедлайни по лабам</h3>
+          <p class="p-news">
+            Наша команда плідно працює над сайтом, скоро будуть додані
+            <strong>3-5</strong>
+            лабораторні роботи. Ваша підтримка дуже допомагає нам, користуйтеся
+            на здоров'я!
+          </p>
+          <p class="data-news">06.02.2024</p>
+        </div>
+      </div>
+    </div>
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-extra">
+        <div class="footer-extra-inner container">
+          <div class="footer-copyright">
+            © <time datetime="2024">2024</time>
+            <p class="p">CivKA.</p>
+            <p class="p">
+              Ми не відповідальні за ваші оцінки. Сайт створений лише з метою
+              перевірки знань та звірення відповідей.
+            </p>
+          </div>
+        </div>
+      </div>
     </footer>
-</body>
+  </body>
 </html>

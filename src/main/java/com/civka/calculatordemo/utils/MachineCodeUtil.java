@@ -47,25 +47,29 @@ public class MachineCodeUtil {
     }
 
     public String getModifyAdditionalCode() {
-        String oneString = getModifyReverseCode().replaceAll("1", "0");
-        return BasicBinary.addBinary(getModifyReverseCode(), oneString.substring(0, oneString.length() - 1) + "1");
+        String okPlus = getModifyReverseCode();
+        if (okPlus.charAt(0) == '0') return okPlus;
+        String oneString = okPlus.replaceAll("1", "0");
+        return BasicBinary.addBinary(okPlus, oneString.substring(0, oneString.length() - 1) + "1");
     }
 
     public String leftShift(String machineCode) {
-        String ok = getModifyAdditionalCode();
+        String code;
+        if (machineCode.equals("ОК")) code = getModifyReverseCode();
+        else code = getModifyAdditionalCode();
         StringBuilder leftShift = new StringBuilder();
         String temp;
-        for (int i = 0; i < ok.length() - 1; i++) {
-            if (ok.charAt(i) == '.' || ok.charAt(i) == ',') continue;
+        for (int i = 0; i < code.length() - 1; i++) {
+            if (code.charAt(i) == '.' || code.charAt(i) == ',') continue;
 
             temp = "";
-            for (int j = i + 1; j < ok.length(); j++) {
-                if (ok.charAt(j) == '.' || ok.charAt(j) == ',') {
-                    temp = String.valueOf(ok.charAt(j));
+            for (int j = i + 1; j < code.length(); j++) {
+                if (code.charAt(j) == '.' || code.charAt(j) == ',') {
+                    temp = String.valueOf(code.charAt(j));
                     continue;
                 }
 
-                leftShift.append(ok.charAt(j) - '0');
+                leftShift.append(code.charAt(j) - '0');
                 break;
             }
             leftShift.append(temp);
@@ -75,21 +79,21 @@ public class MachineCodeUtil {
     }
 
     public String rightShift() {
-        String ok = getModifyAdditionalCode();
+        String code = getModifyAdditionalCode();
         StringBuilder rightShift = new StringBuilder();
-        for (int i = ok.length() - 1; i > 0; i--) {
-            if (ok.charAt(i) == '.' || ok.charAt(i) == ',') {
-                rightShift.append(ok.charAt(i));
+        for (int i = code.length() - 1; i > 0; i--) {
+            if (code.charAt(i) == '.' || code.charAt(i) == ',') {
+                rightShift.append(code.charAt(i));
                 continue;
             }
 
             for (int j = i - 1; j >= 0; j--) {
-                if (ok.charAt(j) == '.' || ok.charAt(j) == ',') continue;
-                rightShift.append(ok.charAt(j) - '0');
+                if (code.charAt(j) == '.' || code.charAt(j) == ',') continue;
+                rightShift.append(code.charAt(j) - '0');
                 break;
             }
         }
-        rightShift.append(ok.charAt(0) == '1' ? '1' : '0');
+        rightShift.append(code.charAt(0) == '1' ? '1' : '0');
         return String.valueOf(rightShift.reverse());
     }
 
@@ -97,7 +101,7 @@ public class MachineCodeUtil {
         List<String> arr = new ArrayList<>();
         for (int i = 0; i < code.length() - 1; i++) {
             if (code.charAt(i + 1) == '.' || code.charAt(i + 1) == ',') {
-                arr.add(String.valueOf(code.charAt(i)) + String.valueOf(code.charAt(i + 1)));
+                arr.add(String.valueOf(code.charAt(i)) + (code.charAt(i + 1)));
                 i++;
             } else {
                 arr.add(String.valueOf(code.charAt(i)));
