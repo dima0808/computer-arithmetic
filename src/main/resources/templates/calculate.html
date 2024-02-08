@@ -242,17 +242,45 @@
                             <label for="number" class="visually-hidden">№ Залік.книги</label>
                             <input required
                                 placeholder="№ Залікової книги (3603)" 
-                                id="number" 
+                                id="number"
                                 type="number" 
                                 class="calculate-inputs inputs"
                                 th:field="*{creditNumber}">
 
                             <p>Виберіть номер лабораторної роботи:</p>
                             <div class="radio-tile-groups">
-                                <div th:each="tempLab : ${labs}" class="input-containers">
-                                    <input type="radio" name="radio" th:id="'lab' + ${tempLab}" th:value="${tempLab}" th:field="*{labNumber}">
+                                <div class="input-containers">
+                                    <input type="radio" name="radio" id="lab1" value="1" th:field="*{labNumber}">
                                     <div class="radio-tiles">
-                                        <label th:for="'lab' + ${tempLab}" th:text="${tempLab}" />
+                                        <label for="lab1">1</label>
+                                    </div>
+                                </div>
+
+                                <div class="input-containers">
+                                    <input type="radio" name="radio" id="lab2" value="2" th:field="*{labNumber}">
+                                    <div class="radio-tiles">
+                                        <label for="lab2">2</label>
+                                    </div>
+                                </div>
+
+                                <div class="input-containers">
+                                    <input type="radio" name="radio" id="lab3" value="3" th:field="*{labNumber}" disabled>
+                                    <div class="radio-tiles">
+                                        <label for="lab3">3</label>
+                                    </div>
+                                </div>
+
+                                <div class="input-containers">
+                                    <input type="radio" name="radio" id="lab4" value="4" th:field="*{labNumber}" disabled>
+                                    <div class="radio-tiles">
+                                        <label for="lab4">4</label>
+                                    </div>
+                                </div>
+
+                                <div class="input-containers">
+                                    <input type="radio" name="radio" id="lab5" value="5" th:field="*{labNumber}" disabled>
+                                    <div class="radio-tiles">
+                                        <label for="lab5">5</label>
                                     </div>
                                 </div>
                             </div>

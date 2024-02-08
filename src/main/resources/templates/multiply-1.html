@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multiply 1</title>
     <link rel="stylesheet" href="/multiply-result-styles.css">
-    <link rel="shortcut icon" href="images/title-foto3.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/images/title-foto3.png" type="image/x-icon">
 </head>
 <body>
 <div class="main">
+
     <p>1) Номер залікової книжки:</p>
 
     <p>
@@ -132,14 +133,22 @@
     <br>
     <br>
     <p>𝑅: скидання даних в регістрах на 0<br>
-        𝑆𝑈𝑀: збереження даних в регістр RG<sub>1</sub> та RG<sub>2</sub><br>
-        𝑊: збереження даних в регістр RG<sub>3</sub> та лічильник CT<br>
-        𝑆𝑅: зсув вправо регістра RG<sub>1</sub> та RG<sub>2</sub>, декремент<br>
+        𝑆𝑈𝑀: збереження даних в регістр RG<sub>1</sub><br>
+        𝑊: збереження даних в регістр RG<sub>2</sub> , RG<sub>3</sub> та лічильник CT<br>
+        𝑆𝑅: зсув вправо регістра RG<sub>1</sub> та RG<sub>2</sub> , декремент<br>
 
     <br>
 
     <p>7) Структурний мікроалгоритм множення:</p>
     <img height="580" src="/images/lab2/multiply-1/struct-alg.png" alt="structural micro-algorithm">
+
+    <br>
+    <br>
+    <br>
+
+    <p>8) Схема алгоритму:</p>
+    <img height="580" th:src="'/images/lab2/multiply-1/first-multiply-n=' + ${firstMultiply.n} + '.png'" alt="AFDK schema">
+
 
 </div>
 </body>
