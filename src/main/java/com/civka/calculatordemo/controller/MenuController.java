@@ -22,7 +22,7 @@ public class MenuController {
     public String getMainPage(Model model) {
 
         model.addAttribute("labData", new LabData());
-        model.addAttribute("labs", new int[]{1, 2, 3, 4, 5});
+//        model.addAttribute("labs", new int[]{1, 2, 3, 4, 5});
 
         return "index";
     }
