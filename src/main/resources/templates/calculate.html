@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CivKA</title>
     <link rel="stylesheet" href="/styles.css">
-    <link rel="shortcut icon" href="images/title-foto3.png" type="image/x-icon">
+    <link rel="stylesheet" href="/calculate-styles.css">
+    <link rel="shortcut icon" href="/images/title-foto3.png" type="image/x-icon">
 </head>
 
 <body>
@@ -58,18 +59,177 @@
     </header>
     <main class="content ">
         <h1 class="visually-hidden">Заповніть поля</h1>
-        <section class="calculate min-content-height">
+        <section class="calculates min-content-height">
             <div class="calculate-inners container">
-                <div class="calculate-bodys">
+                <div class="calculate-operation">
+                    <h2 class="purple calculate-titles title-mediums text-align">
+                        Калькулятор та системи числення
+                    </h2>
+                    <p class="mb10">
+                        Використовуйте цей калькулятор для виконання додавання, віднімання, множення або ділення двійкових чисел, а також для переведення з однієї системи числення в іншу.
+                    </p>
+                    <div class="content-binary">
+                        <h4 class="purple calculate-titles title-mediums mb10">
+                            Двійкові операції: додавання, віднімання, множення або ділення
+                        </h4>
+                        <div class="region">
+                            <form class="binary-calculate">
+                                <div class="binary-input">
+                                    <label for="number" class="visually-hidden">Перше число</label>
+                                    <input required
+                                        placeholder=""
+                                        id="number"
+                                        type="number"
+                                        class="calculate-binary-input input-binary">
+    
+                                    <label class="visually-hidden" for="operation">Operation</label>
+                                    <select id="operation" class="calculate-binary-input select-binary" required>
+                                        <option value="1" selected>+</option>
+                                        <option value="2">-</option>
+                                        <option value="3">x</option>
+                                        <option value="4">÷</option>
+                                    </select>
+                                    
+                                    <label for="number" class="visually-hidden">Друге число</label>
+                                    <input required
+                                        placeholder=""
+                                        id="number"
+                                        type="number"
+                                        class="calculate-binary-input input-binary">
+                                </div>
+                                <div class="result-calculate tal">
+                                    <p class="result-title">Відповідь</p>
+                                    <p class="result-title color-none">Двійкове число = <span>0</span></p>
+                                    <p class="result-title color-none">Десяткове число = <span>0</span></p>
+                                </div>
+                                <div class="binary-button">
+                                    <button type="submit" class="button-binary transparent result-color" title="Обчислити">
+                                        Обчислити
+                                        <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="16" height="16"><path d="M20.494,7.968l-9.54-7A5,5,0,0,0,3,5V19a5,5,0,0,0,7.957,4.031l9.54-7a5,5,0,0,0,0-8.064Zm-1.184,6.45-9.54,7A3,3,0,0,1,5,19V5A2.948,2.948,0,0,1,6.641,2.328,3.018,3.018,0,0,1,8.006,2a2.97,2.97,0,0,1,1.764.589l9.54,7a3,3,0,0,1,0,4.836Z"/></svg>
+                                    </button>
+                                    <button type="submit" class="button-binary transparent clear-color" title="Очистити">
+                                        Очистити
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <h4 class="purple calculate-titles title-mediums">
+                            Перетворення двійкового числа в десяткове
+                        </h4>
+                        <div class="region">
+                            <form class="binary-calculate">
+                                <div class="binary-input">
+                                    <label for="binary-number" class="">Двійкове число:</label>
+                                    <input required
+                                        placeholder=""
+                                        id="binary-number"
+                                        type="number"
+                                        class="calculate-binary-input input-binary">
+                                </div>
+                                <div class="result-calculate tal">
+                                    <p class="result-title">Відповідь</p>
+                                    <p class="result-title color-none">Десяткове число = <span>0</span></p>
+                                </div>
+                                <div class="binary-button">
+                                    <button type="submit" class="button-binary transparent result-color" title="Обчислити">
+                                        Обчислити
+                                        <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="16" height="16"><path d="M20.494,7.968l-9.54-7A5,5,0,0,0,3,5V19a5,5,0,0,0,7.957,4.031l9.54-7a5,5,0,0,0,0-8.064Zm-1.184,6.45-9.54,7A3,3,0,0,1,5,19V5A2.948,2.948,0,0,1,6.641,2.328,3.018,3.018,0,0,1,8.006,2a2.97,2.97,0,0,1,1.764.589l9.54,7a3,3,0,0,1,0,4.836Z"/></svg>
+                                    </button>
+                                    <button type="submit" class="button-binary transparent clear-color" title="Очистити">
+                                        Очистити
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <h4 class="purple calculate-titles title-mediums">
+                            Перетворення десяткового числа в двійкове
+                        </h4>
+                        <div class="region">
+                            <form class="binary-calculate">
+                                <div class="binary-input">
+                                    <label for="decimal-number" class="">Десяткове число:</label>
+                                    <input required
+                                        placeholder=""
+                                        id="decimal-number"
+                                        type="number"
+                                        class="calculate-binary-input input-binary">
+                                </div>
+                                <div class="result-calculate tal">
+                                    <p class="result-title">Відповідь</p>
+                                    <p class="result-title color-none">Двійкове число = <span>0</span></p>
+                                </div>
+                                <div class="binary-button">
+                                    <button type="submit" class="button-binary transparent result-color" title="Обчислити">
+                                        Обчислити
+                                        <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="16" height="16"><path d="M20.494,7.968l-9.54-7A5,5,0,0,0,3,5V19a5,5,0,0,0,7.957,4.031l9.54-7a5,5,0,0,0,0-8.064Zm-1.184,6.45-9.54,7A3,3,0,0,1,5,19V5A2.948,2.948,0,0,1,6.641,2.328,3.018,3.018,0,0,1,8.006,2a2.97,2.97,0,0,1,1.764.589l9.54,7a3,3,0,0,1,0,4.836Z"/></svg>
+                                    </button>
+                                    <button type="submit" class="button-binary transparent clear-color" title="Очистити">
+                                        Очистити
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <h4 class="purple calculate-titles title-mediums">
+                            Перетворення в довільних системах числення
+                        </h4>
+                        <div class="region">
+                            <form class="binary-calculate">
+                                <div class="binary-input ml">
+                                    <label class="visually-hidden" for="first">System Number</label>
+                                    <select id="first" class="calculate-binary-input select-binary" required>
+                                        <option value="2" selected>2</option>
+                                        <option value="3">3</option>
+                                        <option value="8">8</option>
+                                        <option value="10">10</option>
+                                        <option value="16">16</option>
+                                    </select>
+                                    
+                                    <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="24" height="24"><path d="M23.12,9.91,19.25,6a1,1,0,0,0-1.42,0h0a1,1,0,0,0,0,1.41L21.39,11H1a1,1,0,0,0-1,1H0a1,1,0,0,0,1,1H21.45l-3.62,3.61a1,1,0,0,0,0,1.42h0a1,1,0,0,0,1.42,0l3.87-3.88A3,3,0,0,0,23.12,9.91Z"/></svg>
+                                    
+                                    <label class="visually-hidden" for="second">System Number</label>
+                                    <select id="second" class="calculate-binary-input select-binary" required>
+                                        <option value="2" selected>2</option>
+                                        <option value="3">3</option>
+                                        <option value="8">8</option>
+                                        <option value="10">10</option>
+                                        <option value="16">16</option>
+                                    </select>
+                                </div>
+                                <div class="revers-input">
+                                    <label for="number" class="">Введіть число:</label>
+                                    <input required
+                                    placeholder=""
+                                    id="number"
+                                    type="number"
+                                    class="calculate-binary-input input-binary">
+                                </div>
+                                <div class="result-calculate tal">
+                                    <p class="result-title">Відповідь</p>
+                                    <p class="result-title color-none">Якесь число = <span>0</span></p>
+                                </div>
+                                <div class="binary-button">
+                                    <button type="button" class="button-binary transparent result-color" title="Обчислити">
+                                        Обчислити
+                                        <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="16" height="16"><path d="M20.494,7.968l-9.54-7A5,5,0,0,0,3,5V19a5,5,0,0,0,7.957,4.031l9.54-7a5,5,0,0,0,0-8.064Zm-1.184,6.45-9.54,7A3,3,0,0,1,5,19V5A2.948,2.948,0,0,1,6.641,2.328,3.018,3.018,0,0,1,8.006,2a2.97,2.97,0,0,1,1.764.589l9.54,7a3,3,0,0,1,0,4.836Z"/></svg>
+                                    </button>
+                                    <button type="submit" class="button-binary transparent clear-color" title="Очистити">
+                                        Очистити
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="calculate-bodys shadow-box">
                     <h2 class="purple calculate-titles title-mediums">
                         Введіть свої параметри
                     </h2>
                     <div class="calculate-descriptions">
-                        <p class="wd-70">Коли ви заповните всі поля, натисність кнопку "Відправити".</p>
+                        <p class="text-align">Коли ви заповните всі поля, натисність кнопку "Згенерувати".</p>
                     </div>
                     <form class="calculate-forms" th:object="${labData}" th:action="@{/processForm}" method="POST">
 
-                        <div class="calculate-form-bods">
+                        <div class="calculate-form-bodys">
 
 <!--                             <label for="name" class="visually-hidden">ПІБ</label>
                             <input required
@@ -99,8 +259,8 @@
 
                         </div>
 
-                        <button type="submit" class="calculate-buttons buttons transparent purple" title="Відправити">
-                            Відправити
+                        <button type="submit" class="calculate-buttons buttons transparent purple" title="Згенерувати">
+                            Згенерувати
                         </button>
 
                     </form>
