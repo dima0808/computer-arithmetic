@@ -21,131 +21,154 @@
 
         <br>
 
-    <p>3) Визначити два двійкових числа: <i>F</i> = 1<i>a</i><sub>7</sub><i>a</i><sub>6</sub><i>a</i><sub>5</sub><i>a</i><sub>4</sub>1 i
-        <i>G</i> = 1011<i>a</i><sub>3</sub><i>a</i><sub>2</sub><i>a</i><sub>1</sub>1.
+        <p>3) Визначити два двійкових числа: <i>F</i> = 1<i>a</i><sub>7</sub><i>a</i><sub>6</sub><i>a</i><sub>5</sub><i>a</i><sub>4</sub>1 i
+            <i>G</i> = 1011<i>a</i><sub>3</sub><i>a</i><sub>2</sub><i>a</i><sub>1</sub>1.
+            <br>
+            Записати <i>F</i> i <i>G</i> через кому, надати числу знак « – ». Одержане двійкове від'ємне число має
+            вигляд <i>X</i> = - <i>F</i>, <i>G</i> = - 1<i>a</i><sub>7</sub><i>a</i><sub>6</sub><i>a</i><sub>5</sub><i>a</i><sub>4</sub>1,
+            1011<i>a</i><sub>3</sub><i>a</i><sub>2</sub><i>a</i><sub>1</sub>1.
+            <br>
+            <br>
+            <i>F</i> = <span th:text="${F}"></span>
+            <br>
+            <i>G</i> = <span th:text="${G}"></span>
+            <br>
+            <i>X</i> = - <i>F</i>, <i>G</i> = <span th:text="${X.binaryNumber}"></span>
+        </p>
+
+        <p>4) Одержане двійкове число <i>X</i> з природною фіксованою комою записати у
+            15-розрядну сітку в машинних кодах: прямому, доповняльному і
+            оберненому
+        </p>
+
+        <table>
+            <tbody>
+                <tr>
+                    <td>[<i>X</i>]<sub>ПК</sub></td>
+                    <td th:each="temp : ${T(com.civka.calculatordemo.utils.MachineCodeUtil).toTableCode(X.getStraightCode())}">
+                        <span th:text="${temp}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>[<i>X</i>]<sub>ОК</sub></td>
+                    <td th:each="temp : ${T(com.civka.calculatordemo.utils.MachineCodeUtil).toTableCode(X.getReverseCode())}">
+                        <span th:text="${temp}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>[<i>X</i>]<sub>ДК</sub></td>
+                    <td th:each="temp : ${T(com.civka.calculatordemo.utils.MachineCodeUtil).toTableCode(X.getAdditionalCode())}">
+                        <span th:text="${temp}"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
         <br>
-        Записати <i>F</i> i <i>G</i> через кому, надати числу знак « – ». Одержане двійкове від'ємне число має
-        вигляд <i>X</i> = - <i>F</i>, <i>G</i> = - 1<i>a</i><sub>7</sub><i>a</i><sub>6</sub><i>a</i><sub>5</sub><i>a</i><sub>4</sub>1,
-        1011<i>a</i><sub>3</sub><i>a</i><sub>2</sub><i>a</i><sub>1</sub>1.
+
+        <p>5) Подати модифіковані коди (доповняльний і обернений) у 16-розрядній
+            сітці.
+        </p>
+
+        <table>
+            <tbody>
+                <tr>
+                    <td>[<i>X</i>]<sub>ОК</sub></td>
+                    <td th:each="temp : ${T(com.civka.calculatordemo.utils.MachineCodeUtil).toTableCode(X.getModifyReverseCode())}">
+                        <span th:text="${temp}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>[<i>X</i>]<sub>ДК</sub></td>
+                    <td th:each="temp : ${T(com.civka.calculatordemo.utils.MachineCodeUtil).toTableCode(X.getModifyAdditionalCode())}">
+                        <span th:text="${temp}"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
         <br>
+
+        <p>6) Виконати арифметичний зсув одержаних модифікованих кодів числа <i>X</i>
+            на один розряд ліворуч і на один розряд праворуч. Перевірити
+            переповнення розрядної сітки.
+        </p>
+
         <br>
-        <i>F</i> = <span th:text="${F}"></span>
+
+        <p>Зсув [<i>X</i>]<sub>ОК</sub>:</p>
+        <p class="mb0"><i>Вліво</i></p>
+        <table>
+            <tbody>
+                <tr>
+                    <td class="text-align-left">[<i>X</i>]<sub>ОК</sub></td>
+                    <td th:each="temp : ${T(com.civka.calculatordemo.utils.MachineCodeUtil).toTableCode(X.getModifyReverseCode())}">
+                        <span th:text="${temp}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-align-left">[<i>X</i>]<sub>ОК <</sub></td>
+                    <td th:each="temp : ${T(com.civka.calculatordemo.utils.MachineCodeUtil).toTableCode(X.leftShift('ОК'))}">
+                        <span th:text="${temp}"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         <br>
-        <i>G</i> = <span th:text="${G}"></span>
+        <p>Переповнення <span th:text="${X.getModifyReverseCode().charAt(0) == '0'} ? 'не ' : ''"></span>відбувається.</p>
+
         <br>
-        <i>X</i> = - <i>F</i>, <i>G</i> = <span th:text="${X.binaryNumber}"></span>
-    </p>
 
-    <p>4) Одержане двійкове число <i>X</i> з природною фіксованою комою записати у
-        15-розрядну сітку в машинних кодах: прямому, доповняльному і
-        оберненому
-    </p>
+        <p>Зсув [<i>X</i>]<sub>ОК</sub>:</p>
+        <p class="mb0"><i>Вправо</i></p>
+        <table>
+            <tbody>
+                <tr>
+                    <td class="text-align-left">[<i>X</i>]<sub>ОК</sub></td>
+                    <td th:each="temp : ${T(com.civka.calculatordemo.utils.MachineCodeUtil).toTableCode(X.getModifyReverseCode())}">
+                        <span th:text="${temp}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-align-left">[<i>X</i>]<sub>ОК ></sub></td>
+                    <td th:each="temp : ${T(com.civka.calculatordemo.utils.MachineCodeUtil).toTableCode(X.rightShift())}">
+                        <span th:text="${temp}"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <p>Переповнення не відбувається.</p>
 
-    <table>
-        <tbody>
-            <tr>
-                <td>[<i>X</i>]<sub>ПК</sub></td>
-                <td th:each="temp : ${T(com.civka.calculatordemo.utils.MachineCodeUtil).toTableCode(X.getStraightCode())}">
-                    <span th:text="${temp}"></span>
-                </td>
-            </tr>
-            <tr>
-                <td>[<i>X</i>]<sub>ОК</sub></td>
-                <td th:each="temp : ${T(com.civka.calculatordemo.utils.MachineCodeUtil).toTableCode(X.getReverseCode())}">
-                    <span th:text="${temp}"></span>
-                </td>
-            </tr>
-            <tr>
-                <td>[<i>X</i>]<sub>ДК</sub></td>
-                <td th:each="temp : ${T(com.civka.calculatordemo.utils.MachineCodeUtil).toTableCode(X.getAdditionalCode())}">
-                    <span th:text="${temp}"></span>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+        <br>
 
-    <br>
+        <p>Зсув [<i>X</i>]<sub>ДК</sub>:</p>
+        <p class="mb0"><i>Вліво</i></p>
+        <table>
+            <tbody>
+                <tr>
+                    <td class="text-align-left">[<i>X</i>]<sub>ДК</sub></td>
+                    <td th:each="temp : ${T(com.civka.calculatordemo.utils.MachineCodeUtil).toTableCode(X.getModifyAdditionalCode())}">
+                        <span th:text="${temp}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-align-left">[<i>X</i>]<sub>ДК <</sub></td>
+                    <td th:each="temp : ${T(com.civka.calculatordemo.utils.MachineCodeUtil).toTableCode(X.leftShift('ДК'))}">
+                        <span th:text="${temp}"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <p>Переповнення <span th:text="${X.getModifyAdditionalCode().charAt(0) == '0'} ? 'не ' : ''"></span>відбувається.</p>
 
-    <p>5) Подати модифіковані коди (доповняльний і обернений) у 16-розрядній
-        сітці.
-    </p>
+        <br>
 
-    <table>
-        <tbody>
-            <tr>
-                <td>[<i>X</i>]<sub>ОК</sub></td>
-                <td th:each="temp : ${T(com.civka.calculatordemo.utils.MachineCodeUtil).toTableCode(X.getModifyReverseCode())}">
-                    <span th:text="${temp}"></span>
-                </td>
-            </tr>
-            <tr>
-                <td>[<i>X</i>]<sub>ДК</sub></td>
-                <td th:each="temp : ${T(com.civka.calculatordemo.utils.MachineCodeUtil).toTableCode(X.getModifyAdditionalCode())}">
-                    <span th:text="${temp}"></span>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
-    <br>
-
-    <p>6) Виконати арифметичний зсув одержаних модифікованих кодів числа <i>X</i>
-        на один розряд ліворуч і на один розряд праворуч. Перевірити
-        переповнення розрядної сітки.
-    </p>
-
-    <br>
-
-    <p>Зсув [<i>X</i>]<sub>ОК</sub>:</p>
-    <p class="mb0"><i>Вліво</i></p>
-    <table>
-        <tbody>
-            <tr>
-                <td class="text-align-left">[<i>X</i>]<sub>ОК</sub></td>
-                <td th:each="temp : ${T(com.civka.calculatordemo.utils.MachineCodeUtil).toTableCode(X.getModifyReverseCode())}">
-                    <span th:text="${temp}"></span>
-                </td>
-            </tr>
-            <tr>
-                <td class="text-align-left">[<i>X</i>]<sub>ОК <</sub></td>
-                <td th:each="temp : ${T(com.civka.calculatordemo.utils.MachineCodeUtil).toTableCode(X.leftShift('ОК'))}">
-                    <span th:text="${temp}"></span>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <br>
-    <p>Переповнення <span th:text="${X.getModifyReverseCode().charAt(0) == '0'} ? 'не ' : ''"></span>відбувається.</p>
-
-    <br>
-
-    <p>Зсув [<i>X</i>]<sub>ОК</sub>:</p>
-    <p class="mb0"><i>Вправо</i></p>
-    <table>
-        <tbody>
-            <tr>
-                <td class="text-align-left">[<i>X</i>]<sub>ОК</sub></td>
-                <td th:each="temp : ${T(com.civka.calculatordemo.utils.MachineCodeUtil).toTableCode(X.getModifyReverseCode())}">
-                    <span th:text="${temp}"></span>
-                </td>
-            </tr>
-            <tr>
-                <td class="text-align-left">[<i>X</i>]<sub>ОК ></sub></td>
-                <td th:each="temp : ${T(com.civka.calculatordemo.utils.MachineCodeUtil).toTableCode(X.rightShift())}">
-                    <span th:text="${temp}"></span>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <br>
-    <p>Переповнення не відбувається.</p>
-
-    <br>
-
-    <p>Зсув [<i>X</i>]<sub>ДК</sub>:</p>
-    <p class="mb0"><i>Вліво</i></p>
-    <table>
-        <tbody>
+        <p>Зсув [<i>X</i>]<sub>ДК</sub>:</p>
+        <p class="mb0"><i>Вправо</i></p>
+        <table>
+            <tbody>
             <tr>
                 <td class="text-align-left">[<i>X</i>]<sub>ДК</sub></td>
                 <td th:each="temp : ${T(com.civka.calculatordemo.utils.MachineCodeUtil).toTableCode(X.getModifyAdditionalCode())}">
@@ -153,151 +176,160 @@
                 </td>
             </tr>
             <tr>
-                <td class="text-align-left">[<i>X</i>]<sub>ДК <</sub></td>
-                <td th:each="temp : ${T(com.civka.calculatordemo.utils.MachineCodeUtil).toTableCode(X.leftShift('ДК'))}">
+                <td class="text-align-left">[<i>X</i>]<sub>ДК ></sub></td>
+                <td th:each="temp : ${T(com.civka.calculatordemo.utils.MachineCodeUtil).toTableCode(X.rightShift())}">
                     <span th:text="${temp}"></span>
                 </td>
             </tr>
-        </tbody>
-    </table>
-    <br>
-    <p>Переповнення <span th:text="${X.getModifyAdditionalCode().charAt(0) == '0'} ? 'не ' : ''"></span>відбувається.</p>
-
-    <br>
-
-    <p>Зсув [<i>X</i>]<sub>ДК</sub>:</p>
-    <p class="mb0"><i>Вправо</i></p>
-    <table>
-        <tbody>
-        <tr>
-            <td class="text-align-left">[<i>X</i>]<sub>ДК</sub></td>
-            <td th:each="temp : ${T(com.civka.calculatordemo.utils.MachineCodeUtil).toTableCode(X.getModifyAdditionalCode())}">
-                <span th:text="${temp}"></span>
-            </td>
-        </tr>
-        <tr>
-            <td class="text-align-left">[<i>X</i>]<sub>ДК ></sub></td>
-            <td th:each="temp : ${T(com.civka.calculatordemo.utils.MachineCodeUtil).toTableCode(X.rightShift())}">
-                <span th:text="${temp}"></span>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <br>
-    <p>Переповнення не відбувається.</p>
-
-    <br>
-
-    <p>7) Одержати доповняльний та обернений коди числа
+            </tbody>
+        </table>
         <br>
-        <i>Y</i> = <i>X</i> + 101<i>a</i><sub>4</sub><i>a</i><sub>3</sub>,1<i>a</i><sub>2</sub><i>a</i><sub>1</sub>10
+        <p>Переповнення не відбувається.</p>
+
         <br>
-        <i>X</i> = <span th:text="${X.getBinaryNumber()}"></span>
-    </p>
-    <div class="add">
-        <div class="block1">
-            <p class="mb0">[<i>Y</i>]<sub>ОК</sub> = </p>
-            <p class="mb0">[<i>Y</i>]<sub>ДК</sub> = </p>
+
+        <p>7) Одержати доповняльний та обернений коди числа
+            <br>
+            <i>Y</i> = <i>X</i> + 101<i>a</i><sub>4</sub><i>a</i><sub>3</sub>,1<i>a</i><sub>2</sub><i>a</i><sub>1</sub>10
+            <br>
+            <i>X</i> = <span th:text="${X.getBinaryNumber()}"></span>
+        </p>
+        <div class="add">
+            <div class="block1">
+                <p class="mb0">[<i>Y</i>]<sub>ОК</sub> = </p>
+                <p class="mb0">[<i>Y</i>]<sub>ДК</sub> = </p>
+            </div>
+            <div class="block2">
+                <p class="mb0">
+                    <span th:text="${X.getModifyReverseCode()}"></span><br>
+                    <span>+ <u><span th:text="${appToY.getModifyReverseCode()}"></span></u></span><br>
+
+                    <span th:if="${!oldY.equals('')}">
+                        <span th:text="${oldY}"></span><br>
+                        <span>+<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </u></span><u>1</u><br>
+                    </span>
+
+                    <span th:text="${Y.getModifyReverseCode()}"></span><br>
+                    <span th:text="${Y.getModifyAdditionalCode()}"></span><br>
+                </p>
+            </div>
         </div>
-        <div class="block2">
-            <p class="mb0">
-                <span th:text="${X.getModifyReverseCode()}"></span><br>
-                <span>+ <u><span th:text="${appToY.getModifyReverseCode()}"></span></u></span><br>
 
-                <span th:if="${!oldY.equals('')}">
-                    <span th:text="${oldY}"></span><br>
-                    <span>+<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </u></span><u>1</u><br>
-                </span>
+        <br>
 
-                <span th:text="${Y.getModifyReverseCode()}"></span><br>
-                <span th:text="${Y.getModifyAdditionalCode()}"></span><br>
-            </p>
+        <p>8) Виконати підсумовування 𝑈 = 𝑋 + 𝑌 в доповняльних і обернених
+            кодах.
+        </p>
+        <div class="add">
+            <div class="block1">
+                <p class="mb0">[<i>U</i>]<sub>ОК</sub> = </p>
+            </div>
+            <div class="block2">
+                <p class="mb0">
+                    <span th:text="${X.getModifyReverseCode()}"></span><br>
+                    <span>+ <u><span th:text="${Y.getModifyReverseCode()}"></span></u></span><br>
+
+                    <span th:if="${!oldU.equals('')}">
+                        <span th:text="${oldU}"></span><br>
+                        <span>+<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </u></span><u>1</u><br>
+                    </span>
+
+                    <span th:text="${U.getModifyReverseCode()}"></span>
+                </p>
+            </div>
         </div>
-    </div>
+        <br>
+        <div class="add">
+            <div class="block1">
+                <p class="mb0">[<i>U</i>]<sub>ДК</sub> = </p>
+            </div>
+            <div class="block2">
+                <p class="mb0">
+                    <span th:text="${X.getModifyAdditionalCode()}"></span><br>
+                    <span>+ <u><span th:text="${Y.getModifyAdditionalCode()}"></span></u></span><br>
 
-    <br>
-
-    <p>8) Виконати підсумовування 𝑈 = 𝑋 + 𝑌 в доповняльних і обернених
-        кодах.
-    </p>
-    <div class="add">
-        <div class="block1">
-            <p class="mb0">[<i>U</i>]<sub>ОК</sub> = </p>
+                    <span th:text="${U.getModifyAdditionalCode()}"></span>
+                </p>
+            </div>
         </div>
-        <div class="block2">
-            <p class="mb0">
-                <span th:text="${X.getModifyReverseCode()}"></span><br>
-                <span>+ <u><span th:text="${Y.getModifyReverseCode()}"></span></u></span><br>
-                
-                <span th:if="${!oldU.equals('')}">
-                    <span th:text="${oldU}"></span><br>
-                    <span>+<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </u></span><u>1</u><br>
-                </span>
 
-                <span th:text="${U.getModifyReverseCode()}"></span>
-            </p>
+        <br>
+
+        <p>9) Виконати підсумовування 𝑁 = 𝑋 + (− 𝑌) в доповняльних і обернених
+            кодах.
+            <br>
+            <br>
+            [-<i>Y</i> ]<sub>ОК</sub> = [-<i>Y</i> ]<sub>ДК</sub> = [-<i>Y</i> ]<sub>ПК</sub>
+            = <span th:text="${minusY.getModifyReverseCode()}"></span>
+        </p>
+        <div class="add">
+            <div class="block1">
+                <p class="mb0">[<i>N</i>]<sub>ОК</sub> = </p>
+            </div>
+            <div class="block2">
+                <p class="mb0">
+                    <span th:text="${X.getModifyReverseCode()}"></span><br>
+                    <span>+ <u><span th:text="${minusY.getModifyReverseCode()}"></span></u></span><br>
+
+                    <span th:if="${!oldN.equals('')}">
+                        <span th:text="${oldN}"></span><br>
+                        <span>+<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </u></span><u>1</u><br>
+                    </span>
+
+                    <span th:text="${N.getModifyReverseCode()}"></span>
+                </p>
+            </div>
         </div>
-    </div>
-    <br>
-    <div class="add">
-        <div class="block1">
-            <p class="mb0">[<i>U</i>]<sub>ДК</sub> = </p>
-        </div>
-        <div class="block2">
-            <p class="mb0">
-                <span th:text="${X.getModifyAdditionalCode()}"></span><br>
-                <span>+ <u><span th:text="${Y.getModifyAdditionalCode()}"></span></u></span><br>
-
-                <span th:text="${U.getModifyAdditionalCode()}"></span>
-            </p>
-        </div>
-    </div>
-
-    <br>
-
-    <p>9) Виконати підсумовування 𝑁 = 𝑋 + (− 𝑌) в доповняльних і обернених
-        кодах.
         <br>
         <br>
-        [-<i>Y</i> ]<sub>ОК</sub> = [-<i>Y</i> ]<sub>ДК</sub> = [-<i>Y</i> ]<sub>ПК</sub>
-        = <span th:text="${minusY.getModifyReverseCode()}"></span>
-    </p>
-    <div class="add">
-        <div class="block1">
-            <p class="mb0">[<i>N</i>]<sub>ОК</sub> = </p>
-        </div>
-        <div class="block2">
-            <p class="mb0">
-                <span th:text="${X.getModifyReverseCode()}"></span><br>
-                <span>+ <u><span th:text="${minusY.getModifyReverseCode()}"></span></u></span><br>
+        <div class="add">
+            <div class="block1">
+                <p class="mb0">[<i>N</i>]<sub>ДК</sub> = </p>
+            </div>
+            <div class="block2">
+                <p class="mb0">
+                    <span th:text="${X.getModifyAdditionalCode()}"></span><br>
+                    <span>+ <u><span th:text="${minusY.getModifyAdditionalCode()}"></span></u></span><br>
 
-                <span th:if="${!oldN.equals('')}">
-                    <span th:text="${oldN}"></span><br>
-                    <span>+<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </u></span><u>1</u><br>
-                </span>
+                    <span th:text="${N.getModifyAdditionalCode()}"></span>
+                </p>
+            </div>
+        </div>
 
-                <span th:text="${N.getModifyReverseCode()}"></span>
-            </p>
-        </div>
-    </div>
-    <br>
-    <br>
-    <div class="add">
-        <div class="block1">
-            <p class="mb0">[<i>N</i>]<sub>ДК</sub> = </p>
-        </div>
-        <div class="block2">
-            <p class="mb0">
-                <span th:text="${X.getModifyAdditionalCode()}"></span><br>
-                <span>+ <u><span th:text="${minusY.getModifyAdditionalCode()}"></span></u></span><br>
+        <br>
+        <br>
 
-                <span th:text="${N.getModifyAdditionalCode()}"></span>
-            </p>
-        </div>
-    </div>
+        <p>10) Розробити функціональні схеми перетворення 15-розрядного числа,
+            поданого в ПК, в 16-розрядні модифіковані ОК і ДК.
+        </p>
+        <p>В ОК:</p>
+        <img height="500" src="/images/lab1/PK15-to-OK16.png" alt="ПК-15 в ОК-16">
+        <p>В ДК:</p>
+        <img height="500" src="/images/lab1/PK15-to-DK16.png" alt="ПК-15 в ДК-16">
+
+        <br>
+        <br>
+
+        <p>11) У відповідності з операційною схемою розробити функціональну схему, що виконує мікрооперації:<br>
+            - перетворює 15-розрядні операнди E і H, подані ПК, в модифіковані 16-розрядні коди згідно з варіантом (<span th:utext="${a.get(0)} == 0 ?'ДК при <i>a</i><sub>1</sub>=0' : 'ОК при <i>a</i><sub>1</sub>=1'"></span>);<br>
+            - виконує мікрооперації додавання і віднімання модифікованих <span th:text="${a.get(0)} == 0 ?'ДК' : 'ОК'"></span>;<br>
+            - записує результат додавання (віднімання)  в регістр зсуву;<br>
+            - виконує арифметичний зсув модифікованих кодів на один розряд ліворуч і проворуч.
+        </p>
+
+        <img height="850" th:src="'/images/lab1/PK15-sum-to-' + (${a.get(0)} == 0 ? 'DK' : 'OK') +'16.png'" th:alt="'сума з ПК-15 в ' + (${a.get(0)} == 0 ? 'ДК' : 'ОК') + '-16'">
+
+        <br>
+        <br>
+
+        <p>12) Описати мікроалгоритми, що виконуються пристроєм, за допомогою ГСА в змістовних мікроопераціях.
+            Одержати закодований мікроалгоритм, в якому змістовні мікрооперації замінені на управляючі сигнали,
+            що забезпечують їх виконання
+        </p>
+        <img height="800" th:src="'/images/lab1/func-schema-PK15-sum-to-' + (${a.get(0)} == 0 ? 'DK' : 'OK') +'16.png'" th:alt="'функціональна схема суми з ПК-15 в ' + (${a.get(0)} == 0 ? 'ДК' : 'ОК') + '-16'">
 
     </div>
 </body>
