@@ -4,7 +4,7 @@ import com.civka.calculatordemo.utils.BasicBinary;
 
 import java.util.List;
 
-public abstract class AbstractMultiplier extends BasicBinary {
+public abstract class AbstractMultiplier {
 
     protected final String x;
     protected final String y;
