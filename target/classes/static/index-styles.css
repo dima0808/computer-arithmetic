@@ -156,6 +156,15 @@ input:checked + .radio-tile label {
     color: white;
 }
 
+input:disabled + .radio-tile {
+    box-shadow: none;
+    background-color: #ebebeb; 
+}
+
+.input-container input:disabled {
+    cursor: default;
+}
+
 .calculate-button {
     width: 70%;
 }
@@ -301,13 +310,13 @@ input:checked + .radio-tile label {
 
 .header-news {
     color: #8973c8;
-    font-size: 4.2rem;
+    font-size: 3.2rem;
     line-height: 1.2;
     letter-spacing: -0.5px;
 }
 
 .p-news {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     line-height: 1.6;
     color: #555;
 }
@@ -341,6 +350,20 @@ strong {
 .news-link:active {
     color: #5637b0;
     border-bottom: 1px solid transparent;
+}
+
+/* Slow appearance of sections */
+
+.element-animation {
+    /* Скроем элемент в начальном состоянии */
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.element-animation.element-show {
+    opacity: 1;
+    transition: all 1s;
+    transform: translateY(0%);
 }
 
 @media (max-width: 1280px) {

@@ -31,12 +31,6 @@
                 <li class="header-menu-item">
                     <a href="#news" class="header-menu-link">Новини</a>
                 </li>
-                <!-- <li class="header-menu-item">
-                    <a href="/" class="header-menu-link">Як працює?</a>
-                </li> -->
-<!--                 <li class="header-menu-item">
-                    <a href="#autors" class="header-menu-link">Автори</a>
-                </li> -->
                 <li class="header-menu-item">
                     <a th:href="@{/calculate}" class="header-menu-link">Розрахунок</a>
                 </li>
@@ -125,12 +119,11 @@
                             610 -531 478 -1170 773 -1878 867 -146 20 -562 34 -677 24z"/>
                             </g>
                         </svg>Підтримати</a>
-<!--                        <a class="header-link-donate hg6" href="#autors">Про Нас</a>-->
                     </div>
                 </div>
             </div>
         </section>
-        <section class="explanation">
+        <section class="explanation element-animation">
             <div class="info-main container">
                 <div class="content-info text-align ">
                     <h2 class="h2-explanation">До роботи</h2>
@@ -221,14 +214,14 @@
             <h2 class="h2 text-align" id="news">Що нового?</h2>
             <div class="news-container">
                 <div class="grid-news">
-                <div class="img-div-news">
+                <div class="img-div-news element-animation">
                     <img
                     class="img-news"
                     src="/images/news/news3.jpg"
                     alt="engineer"
                     />
                 </div>
-                <div class="text-news">
+                <div class="text-news element-animation">
                     <h3 class="header-news">Оновлення першої лаби</h3>
                     <p class="p-news">
                     Був доданий AFDK для перетворення з ПК в модифікований ОК/ДК, а також AFDK для суми в ОК/ДК.
@@ -242,10 +235,10 @@
                 </div>
                 </div>
                 <div class="grid-news">
-                <div class="img-div-news">
+                <div class="img-div-news element-animation">
                     <img class="img-news" src="/images/news/news1-1.jpg" alt="Deadlines" />
                 </div>
-                <div class="text-news">
+                <div class="text-news element-animation">
                     <h3 class="header-news">Дедлайни по лабам</h3>
                     <p class="p-news">
                     Наша команда плідно працює над сайтом, скоро будуть додані
@@ -424,6 +417,7 @@
             </div>
         </section> -->
     </main>
+    <script src="/scripts/slow-scroll.js"></script>
     <footer class="footer">
         <div class="footer-extra">
             <div class="footer-extra-inner container">
