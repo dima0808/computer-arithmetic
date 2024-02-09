@@ -250,6 +250,15 @@ input:checked + .radio-tiles label {
     color: white;
 }
 
+input:disabled + .radio-tiles {
+    box-shadow: none;
+    background-color: #ebebeb; 
+}
+
+.input-containers input:disabled {
+    cursor: default;
+}
+
 .calculate-buttons {
     width: 50%;
 }
