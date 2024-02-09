@@ -37,10 +37,11 @@ public class FourthMultiplyUtil extends AbstractMultiplier {
                     rg1 = rg1.substring(1);
                 }
 
+                tempRow.set(0, "+ <u>" + rg3 + "</u><br>" + rg1);
+
                 rg3 = "0" + rg3.substring(0, rg3.length() - 1);
                 rg2 = rg2.substring(1) + "0";
 
-                tempRow.set(0, "+ <u>" + rg3 + "</u><br>" + rg1);
                 tempRow.set(3, "RG<sub>1</sub> = RG<sub>1</sub> + RG<sub>3</sub>;<br>" +
                         "RG<sub>3</sub> = 0.R(RG<sub>3</sub>), RG<sub>2</sub> = L(RG<sub>2</sub>).0");
             }
