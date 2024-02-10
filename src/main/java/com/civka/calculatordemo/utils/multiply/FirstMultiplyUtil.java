@@ -1,5 +1,7 @@
 package com.civka.calculatordemo.utils.multiply;
 
+import com.civka.calculatordemo.utils.BasicBinary;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +41,7 @@ public class FirstMultiplyUtil extends AbstractMultiplier {
                 tempRow.set(0, rg1);
                 tempRow.set(4, "RG<sub>1</sub> = 0.R(RG<sub>1</sub>), RG<sub>2</sub> = RG<sub>1</sub>[1].R(RG<sub>2</sub>);<br>CT = CT - 1");
             } else {
-                rg1 = addBinary(rg1, rg3);
+                rg1 = BasicBinary.addBinary(rg1, rg3);
                 if (rg1.length() > n + 1) {
                     rg1 = rg1.substring(1);
                 }

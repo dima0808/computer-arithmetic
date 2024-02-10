@@ -1,5 +1,7 @@
 package com.civka.calculatordemo.utils.multiply;
 
+import com.civka.calculatordemo.utils.BasicBinary;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,14 +44,14 @@ public class ThirdMultiplyUtil extends AbstractMultiplier {
                 tempRow.set(4, String.format("RG<sub>1</sub> = L(RG<sub>1</sub>).0, RG<sub>2</sub> = L(RG<sub>2</sub>).RG<sub>1</sub>[%d];<br>CT = CT - 1", n));
             } else {
                 ci = "0";
-                rg1 = addBinary(rg1, rg3);
+                rg1 = BasicBinary.addBinary(rg1, rg3);
                 if (rg1.length() > n) {
                     rg1 = rg1.substring(1);
                     ci = "1";
                 }
                 tempRG1 = rg1;
 
-                rg2 = addBinary(rg2, "0".repeat(n) + ci);
+                rg2 = BasicBinary.addBinary(rg2, "0".repeat(n) + ci);
                 if (rg2.length() > n + 1) {
                     rg2 = rg2.substring(1);
                 }
@@ -86,7 +88,7 @@ public class ThirdMultiplyUtil extends AbstractMultiplier {
     }
 
     public String plusGOperation(String g) {
-        String xygOperation = addBinary(result, g);
+        String xygOperation = BasicBinary.addBinary(result, g);
         return (xygOperation.length() == n * 2 + 1) ? "1," + xygOperation.substring(1) : "," + xygOperation;
     }
 

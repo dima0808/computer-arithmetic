@@ -1,5 +1,6 @@
 .calculates {
-  padding: 12rem 0 2rem 0;
+  min-height: auto;
+  padding: 12rem 0 12rem 0;
   background-color: var(--color-litle-gray);
   color: #333;
 }
