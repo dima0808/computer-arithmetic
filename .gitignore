@@ -1,4 +1,5 @@
 HELP.md
+target/
 
 ### STS ###
 .apt_generated
@@ -14,6 +15,7 @@ HELP.md
 *.iws
 *.iml
 *.ipr
+
 
 ### NetBeans ###
 /nbproject/private/

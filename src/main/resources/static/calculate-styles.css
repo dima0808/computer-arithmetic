@@ -1,0 +1,291 @@
+.calculates {
+  min-height: auto;
+  padding: 12rem 0 12rem 0;
+  background-color: var(--color-litle-gray);
+  color: #333;
+}
+
+.min-content-height {
+  min-height: 55rem;
+}
+
+.none {
+  display: none;
+}
+
+.ml {
+  margin-left: 6.7rem;
+}
+
+.revers-input {
+  margin-top: 1rem;
+}
+
+.result-title {
+  background-color: #6bc36b;
+  font-weight: 700;
+  margin-top: 0.5rem;
+  padding-left: 2rem;
+}
+
+.color-none {
+  background-color: transparent;
+  margin: 0;
+}
+
+.result-calculate {
+  width: 100%;
+}
+
+.tal {
+  text-align: left;
+}
+
+.button-binary {
+  display: inline-flex;
+  height: 3.5rem;
+  align-items: center;
+  justify-content: center;
+  column-gap: 0.5rem;
+  padding-inline: 2rem;
+  font-weight: 500;
+  line-height: 2;
+  letter-spacing: 1.2px;
+  color: var(--color-light);
+  fill: var(--color-light);
+  text-decoration: none;
+  white-space: nowrap;
+  border-radius: 5px;
+  border: none;
+  transition: all 0.5s;
+}
+
+.input-binary {
+  width: 50%;
+  height: 3rem;
+  padding-inline: 0.5rem;
+  color: var(--color-dark);
+  border: 2px solid var(--primary-color);
+  border-radius: 5px;
+}
+
+.result-color {
+  background-color: #7b68b4;
+}
+
+.result-color:hover {
+  background-color: #9586c3;
+}
+
+.clear-color {
+  background-color: #858585;
+}
+
+.clear-color:hover {
+  background-color: #9d9d9d;
+}
+
+.select-binary {
+  height: 3rem;
+  padding-inline: 0.5rem;
+  color: var(--color-dark);
+  background-color: var(--color-litle-gray);
+  border: 2px solid var(--primary-color);
+  border-radius: 5px;
+}
+
+.mb0 {
+  margin-bottom: 0;
+}
+
+.binary-input {
+  display: flex;
+  align-items: center;
+  column-gap: 0.5rem;
+}
+
+.region:not(:last-child) {
+  margin-bottom: 2rem;
+}
+
+.content-binary {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0;
+}
+
+.binary-calculate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ebedf9;
+  padding: 1rem 0;
+}
+
+.binary-button {
+  margin-top: 0.5rem;
+}
+
+.calculate-inners {
+  display: flex;
+  column-gap: 9rem;
+}
+
+.calculate-operation {
+  max-width: 60%;
+}
+
+.calculate-bodys {
+  flex-grow: 1;
+  max-width: 40%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-block: 3rem;
+  height: 50%;
+  border-radius: 30px;
+}
+
+.calculate-titles:not(:last-child) {
+  margin-bottom: 0;
+}
+
+.calculate-descriptions:not(:last-child) {
+  margin-bottom: 20px;
+  max-width: 385px;
+}
+
+.calculate-form-bodys {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.calculate-form-bodys:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+.inputs {
+  width: 100%;
+  height: 54px;
+  padding-inline: 25px;
+  color: var(--color-dark);
+  background-color: transparent;
+  border: 2px solid var(--primary-color);
+  border-radius: 30px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.inputs::placeholder,
+select.input:invalid {
+  color: #8973c8;
+}
+
+.inputs:hover {
+  box-shadow: 0 0 12px var(--primary-color);
+}
+
+.calculate-inners input:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.binary-input input:not(:last-child) {
+  margin-bottom: 0;
+}
+
+.radio-tile-groups {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 5px;
+  margin-top: 10px;
+}
+
+.input-containers {
+  position: relative;
+  height: 40px;
+  aspect-ratio: 1;
+}
+
+.input-containers input {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  cursor: pointer;
+  z-index: 2;
+  opacity: 0;
+}
+
+.input-containers .radio-tiles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  border: 2px solid var(--primary-color);
+  border-radius: 15px;
+  transition: all 300ms ease;
+}
+
+.input-containers label {
+  color: var(--primary-color);
+  font-size: 25px;
+}
+
+input:checked + .radio-tiles {
+  background-color: var(--primary-color);
+  box-shadow: 0 0 12px var(--primary-color);
+}
+
+input:hover + .radio-tiles {
+  box-shadow: 0 0 12px var(--primary-color);
+}
+
+input:checked + .radio-tiles label {
+  color: white;
+}
+
+input:disabled + .radio-tiles {
+  box-shadow: none;
+  background-color: #ebebeb;
+}
+
+.input-containers input:disabled {
+  cursor: default;
+}
+
+.calculate-buttons {
+  width: 50%;
+}
+
+button {
+  font: inherit;
+}
+
+.buttons {
+  margin-top: 1rem;
+  display: inline-flex;
+  width: 100%;
+  height: 3.8rem;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 2.6rem;
+  font-weight: 700;
+  line-height: 2;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: transparent;
+  border-radius: 30px;
+  border: 2px solid var(--primary-color);
+}
+
+.buttons:hover {
+  box-shadow: 0 0 12px var(--primary-color);
+}

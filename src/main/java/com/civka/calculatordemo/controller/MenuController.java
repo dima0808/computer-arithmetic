@@ -22,7 +22,6 @@ public class MenuController {
     public String getMainPage(Model model) {
 
         model.addAttribute("labData", new LabData());
-        model.addAttribute("labs", new int[]{1, 2, 3, 4, 5});
 
         return "index";
     }
@@ -31,13 +30,40 @@ public class MenuController {
     public String getCalculate(Model model) {
 
         model.addAttribute("labData", new LabData());
-        model.addAttribute("labs", new int[]{1, 2, 3, 4, 5});
+
+        model.addAttribute("binaryCalc", new BasicBinary());
+
+        BasicBinary binaryCalcConvert = new BasicBinary();
+        binaryCalcConvert.setConvertFrom("2");
+        binaryCalcConvert.setConvertTo("10");
+        model.addAttribute("binaryCalcConvert", binaryCalcConvert);
 
         return "calculate";
     }
 
+    @PostMapping("/calculate")
+    public String doCalculate(@ModelAttribute(name = "binaryCalc") BasicBinary binaryCalc,
+                              @ModelAttribute(name = "binaryCalcConvert") BasicBinary binaryCalcConvert,
+                              Model model) {
+
+        model.addAttribute("labData", new LabData());
+
+        model.addAttribute("resultBinaryCalc", binaryCalc);
+        model.addAttribute("binaryCalc", binaryCalc);
+
+        model.addAttribute("resultBinaryCalcConvert", binaryCalcConvert);
+        if (binaryCalcConvert.getConvertTo() == null || binaryCalcConvert.getConvertFrom() == null) {
+            binaryCalcConvert.setConvertFrom("2");
+            binaryCalcConvert.setConvertTo("10");
+        }
+        model.addAttribute("binaryCalcConvert", binaryCalcConvert);
+
+        return "calculate";
+    }
+
+
     @PostMapping("/processForm")
-    public String doCalculation(@ModelAttribute(name = "labData") LabData labData, Model model) {
+    public String doLabForm(@ModelAttribute(name = "labData") LabData labData, Model model) {
 
         List<Integer> a = labData.getA(7);
 

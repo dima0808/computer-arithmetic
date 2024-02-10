@@ -6,101 +6,317 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CivKA</title>
     <link rel="stylesheet" href="/styles.css">
-    <link rel="shortcut icon" href="images/title-foto3.png" type="image/x-icon">
+    <link rel="stylesheet" href="/calculate-styles.css">
+    <link rel="shortcut icon" href="/images/title-foto3.png" type="image/x-icon">
 </head>
 
 <body>
     <header class="header">
-        <a href="/" class="logo-link">
-            <img 
-                src="/images/logo-44.png" 
+        <ul class="header-menu-list left-header">
+          <li class="header-menu-item">
+            <a th:href="@{/}" class="logo-link">
+              <img
+                src="/images/logo-44.png"
                 alt="Civka Logo"
                 class="header-logo-image"
                 width="80"
                 height="80"
                 loading="lazy"
-            />
-            
-        </a>
-        <nav class="header-menu">
-            <ul class="header-menu-list">
-                <li class="header-menu-item">
-                    <a th:href="@{/}" class="header-menu-link">Головна</a>
-                </li>
-                <li class="header-menu-item">
-                    <a th:href="@{/calculate}" class="header-menu-link">Розрахунок</a>
-                </li>
-                <li class="header-menu-item">
-                    <a href="https://send.monobank.ua/jar/8mtbdEWgid" class="header-link-donate" target="_blank">
-                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-                             width="25px" height="25px" viewBox="0 0 1280.000000 1189.000000"
-                             preserveAspectRatio="xMidYMid meet">
-                            <metadata>
-                                Created by potrace 1.15, written by Peter Selinger 2001-2017
-                            </metadata>
-                            <g transform="translate(0.000000,1189.000000) scale(0.100000,-0.100000)"
-                               fill="#3147b3" stroke="none">
-                                <path d="M3250 11884 c-25 -2 -106 -11 -180 -20 -1485 -172 -2704 -1295 -3001
-                            -2764 -133 -660 -67 -1507 171 -2223 252 -753 675 -1411 1397 -2172 342 -360
-                            634 -630 1588 -1470 231 -203 488 -430 570 -505 1024 -920 1735 -1692 2346
-                            -2547 l130 -183 132 0 132 1 130 192 c557 822 1212 1560 2185 2461 191 178
-                            408 373 1027 923 956 852 1445 1343 1841 1850 643 825 968 1603 1064 2553 19
-                            196 17 665 -5 835 -105 805 -441 1497 -998 2054 -557 557 -1250 894 -2054 998
-                            -193 24 -613 24 -810 0 -733 -93 -1379 -387 -1920 -874 -191 -172 -406 -417
-                            -535 -610 -30 -45 -57 -82 -60 -82 -3 0 -30 37 -60 82 -129 193 -344 438 -535
-                            610 -531 478 -1170 773 -1878 867 -146 20 -562 34 -677 24z"/>
-                            </g>
-                        </svg>Підтримати
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </header>
+              />
+            </a>
+          </li>
+  
+          <!-- <li class="header-menu-item">
+              <a href="#donate" class="header-menu-link">Підтримка</a>
+            </li> -->
+          <!-- <li class="header-menu-item">
+            <a href="/" class="header-menu-link">Як працює?</a>
+          </li> -->
+          <!--                 <li class="header-menu-item">
+            <a href="#autors" class="header-menu-link">Автори</a>
+          </li> -->
+          <li class="header-menu-item">
+            <a th:href="@{/calculate}" class="header-menu-link">Розрахунок</a>
+          </li>
+          <li class="header-menu-item">
+            <a th:href="@{/#news}" class="header-menu-link">Новини</a>
+          </li>
+        </ul>
+        <ul class="header-menu-list right-header">
+          <li class="header-menu-item">
+            <a
+              href="https://send.monobank.ua/jar/8mtbdEWgid"
+              class="head-link header-link-donate"
+              target="_blank"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="svg-nav"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
+                />
+              </svg>
+              Підтримати
+            </a>
+          </li>
+          <li class="header-menu-item">
+            <a href="#" class="head-link header-link-login">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="user-nav svg-nav"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z"
+                />
+              </svg>
+              Логін
+            </a>
+          </li>
+        </ul>
+      </header>
+      <script src="/scripts/scroll-nav.js"></script>
     <main class="content ">
         <h1 class="visually-hidden">Заповніть поля</h1>
-        <section class="calculate min-content-height">
+        <section class="calculates min-content-height">
             <div class="calculate-inners container">
-                <div class="calculate-bodys">
+                <div class="calculate-operation">
+                    <h2 class="purple calculate-titles title-mediums text-align">
+                        Калькулятор та системи числення
+                    </h2>
+                    <p class="mb10">
+                        Використовуйте цей калькулятор для виконання додавання, віднімання, множення або ділення двійкових чисел, а також для переведення з однієї системи числення в іншу.
+                    </p>
+                    <div class="content-binary">
+                        <h4 class="purple calculate-titles title-mediums mb10">
+                            Двійкові операції: додавання, віднімання, множення або ділення
+                        </h4>
+                        <div class="region">
+                            <form class="binary-calculate" th:object="${binaryCalc}" th:action="@{/calculate}" method="POST">
+                                <div class="binary-input">
+                                    <label for="binary-op-first-number" class="visually-hidden">Перше число</label>
+                                    <input required
+                                        placeholder=""
+                                        id="binary-op-first-number"
+                                        pattern="[01,\-]*"
+                                        title="Можна вводити лише символи: 0 1 - ,"
+                                        type="text"
+                                        class="calculate-binary-input input-binary"
+                                        th:field="*{x}">
+    
+                                    <label class="visually-hidden" for="binary-operation">Operation</label>
+                                    <select id="binary-operation" class="calculate-binary-input select-binary" required
+                                    th:field="*{operation}">
+                                        <option value="plus" selected>+</option>
+                                        <option value="minus">-</option>
+                                        <option value="multiply">×</option>
+                                        <option value="divide">÷</option>
+                                    </select>
+                                    
+                                    <label for="binary-op-second-number" class="visually-hidden">Друге число</label>
+                                    <input required
+                                        placeholder=""
+                                        id="binary-op-second-number"
+                                        pattern="[01,\-]*"
+                                        title="Можна вводити лише символи: 0 1 - ,"
+                                        type="text"
+                                        class="calculate-binary-input input-binary"
+                                        th:field="*{y}">
+                                </div>
+                                <div class="result-calculate tal" th:if="${resultBinaryCalc != null} and ${resultBinaryCalc.decX != null} and ${resultBinaryCalc.decY != null}">
+                                    <p class="result-title">Відповідь</p>
+                                    <p class="result-title color-none">Двійкове значення:<br>
+                                        <span th:text="${(resultBinaryCalc.decX >= 0) ? resultBinaryCalc.x : '(' + resultBinaryCalc.x + ')'}"></span>
+                                        <span th:switch="${resultBinaryCalc.operation}">
+                                            <span th:case="'plus'"> + </span>
+                                            <span th:case="'minus'"> - </span>
+                                            <span th:case="'multiply'"> × </span>
+                                            <span th:case="'divide'"> ÷ </span>
+                                        </span>
+                                        <span th:text="${(resultBinaryCalc.decY >= 0) ? resultBinaryCalc.y : '(' + resultBinaryCalc.y + ')'}"></span>
+                                        <span th:switch="${resultBinaryCalc.operation}">
+                                            <span th:case="'plus'" th:text="' = ' + ${resultBinaryCalc.addBinary(T(java.lang.String))}"></span>
+                                            <span th:case="'minus'" th:text="' = ' + ${resultBinaryCalc.subtractBinary(T(java.lang.String))}"></span>
+                                            <span th:case="'multiply'" th:text="' = ' + ${resultBinaryCalc.multiplyBinary(T(java.lang.String))}"></span>
+                                            <span th:case="'divide'" th:text="' = ' + ${resultBinaryCalc.divideBinary(T(java.lang.String))}"></span>
+                                        </span>
+                                    </p>
+                                    <p class="result-title color-none">Десяткове значення:<br>
+                                        <span th:text="${(resultBinaryCalc.decX >= 0) ?
+                                         (resultBinaryCalc.decX % 1 == 0 ? resultBinaryCalc.decX.intValue() : resultBinaryCalc.decX) :
+                                         '(' + (resultBinaryCalc.decX % 1 == 0 ? resultBinaryCalc.decX.intValue() : resultBinaryCalc.decX) + ')'}"></span>
+                                        <span th:switch="${resultBinaryCalc.operation}">
+                                            <span th:case="'plus'"> + </span>
+                                            <span th:case="'minus'"> + </span>
+                                            <span th:case="'multiply'"> × </span>
+                                            <span th:case="'divide'"> ÷ </span>
+                                        </span>
+                                        <span th:text="${(resultBinaryCalc.decY >= 0) ?
+                                         (resultBinaryCalc.decY % 1 == 0 ? resultBinaryCalc.decY.intValue() : resultBinaryCalc.decY) :
+                                         '(' + (resultBinaryCalc.decY % 1 == 0 ? resultBinaryCalc.decY.intValue() : resultBinaryCalc.decY) + ')'}"></span>
+                                        <span th:switch="${resultBinaryCalc.operation}">
+                                            <span th:case="'plus'" th:text="' = ' + ${resultBinaryCalc.addBinary(T(java.lang.Double)) % 1 == 0 ?
+                                             resultBinaryCalc.addBinary(T(java.lang.Double)).intValue() :
+                                             resultBinaryCalc.addBinary(T(java.lang.Double))}"></span>
+                                            <span th:case="'minus'" th:text="' = ' + ${resultBinaryCalc.subtractBinary(T(java.lang.Double)) % 1 == 0 ?
+                                             resultBinaryCalc.subtractBinary(T(java.lang.Double)).intValue() :
+                                             resultBinaryCalc.subtractBinary(T(java.lang.Double))}"></span>
+                                            <span th:case="'multiply'" th:text="' = ' + ${resultBinaryCalc.multiplyBinary(T(java.lang.Double)) % 1 == 0 ?
+                                             resultBinaryCalc.multiplyBinary(T(java.lang.Double)).intValue() :
+                                             resultBinaryCalc.multiplyBinary(T(java.lang.Double))}"></span>
+                                            <span th:case="'divide'" th:text="' = ' + ${resultBinaryCalc.divideBinary(T(java.lang.Double)) % 1 == 0 ?
+                                             resultBinaryCalc.divideBinary(T(java.lang.Double)).intValue() :
+                                             resultBinaryCalc.divideBinary(T(java.lang.Double))}"></span>
+                                        </span>
+                                    </p>
+                                </div>
+                                <div class="binary-button">
+                                    <button type="submit" class="button-binary transparent result-color" title="Обчислити">
+                                        Обчислити
+                                        <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="16" height="16"><path d="M20.494,7.968l-9.54-7A5,5,0,0,0,3,5V19a5,5,0,0,0,7.957,4.031l9.54-7a5,5,0,0,0,0-8.064Zm-1.184,6.45-9.54,7A3,3,0,0,1,5,19V5A2.948,2.948,0,0,1,6.641,2.328,3.018,3.018,0,0,1,8.006,2a2.97,2.97,0,0,1,1.764.589l9.54,7a3,3,0,0,1,0,4.836Z"/></svg>
+                                    </button>
+                                    <a th:href="@{/calculate}" class="button-binary transparent clear-color" title="Очистити">
+                                        Очистити
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
+
+
+                        <h4 class="purple calculate-titles title-mediums">
+                            Перетворення в довільних системах числення
+                        </h4>
+                        <div class="region">
+                            <form class="binary-calculate" th:object="${binaryCalcConvert}" th:action="@{/calculate}" method="POST">
+                                <div class="binary-input ml">
+
+                                    <input type="hidden" value="convert" th:field="*{operation}">
+
+                                    <label class="visually-hidden" for="first-convert">System Number</label>
+                                    <select id="first-convert" class="calculate-binary-input select-binary" required th:field="*{convertFrom}">
+                                        <option value="2" selected>2</option>
+                                        <option value="3">3</option>
+                                        <option value="8">8</option>
+                                        <option value="10">10</option>
+                                        <option value="16">16</option>
+                                    </select>
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="24" height="24"><path d="M23.12,9.91,19.25,6a1,1,0,0,0-1.42,0h0a1,1,0,0,0,0,1.41L21.39,11H1a1,1,0,0,0-1,1H0a1,1,0,0,0,1,1H21.45l-3.62,3.61a1,1,0,0,0,0,1.42h0a1,1,0,0,0,1.42,0l3.87-3.88A3,3,0,0,0,23.12,9.91Z"/></svg>
+                                    
+                                    <label class="visually-hidden" for="second-convert">System Number</label>
+                                    <select id="second-convert" class="calculate-binary-input select-binary" required th:field="*{convertTo}">
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="8">8</option>
+                                        <option value="10" selected>10</option>
+                                        <option value="16">16</option>
+                                    </select>
+                                </div>
+                                <div class="revers-input">
+                                    <label for="number-convert" class="">Введіть число:</label>
+                                    <input required
+                                    placeholder=""
+                                    pattern="[0-1A-F]*"
+                                    title="Можна вводити лише символи: 0 1 A-F"
+                                    id="number-convert"
+                                    type="text"
+                                    class="calculate-binary-input input-binary"
+                                    th:field="*{c}">
+                                </div>
+                                <div class="result-calculate tal" th:if="${resultBinaryCalcConvert != null} and ${resultBinaryCalcConvert.c != null}">
+                                    <p class="result-title">Відповідь</p>
+                                    <p class="result-title color-none"><span th:utext="${resultBinaryCalcConvert.c} +
+                                    '<sub>' + ${resultBinaryCalcConvert.convertFrom} + '</sub>'"></span> =
+                                        <span th:utext="${resultBinaryCalcConvert.convertNumber()} +
+                                    '<sub>' + ${resultBinaryCalcConvert.convertTo} + '</sub>'"></span></p>
+                                </div>
+                                <div class="binary-button">
+                                    <button type="submit" class="button-binary transparent result-color" title="Обчислити">
+                                        Обчислити
+                                        <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="16" height="16"><path d="M20.494,7.968l-9.54-7A5,5,0,0,0,3,5V19a5,5,0,0,0,7.957,4.031l9.54-7a5,5,0,0,0,0-8.064Zm-1.184,6.45-9.54,7A3,3,0,0,1,5,19V5A2.948,2.948,0,0,1,6.641,2.328,3.018,3.018,0,0,1,8.006,2a2.97,2.97,0,0,1,1.764.589l9.54,7a3,3,0,0,1,0,4.836Z"/></svg>
+                                    </button>
+                                    <a th:href="@{/calculate}" class="button-binary transparent clear-color" title="Очистити">
+                                        Очистити
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="calculate-bodys shadow-box">
                     <h2 class="purple calculate-titles title-mediums">
                         Введіть свої параметри
                     </h2>
                     <div class="calculate-descriptions">
-                        <p class="wd-70">Коли ви заповните всі поля, натисність кнопку "Відправити".</p>
+                        <p class="text-align">Коли ви заповните всі поля, натисність кнопку "Згенерувати".</p>
                     </div>
                     <form class="calculate-forms" th:object="${labData}" th:action="@{/processForm}" method="POST">
 
-                        <div class="calculate-form-bods">
-
-<!--                             <label for="name" class="visually-hidden">ПІБ</label>
-                            <input required
-                                placeholder="Прізвище Ім'я (Миколайчук Андрій)" 
-                                id="name" 
-                                type="text" 
-                                class="calculate-inputs inputs"
-                                th:field="*{name}"> -->
+                        <div class="calculate-form-bodys">
 
                             <label for="number" class="visually-hidden">№ Залік.книги</label>
                             <input required
-                                placeholder="№ Залікової книги (3603)" 
-                                id="number" 
+                                placeholder="№ Залікової книги (3603)"
+                                id="number"
                                 type="number" 
                                 class="calculate-inputs inputs"
                                 th:field="*{creditNumber}">
 
                             <p>Виберіть номер лабораторної роботи:</p>
                             <div class="radio-tile-groups">
-                                <div th:each="tempLab : ${labs}" class="input-containers">
-                                    <input type="radio" name="radio" th:id="'lab' + ${tempLab}" th:value="${tempLab}" th:field="*{labNumber}">
+                                <div class="input-containers">
+                                    <input type="radio" name="radio" id="lab1" value="1" th:field="*{labNumber}">
                                     <div class="radio-tiles">
-                                        <label th:for="'lab' + ${tempLab}" th:text="${tempLab}" />
+                                        <label for="lab1">1</label>
+                                    </div>
+                                </div>
+
+                                <div class="input-containers">
+                                    <input type="radio" name="radio" id="lab2" value="2" th:field="*{labNumber}">
+                                    <div class="radio-tiles">
+                                        <label for="lab2">2</label>
+                                    </div>
+                                </div>
+
+                                <div class="input-containers">
+                                    <input type="radio" name="radio" id="lab3" value="3" th:field="*{labNumber}" disabled>
+                                    <div class="radio-tiles">
+                                        <label for="lab3">3</label>
+                                    </div>
+                                </div>
+
+                                <div class="input-containers">
+                                    <input type="radio" name="radio" id="lab4" value="4" th:field="*{labNumber}" disabled>
+                                    <div class="radio-tiles">
+                                        <label for="lab4">4</label>
+                                    </div>
+                                </div>
+
+                                <div class="input-containers">
+                                    <input type="radio" name="radio" id="lab5" value="5" th:field="*{labNumber}" disabled>
+                                    <div class="radio-tiles">
+                                        <label for="lab5">5</label>
                                     </div>
                                 </div>
                             </div>
 
                         </div>
 
-                        <button type="submit" class="calculate-buttons buttons transparent purple" title="Відправити">
-                            Відправити
+                        <button type="submit" class="calculate-buttons buttons transparent purple" title="Згенерувати">
+                            Згенерувати
                         </button>
 
                     </form>
