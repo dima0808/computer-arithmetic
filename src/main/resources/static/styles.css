@@ -145,18 +145,19 @@ h6 {
 .logo-link {
   display: flex;
   align-items: center;
-  transition: all 0.6s;
+  transition: all 0.2s ease;
 }
 .logo-link:hover,
 .logo-link:active {
   filter: contrast(135%);
+  transition: 0.35s;
 }
 .header-menu-link:link,
 .header-menu-link:visited {
   color: #333;
   font-size: 1.8rem;
   font-weight: 400;
-  transition: all 0.6s;
+  transition: all 0.25s;
 }
 .header-menu-link:active,
 .header-menu-link:hover {
