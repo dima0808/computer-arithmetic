@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Увійти</title>
+    <link rel="stylesheet" href="/src/main/resources/static/styles.css">
+    <link rel="stylesheet" href="/src/main/resources/static/login-form-styles.css">
+    <link rel="shortcut icon" href="images/title-foto3.png" type="image/x-icon">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <main class="content">
+        <section class="login">
+            <div class="wrapper">
+                <form class="login-form" action="">
+                    <h1 class="">Увійти</h1>
+                    <div class="input-box">
+                        <label for="login" class="visually-hidden">Username</label>
+                        <input id="login" type="email" placeholder="Ім'я користувача" required>
+                        <i class='bx bxs-user'></i>
+                    </div>
+                    <div class="input-box">
+                        <label for="password" class="visually-hidden">Password</label>
+                        <input id="password" type="password" placeholder="Пороль" required>
+                        <i class='bx bxs-lock-alt'></i>
+                    </div>
+                    <div class="remember-forgot">
+                        <label><input type="checkbox"> Запамятати мене</label>
+                        <a href="#">Забув пороль?</a>
+                    </div>
+
+                    <button type="submit" class="btn">Увійти</button>
+
+                    <div class="register-link">
+                        <p>Немає облікового запису?
+                            <a href="#">Зареєструватись</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+    
+</body>
+</html>
