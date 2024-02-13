@@ -31,6 +31,14 @@ public class WebUserAuthority implements Serializable {
         public void setAuthority(String authority) {
             this.authority = authority;
         }
+
+        @Override
+        public String toString() {
+            return "AuthorityId{" +
+                    "username='" + username + '\'' +
+                    ", authority='" + authority + '\'' +
+                    '}';
+        }
     }
 
     @EmbeddedId
@@ -52,5 +60,12 @@ public class WebUserAuthority implements Serializable {
 
     public void setId(AuthorityId id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "WebUserAuthority{" +
+                "id=" + id +
+                '}';
     }
 }

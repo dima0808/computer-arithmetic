@@ -37,7 +37,7 @@
                     <h1>Реєстрація</h1>
                     <div class="input-box">
                         <label for="username" class="visually-hidden">Username</label>
-                        <input id="username" type="text" placeholder="Логін" required th:field="*{username}">
+                        <input id="username" type="text" pattern="[0-9a-zA-Z]*" title="Можна вводити лише символи: 0-9 a-z A-Z" placeholder="Логін" required th:field="*{username}">
                         <i class='bx bxs-user'></i>
                     </div>
                     <div class="input-box">
@@ -47,7 +47,7 @@
                     </div>
                     <div class="input-box">
                         <label for="number" class="visually-hidden">Number</label>
-                        <input id="number" type="number" placeholder="№ залікової книги (не обов'язково)" th:field="*{creditNumber}">
+                        <input id="number" type="number" min="1000" max="9999" placeholder="№ залікової книги (не обов'язково)" th:field="*{creditNumber}">
                         <i class='bx bx-memory-card'></i>
                     </div>
                     <div class="input-box">
