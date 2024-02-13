@@ -1,9 +1,8 @@
 package com.civka.calculatordemo.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -12,6 +11,9 @@ public class WebUser {
     @Id
     @Column(name = "username")
     private String username;
+
+    @OneToMany(mappedBy = "id.username", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<WebUserAuthority> authorities;
 
     @Column(name = "email")
     private String email;
@@ -25,6 +27,9 @@ public class WebUser {
     @Column(name = "enabled")
     private int enabled;
 
+    @Column(name = "nickname")
+    private String nickname;
+
     public WebUser() {
     }
 
@@ -34,6 +39,7 @@ public class WebUser {
         this.creditNumber = creditNumber;
         this.email = email;
         this.enabled = 1;
+        this.nickname = username;
     }
 
     public String getUsername() {
@@ -74,6 +80,22 @@ public class WebUser {
 
     public void setEnabled(int enabled) {
         this.enabled = enabled;
+    }
+
+    public List<WebUserAuthority> getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(List<WebUserAuthority> authorities) {
+        this.authorities = authorities;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     @Override

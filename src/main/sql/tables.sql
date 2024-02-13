@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS public.users
     creditnumber integer,
     email character varying(50) COLLATE pg_catalog."default" NOT NULL,
     enabled smallint NOT NULL,
+    nickname character varying(50) COLLATE pg_catalog."default" NOT NULL,
     CONSTRAINT users_pkey PRIMARY KEY (username),
     CONSTRAINT users_email_key UNIQUE (email)
     )

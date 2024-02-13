@@ -1,0 +1,28 @@
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+    padding: 3% 20%;
+}
+
+.tech-image {
+    display: block;
+    width: 40% !important;
+    height: 40% !important;
+    margin-bottom: 2.4rem;
+}
+.h2-dead {
+    color: #8973c8;
+    font-size: 4.2rem;
+    line-height: 1.05;
+    letter-spacing: -0.5px;
+    text-align: center;
+}
+.p2-dead {
+    font-size: 2.4rem;
+    text-align: center;
+    line-height: 1.7;
+    color: #444;
+}

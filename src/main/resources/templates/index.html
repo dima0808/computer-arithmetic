@@ -31,6 +31,9 @@
       <li class="header-menu-item">
         <a href="#news" class="header-menu-link">Новини</a>
       </li>
+        <li sec:authorize="hasRole('ADMIN')" class="header-menu-item">
+            <a style="color: #8973c8" th:href="@{/admin}" class="header-menu-link">Панель керування</a>
+        </li>
     </ul>
     <ul class="header-menu-list right-header">
       <li class="header-menu-item">
@@ -76,22 +79,23 @@
         </a>
       </li>
         <li class="header-menu-item" sec:authorize="isAuthenticated()">
-            <a href="#" class="head-new-user-nav plumbum"
-            ><svg
+            <a href="#" class="head-new-user-nav plumbum">
+                <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke-width="1.5"
                     stroke="currentColor"
                     class="user-logined svg-nav">
-                <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
-                />
-            </svg>
+                    <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+                    />
+                </svg>
 
-                <span sec:authentication="name"></span></a>
+                <span sec:authentication="name"></span>
+            </a>
             <form th:action="@{/logout}" method="POST">
                 <input type="submit" class="visually-hidden" id="logout-button">
                 <label for="logout-button" class="head-new-user-nav2 plumbum">
@@ -267,6 +271,25 @@
         <section class="news">
             <h2 class="h2 text-align" id="news">Що нового?</h2>
             <div class="news-container">
+                <div class="grid-news">
+                    <div class="img-div-news element-animation">
+                        <img
+                                class="img-news"
+                                src="/images/news/news5.jpg"
+                                alt="open the noor"
+                        />
+                    </div>
+                    <div class="text-news element-animation">
+                        <h3 class="header-news">Система акаунтів</h3>
+                        <p class="p-news">
+                            Тепер Ви можете <a class="purple" th:href="@{/register}">зареєструватись</a> на нашому сайті!<br>
+                            Після автентифікації у вас буде можливість завантажити AFDK схеми. Також пізніше з'явиться опція
+                            зворотного зв'язку, яка буде також доступна лише з автентифікацією.
+                        </p>
+                        <p class="data-news">13.02.2024</p>
+                    </div>
+                </div>
+
                 <div class="grid-news">
                     <div class="img-div-news element-animation">
                         <img

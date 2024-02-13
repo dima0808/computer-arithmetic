@@ -32,9 +32,10 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests(configurer ->
                 configurer
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/maintenance/**").hasRole("ADMIN")
                         .requestMatchers("/afdks/**").authenticated()
                         .requestMatchers("/css/**", "/img/**", "/font/**", "/scripts/**").permitAll()
-                        .requestMatchers("/calculate").authenticated()
                         .anyRequest().permitAll()
         ).formLogin(login ->
                 login

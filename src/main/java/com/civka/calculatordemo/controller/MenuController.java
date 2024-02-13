@@ -1,8 +1,8 @@
 package com.civka.calculatordemo.controller;
 
 import com.civka.calculatordemo.entity.LabData;
-import com.civka.calculatordemo.entity.WebUser;
-import com.civka.calculatordemo.service.WebUserService;
+import com.civka.calculatordemo.maintenance.MaintenanceModeManager;
+import com.civka.calculatordemo.service.UserAuthenticationService;
 import com.civka.calculatordemo.utils.BasicBinary;
 import com.civka.calculatordemo.utils.MachineCodeUtil;
 import com.civka.calculatordemo.utils.multiply.FirstMultiplyUtil;
@@ -10,9 +10,6 @@ import com.civka.calculatordemo.utils.multiply.FourthMultiplyUtil;
 import com.civka.calculatordemo.utils.multiply.SecondMultiplyUtil;
 import com.civka.calculatordemo.utils.multiply.ThirdMultiplyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,35 +21,30 @@ import java.util.List;
 @Controller
 public class MenuController {
 
-    private final WebUserService webUserService;
+    private final MaintenanceModeManager maintenanceModeManager;
+
+    private final UserAuthenticationService userAuthenticationService;
 
     @Autowired
-    public MenuController(WebUserService webUserService) {
-        this.webUserService = webUserService;
+    public MenuController(UserAuthenticationService userAuthenticationService, MaintenanceModeManager maintenanceModeManager) {
+        this.userAuthenticationService = userAuthenticationService;
+        this.maintenanceModeManager = maintenanceModeManager;
     }
 
     @GetMapping("/")
     public String getMainPage(Model model) {
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = authentication.getName();
+        model.addAttribute("userNickname", userAuthenticationService.getNicknameByAuth());
+        model.addAttribute("labData", userAuthenticationService.getLabDataByAuth());
 
-        if (username.equals("anonymousUser")) {
-            model.addAttribute("labData", new LabData());
-        } else {
-            WebUser user = webUserService.findByUsername(username);
-            Integer creditNumber = user.getCreditNumber();
-
-            model.addAttribute("labData", new LabData(creditNumber));
-        }
-
-        return "index";
+        return maintenanceModeManager.isMaintenanceModeEnabled() ? "maintenance" : "index";
     }
 
     @GetMapping("/calculate")
     public String getCalculate(Model model) {
 
-        model.addAttribute("labData", new LabData());
+        model.addAttribute("userNickname", userAuthenticationService.getNicknameByAuth());
+        model.addAttribute("labData", userAuthenticationService.getLabDataByAuth());
 
         model.addAttribute("binaryCalc", new BasicBinary());
 
@@ -61,7 +53,7 @@ public class MenuController {
         binaryCalcConvert.setConvertTo("10");
         model.addAttribute("binaryCalcConvert", binaryCalcConvert);
 
-        return "calculate";
+        return maintenanceModeManager.isMaintenanceModeEnabled() ? "maintenance" : "calculate";
     }
 
     @PostMapping("/calculate")
@@ -69,7 +61,8 @@ public class MenuController {
                               @ModelAttribute(name = "binaryCalcConvert") BasicBinary binaryCalcConvert,
                               Model model) {
 
-        model.addAttribute("labData", new LabData());
+        model.addAttribute("userNickname", userAuthenticationService.getNicknameByAuth());
+        model.addAttribute("labData", userAuthenticationService.getLabDataByAuth());
 
         model.addAttribute("resultBinaryCalc", binaryCalc);
         model.addAttribute("binaryCalc", binaryCalc);
@@ -81,12 +74,14 @@ public class MenuController {
         }
         model.addAttribute("binaryCalcConvert", binaryCalcConvert);
 
-        return "calculate";
+        return maintenanceModeManager.isMaintenanceModeEnabled() ? "maintenance" : "calculate";
     }
 
 
     @PostMapping("/processForm")
     public String doLabForm(@ModelAttribute(name = "labData") LabData labData, Model model) {
+
+        model.addAttribute("userNickname", userAuthenticationService.getNicknameByAuth());
 
         List<Integer> a = labData.getA(7);
 
