@@ -4,18 +4,18 @@
 }
 
 body {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url('/src/main/resources/static/images/civ-background-main3.jpg') no-repeat;
+    background: url('/images/civ-background-main3.jpg') no-repeat center;
     background-size: cover;
-    background-position: center;
 }
 
 .wrapper {
     width: 42rem;
-    background: rgb(137, 115, 200, .2);
+    background: rgb(51, 51, 51, 0.3);
     border: 2px solid rgba(255, 255, 255, .2);
     backdrop-filter: blur(20px);
     box-shadow: 0 0 10px rgba(0, 0, 0, .2);
@@ -40,13 +40,16 @@ body {
     width: 100%;
     height: 100%;
     background: transparent;
-    border: none;
     outline: none;
     border: 2px solid rgba(255, 255, 255, 1);
     border-radius: 40px;
     font-size: 1.6rem;
     color: var(--color-login);
     padding: 20px 45px 20px 20px;
+}
+
+.input-box input:focus {
+    box-shadow: 0 0 20px rgba(28, 27, 27, 0.5);
 }
 
 .input-box input::placeholder {
@@ -108,4 +111,31 @@ body {
 
 .register-link p a:hover {
     text-decoration: underline;
+}
+
+/* LOGO */
+.image-container {
+    position: absolute;
+    top: 3%;
+    left: 7%;
+    height: 10rem;
+    width: 10rem;
+}
+
+.image-container img {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 10rem;
+    width: 10rem;
+    transition: opacity 0.25s;
+}
+
+.image-container .top {
+    opacity: 0;
+}
+
+.image-container:hover .top {
+    opacity: 1;
+    transition: opacity 0.45s;
 }
