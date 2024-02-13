@@ -34,7 +34,10 @@ public class MenuController {
     @GetMapping("/")
     public String getMainPage(Model model) {
 
-        model.addAttribute("userNickname", userAuthenticationService.getNicknameByAuth());
+        String nickname = userAuthenticationService.getNicknameByAuth();
+        if (nickname.equals("failedUser")) return "failed-user-page";
+        model.addAttribute("userNickname", nickname);
+
         model.addAttribute("labData", userAuthenticationService.getLabDataByAuth());
 
         return maintenanceModeManager.isMaintenanceModeEnabled() ? "maintenance" : "index";
@@ -43,7 +46,10 @@ public class MenuController {
     @GetMapping("/calculate")
     public String getCalculate(Model model) {
 
-        model.addAttribute("userNickname", userAuthenticationService.getNicknameByAuth());
+        String nickname = userAuthenticationService.getNicknameByAuth();
+        if (nickname.equals("failedUser")) return "failed-user-page";
+        model.addAttribute("userNickname", nickname);
+
         model.addAttribute("labData", userAuthenticationService.getLabDataByAuth());
 
         model.addAttribute("binaryCalc", new BasicBinary());
@@ -61,7 +67,10 @@ public class MenuController {
                               @ModelAttribute(name = "binaryCalcConvert") BasicBinary binaryCalcConvert,
                               Model model) {
 
-        model.addAttribute("userNickname", userAuthenticationService.getNicknameByAuth());
+        String nickname = userAuthenticationService.getNicknameByAuth();
+        if (nickname.equals("failedUser")) return "failed-user-page";
+        model.addAttribute("userNickname", nickname);
+
         model.addAttribute("labData", userAuthenticationService.getLabDataByAuth());
 
         model.addAttribute("resultBinaryCalc", binaryCalc);
@@ -81,7 +90,9 @@ public class MenuController {
     @PostMapping("/processForm")
     public String doLabForm(@ModelAttribute(name = "labData") LabData labData, Model model) {
 
-        model.addAttribute("userNickname", userAuthenticationService.getNicknameByAuth());
+        String nickname = userAuthenticationService.getNicknameByAuth();
+        if (nickname.equals("failedUser")) return "failed-user-page";
+        model.addAttribute("userNickname", nickname);
 
         List<Integer> a = labData.getA(7);
 
