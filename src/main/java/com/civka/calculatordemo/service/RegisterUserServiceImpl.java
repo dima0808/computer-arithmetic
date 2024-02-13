@@ -2,12 +2,8 @@ package com.civka.calculatordemo.service;
 
 import com.civka.calculatordemo.dao.RegisterUserRepository;
 import com.civka.calculatordemo.entity.WebUser;
-import com.civka.calculatordemo.exception.WebUserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.session.SessionInformation;
 import org.springframework.security.core.session.SessionRegistry;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,28 +35,12 @@ public class RegisterUserServiceImpl implements RegisterUserService {
     @Override
     public WebUser findByUsername(String username) {
         Optional<WebUser> webUser = Optional.ofNullable(registerUserRepository.findByUsername(username));
-        if (webUser.isPresent()) {
-            return webUser.get();
-        } else {
-            throw new WebUserNotFoundException("web user " + username + " not found.");
-        }
+        return webUser.orElse(null);
     }
 
     @Override
     @Transactional
     public void deleteWebUserByUsername(String username) {
-        for (Object principal : sessionRegistry.getAllPrincipals()) {
-            if (principal instanceof User user) {
-                if (user.getUsername().equals(username)) {
-                    for (SessionInformation sessionInformation : sessionRegistry.getAllSessions(principal, false)) {
-                        sessionInformation.expireNow();
-                    }
-                }
-            }
-        }
-
-        // Оновити контекст безпеки
-        SecurityContextHolder.getContext().setAuthentication(null);
         findByUsername(username);
         registerUserRepository.deleteById(username);
     }
