@@ -2,11 +2,16 @@ package com.civka.calculatordemo.service;
 
 
 import com.civka.calculatordemo.entity.WebUser;
-import com.civka.calculatordemo.entity.WebUserAuthority;
+
+import java.util.List;
 
 public interface RegisterUserService {
 
-    WebUser saveUser(WebUser webUser);
+    List<WebUser> findAll();
 
-    WebUserAuthority saveAuthority(WebUser webUser, String authority);
+    WebUser findByUsername(String username);
+
+    WebUser saveWebUser(WebUser webUser);
+
+    void deleteWebUserByUsername(String username);
 }
