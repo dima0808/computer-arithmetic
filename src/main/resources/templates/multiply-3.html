@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -236,6 +236,9 @@
         <br>
 
         <p>8) Схема алгоритму:</p>
+        <p><a sec:authorize="isAuthenticated()" style="text-decoration: underline; color: #5637b0" th:href="@{'/afdks/lab2/third-multiply-plus-g-n=' + ${thirdMultiply.n} + '.AFP'}" download>Завантажити схему AFDK</a>
+           <a sec:authorize="!isAuthenticated()" style="text-decoration: underline; color: #5637b0" th:href="@{/login}">Завантажити схему AFDK</a>
+            (лише для авторизованих користувачів)</p>
         <img height="700" th:src="'/images/lab2/multiply-3/third-multiply-plus-g-n=' + ${thirdMultiply.n} + '.png'" alt="AFDK schema">
     </div>
 </body>
