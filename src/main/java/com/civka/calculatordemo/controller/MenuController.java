@@ -1,12 +1,18 @@
 package com.civka.calculatordemo.controller;
 
 import com.civka.calculatordemo.entity.LabData;
+import com.civka.calculatordemo.entity.WebUser;
+import com.civka.calculatordemo.service.WebUserService;
 import com.civka.calculatordemo.utils.BasicBinary;
 import com.civka.calculatordemo.utils.MachineCodeUtil;
 import com.civka.calculatordemo.utils.multiply.FirstMultiplyUtil;
 import com.civka.calculatordemo.utils.multiply.FourthMultiplyUtil;
 import com.civka.calculatordemo.utils.multiply.SecondMultiplyUtil;
 import com.civka.calculatordemo.utils.multiply.ThirdMultiplyUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,10 +24,27 @@ import java.util.List;
 @Controller
 public class MenuController {
 
+    private final WebUserService webUserService;
+
+    @Autowired
+    public MenuController(WebUserService webUserService) {
+        this.webUserService = webUserService;
+    }
+
     @GetMapping("/")
     public String getMainPage(Model model) {
 
-        model.addAttribute("labData", new LabData());
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        if (username.equals("anonymousUser")) {
+            model.addAttribute("labData", new LabData());
+        } else {
+            WebUser user = webUserService.findByUsername(username);
+            Integer creditNumber = user.getCreditNumber();
+
+            model.addAttribute("labData", new LabData(creditNumber));
+        }
 
         return "index";
     }

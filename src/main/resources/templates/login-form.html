@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Увійти</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/login-form-styles.css">
+    <link rel="shortcut icon" href="/images/title-foto3.png" type="image/x-icon">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <a class="back-home-logo image-container" th:href="@{/}">
+        <img
+                src="/images/logo-444.png"
+                alt="Civka Logo"
+                class="header-logo-image bottom"
+                loading="lazy"
+                width="120"
+                id="first-image"
+        />
+        <img
+                src="/images/logo-4446.png"
+                alt="Civka Logo"
+                class="header-logo-image top"
+                loading="lazy"
+                width="120"
+                id="second-image"
+        />
+    </a>
+    <main class="content">
+        <section class="login">
+            <div class="wrapper">
+                <form class="login-form" th:action="@{/authenticateUser}" method="POST">
+                    <h1 class="">Увійти</h1>
+                    <div class="input-box">
+                        <label for="username" class="visually-hidden">Username</label>
+                        <input id="username" type="text" placeholder="Ім'я користувача" required name="username">
+                        <i class='bx bxs-user'></i>
+                    </div>
+                    <div class="input-box">
+                        <label for="password" class="visually-hidden">Password</label>
+                        <input id="password" type="password" placeholder="Пароль" required name="password">
+                        <i class='bx bxs-lock-alt'></i>
+                    </div>
+                    <div class="remember-forgot">
+                        <label><input type="checkbox"> Запам'ятати мене</label>
+                        <a href="#">Забули пороль?</a>
+                    </div>
+
+                    <button type="submit" class="btn">Увійти</button>
+
+                    <div class="register-link">
+                        <p>Немає облікового запису?
+                            <a th:href="@{/register}">Зареєструватись</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+    
+</body>
+</html>

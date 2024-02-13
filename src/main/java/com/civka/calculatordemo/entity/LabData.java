@@ -5,24 +5,13 @@ import java.util.List;
 
 public class LabData {
 
-    private String name;
     private Integer creditNumber;
     private Integer labNumber;
 
     public LabData() {}
 
-    public LabData(String name, Integer creditNumber, Integer labNumber) {
-        this.name = name;
+    public LabData(Integer creditNumber) {
         this.creditNumber = creditNumber;
-        this.labNumber = labNumber;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public Integer getCreditNumber() {
