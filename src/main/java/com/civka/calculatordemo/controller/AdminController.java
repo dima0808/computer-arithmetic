@@ -32,7 +32,9 @@ public class AdminController {
     @GetMapping
     public String getAdminPage(Model model) {
 
-        model.addAttribute("userNickname", userAuthenticationService.getNicknameByAuth());
+        String nickname = userAuthenticationService.getNicknameByAuth();
+        if (nickname.equals("failedUser")) return "failed-user-page";
+        model.addAttribute("userNickname", nickname);
 
         List<WebUser> webUsers = registerUserService.findAll();
         List<WebUserAuthority> webUserAuthorities = registerUserAuthorityService.findAll();
@@ -46,7 +48,9 @@ public class AdminController {
     @GetMapping("/updateWebUser")
     public String getUpdateForm(@RequestParam("username") String username, Model model) {
 
-        model.addAttribute("userNickname", userAuthenticationService.getNicknameByAuth());
+        String nickname = userAuthenticationService.getNicknameByAuth();
+        if (nickname.equals("failedUser")) return "failed-user-page";
+        model.addAttribute("userNickname", nickname);
 
         model.addAttribute("webUser", registerUserService.findByUsername(username));
 
@@ -55,7 +59,6 @@ public class AdminController {
 
     @PostMapping("/saveWebUser")
     public String saveWebUser(@ModelAttribute("webUser") WebUser webUser) {
-
 
         webUser.setAuthorities(registerUserService.findByUsername(webUser.getUsername()).getAuthorities());
 
@@ -74,6 +77,10 @@ public class AdminController {
 
     @GetMapping("/addWebUserAuthority")
     public String addWebUserAuthority(Model model) {
+
+        String nickname = userAuthenticationService.getNicknameByAuth();
+        if (nickname.equals("failedUser")) return "failed-user-page";
+        model.addAttribute("userNickname", nickname);
 
         model.addAttribute("webUserAuthority", new WebUserAuthority());
 

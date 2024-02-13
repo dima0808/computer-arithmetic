@@ -20,24 +20,34 @@ public class UserAuthenticationServiceImpl implements UserAuthenticationService 
     @Override
     public LabData getLabDataByAuth() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = authentication.getName();
-        if (username.equals("anonymousUser")) {
+        String username;
+
+        if (authentication != null) username = authentication.getName();
+        else return new LabData();
+
+        WebUser webUser = null;
+        if (!username.equals("anonymousUser")) webUser = registerUserService.findByUsername(username);
+
+        if (webUser != null) return new LabData(webUser.getCreditNumber());
+        else {
             return new LabData();
-        } else {
-            WebUser user = registerUserService.findByUsername(username);
-            Integer creditNumber = user.getCreditNumber();
-            return new LabData(creditNumber);
         }
     }
 
     @Override
     public String getNicknameByAuth() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = authentication.getName();
-        if (!username.equals("anonymousUser")) {
-            return registerUserService.findByUsername(username).getNickname();
-        } else {
-            return null;
+        String username;
+
+        if (authentication != null) username = authentication.getName();
+        else return "failedUser";
+
+        WebUser webUser;
+        if (!username.equals("anonymousUser")) webUser = registerUserService.findByUsername(username);
+        else return "anonymousUser";
+        if (webUser != null) return webUser.getNickname();
+        else {
+            return "failedUser";
         }
     }
 }
