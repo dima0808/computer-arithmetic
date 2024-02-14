@@ -91,7 +91,7 @@
                 />
             </svg>
 
-                <span sec:authentication="name"></span></a>
+                <span th:text="${userNickname}"></span></a>
             <form th:action="@{/logout}" method="POST">
                 <input type="submit" class="visually-hidden" id="logout-button">
                 <label for="logout-button" class="head-new-user-nav2 plumbum">

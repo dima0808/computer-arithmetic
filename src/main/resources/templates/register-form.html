@@ -47,7 +47,7 @@
                     </div>
                     <div class="input-box">
                         <label for="number" class="visually-hidden">Number</label>
-                        <input id="number" type="number" min="1000" max="9999" placeholder="№ залікової книги (не обов'язково)" th:field="*{creditNumber}">
+                        <input id="number" type="text" pattern="[0-9]*" minlength="3" maxlength="4" title="Можна вводити лише символи: 0-9" placeholder="№ залікової книги (не обов'язково)" th:field="*{creditNumber}">
                         <i class='bx bx-memory-card'></i>
                     </div>
                     <div class="input-box">

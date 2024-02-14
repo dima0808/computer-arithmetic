@@ -95,7 +95,7 @@
         />
       </svg>
 
-        <span sec:authentication="name"></span></a>
+        <span th:text="${userNickname}"></span></a>
       <form th:action="@{/logout}" method="POST">
         <input type="submit" class="visually-hidden" id="logout-button">
         <label for="logout-button" class="head-new-user-nav2 plumbum">
@@ -130,12 +130,13 @@
 
     <form th:action="@{/admin/saveWebUser}" th:object="${webUser}" method="POST">
 
+      <input type="hidden" th:field="*{username}">
       <input type="hidden" th:field="*{password}">
       <input type="hidden" th:field="*{enabled}">
 
       <label>
         Логін
-        <input type="text" th:field="*{username}" class="form-control mb-4 w-100" placeholder="Логін" disabled>
+        <input type="text" th:value="${webUser.username}" class="form-control mb-4 w-100" placeholder="Логін" disabled>
       </label>
 
       <br>
