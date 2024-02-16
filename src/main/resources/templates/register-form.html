@@ -37,12 +37,12 @@
                     <h1>Реєстрація</h1>
                     <div class="input-box">
                         <label for="username" class="visually-hidden">Username</label>
-                        <input id="username" type="text" pattern="[0-9a-zA-Z]*" title="Можна вводити лише символи: 0-9 a-z A-Z" placeholder="Логін" required th:field="*{username}">
+                        <input id="username" type="text" pattern="[0-9a-zA-Z]*" minlength="5" title="Можна вводити лише символи: 0-9 a-z A-Z" placeholder="Логін" required th:field="*{username}">
                         <i class='bx bxs-user'></i>
                     </div>
                     <div class="input-box">
                         <label for="email" class="visually-hidden">Email</label>
-                        <input id="email" type="email" placeholder="Ел. пошта" required th:field="*{email}">
+                        <input id="email" type="email" placeholder="Ел. пошта" minlength="5" required th:field="*{email}">
                         <i class='bx bx-envelope'></i>
                     </div>
                     <div class="input-box">
@@ -52,12 +52,12 @@
                     </div>
                     <div class="input-box">
                         <label for="password" class="visually-hidden">Password</label>
-                        <input id="password" type="password" placeholder="Пароль" required th:field="*{password}">
+                        <input id="password" type="password" placeholder="Пароль" minlength="5" required th:field="*{password}">
                         <i class='bx bxs-lock-alt'></i>
                     </div>
                     <div class="input-box">
                         <label for="repeat-password" class="visually-hidden">Password</label>
-                        <input id="repeat-password" type="password" placeholder="Підтвердити пароль" required th:field="*{passwordRepeat}">
+                        <input id="repeat-password" type="password" placeholder="Підтвердити пароль" minlength="5" required th:field="*{passwordRepeat}">
                         <i class='bx bxs-lock-alt'></i>
                     </div>
 
