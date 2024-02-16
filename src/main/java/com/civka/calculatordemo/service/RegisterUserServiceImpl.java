@@ -3,7 +3,6 @@ package com.civka.calculatordemo.service;
 import com.civka.calculatordemo.dao.RegisterUserRepository;
 import com.civka.calculatordemo.entity.WebUser;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,12 +13,10 @@ import java.util.Optional;
 public class RegisterUserServiceImpl implements RegisterUserService {
 
     private final RegisterUserRepository registerUserRepository;
-    private final SessionRegistry sessionRegistry;
 
     @Autowired
-    public RegisterUserServiceImpl(RegisterUserRepository registerUserRepository, SessionRegistry sessionRegistry) {
+    public RegisterUserServiceImpl(RegisterUserRepository registerUserRepository) {
         this.registerUserRepository = registerUserRepository;
-        this.sessionRegistry = sessionRegistry;
     }
 
     @Override

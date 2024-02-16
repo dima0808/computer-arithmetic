@@ -8,8 +8,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 
 import javax.sql.DataSource;
 
@@ -45,7 +43,10 @@ public class SecurityConfig {
                         .permitAll()
         ).logout(logout ->
                 logout.logoutSuccessUrl("/")
-                        .permitAll());
+                        .permitAll()
+        ).rememberMe(rememberMe -> rememberMe
+                .key("uniqueAndSecret")
+                .tokenValiditySeconds(16000000));
 
         return http.build();
     }
