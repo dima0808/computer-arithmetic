@@ -22,7 +22,6 @@ import java.util.List;
 public class MenuController {
 
     private final MaintenanceModeManager maintenanceModeManager;
-
     private final UserAuthenticationService userAuthenticationService;
 
     @Autowired
