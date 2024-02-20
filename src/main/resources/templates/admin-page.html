@@ -141,6 +141,7 @@
         <table class="table table-bordered table-striped">
             <thead class="table-dark">
             <tr>
+                <th>№</th>
                 <th>Логін</th>
                 <th>Нікнейм</th>
                 <th>Пошта</th>
@@ -150,7 +151,8 @@
             </thead>
 
             <tbody>
-            <tr th:each="tempUser : ${webUsers}">
+            <tr th:each="tempUser, iterationStat : ${webUsers}">
+                <td th:text="${iterationStat.index + 1}" />
                 <td th:text="${tempUser.username}" />
                 <td th:text="${tempUser.nickname}" />
                 <td th:text="${tempUser.email}" />
