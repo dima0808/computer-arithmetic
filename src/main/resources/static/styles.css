@@ -107,6 +107,9 @@ body {
   background-color: var(--color-light);
   position: relative;
 }
+main {
+  margin-bottom: 9rem;
+}
 
 .container {
   max-width: calc(var(--container-width) + var(--container-padding-x) * 2);
@@ -137,6 +140,7 @@ h6 {
 
   z-index: 9999;
   display: flex;
+
   padding: 0 2.9rem 0 4.8rem;
   align-items: center;
   justify-content: space-between;
@@ -362,9 +366,10 @@ h6 {
   } */
 .calculate,
 .info-text {
-  padding: 18rem 0 9rem 0;
+  padding: 9rem 0 9rem 0;
   background: var(--color-litle-gray);
   color: #333;
+  margin-top: 9rem;
 }
 
 input::-webkit-outer-spin-button,
@@ -398,6 +403,12 @@ button {
 
 .foto {
   box-shadow: 0 12px 24px 0 rgb(86, 55, 176, 0.4);
+}
+.foto2 {
+  box-shadow: 0 12px 24px 0 rgb(86, 55, 176, 0.12);
+}
+.text-shadow2 {
+  text-shadow: -2px 0 5px rgba(86, 55, 176, 0.2);
 }
 
 .mb10 {
@@ -491,4 +502,20 @@ button {
 
 .text-align {
   text-align: center;
+}
+.flex-center {
+  display: flex;
+  justify-content: center;
+}
+.flex-end {
+  display: flex;
+  justify-content: end;
+}
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+}
+.none {
+  visibility: hidden;
+  grid-row: 2;
 }
