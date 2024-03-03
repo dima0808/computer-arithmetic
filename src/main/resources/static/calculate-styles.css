@@ -6,7 +6,7 @@
 }
 
 .min-content-height {
-  min-height: 55rem;
+  min-height: 79vh;
 }
 
 .none {
@@ -127,22 +127,19 @@
 }
 
 .calculate-inners {
-  display: flex;
+  display: grid;
   column-gap: 9rem;
-}
-
-.calculate-operation {
-  max-width: 60%;
+  grid-template-columns: 65fr 35fr;
 }
 
 .calculate-bodys {
   flex-grow: 1;
-  max-width: 40%;
+
   display: flex;
   align-items: center;
   flex-direction: column;
   padding-block: 3rem;
-  height: 50%;
+  height: 43rem;
   border-radius: 30px;
 }
 

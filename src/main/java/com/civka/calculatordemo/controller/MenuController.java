@@ -60,6 +60,13 @@ public class MenuController {
 
         return maintenanceModeManager.isMaintenanceModeEnabled() ? "maintenance" : "calculate";
     }
+    @GetMapping("/feedback")
+    public String getFeedback(Model model) {
+        String nickname = userAuthenticationService.getNicknameByAuth();
+        if (nickname.equals("failedUser")) return "failed-user-page";
+        model.addAttribute("userNickname", nickname);
+        return "feedback";
+    }
 
     @PostMapping("/calculate")
     public String doCalculate(@ModelAttribute(name = "binaryCalc") BasicBinary binaryCalc,
