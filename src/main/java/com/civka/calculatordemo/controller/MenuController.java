@@ -1,7 +1,9 @@
 package com.civka.calculatordemo.controller;
 
 import com.civka.calculatordemo.entity.LabData;
+import com.civka.calculatordemo.entity.QuestionData;
 import com.civka.calculatordemo.maintenance.MaintenanceModeManager;
+import com.civka.calculatordemo.service.QuestionDataService;
 import com.civka.calculatordemo.service.UserAuthenticationService;
 import com.civka.calculatordemo.utils.BasicBinary;
 import com.civka.calculatordemo.utils.MachineCodeUtil;
@@ -10,6 +12,7 @@ import com.civka.calculatordemo.utils.multiply.FourthMultiplyUtil;
 import com.civka.calculatordemo.utils.multiply.SecondMultiplyUtil;
 import com.civka.calculatordemo.utils.multiply.ThirdMultiplyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,12 +24,17 @@ import java.util.List;
 @Controller
 public class MenuController {
 
-    private final MaintenanceModeManager maintenanceModeManager;
     private final UserAuthenticationService userAuthenticationService;
+    private final QuestionDataService questionDataService;
+    private final MaintenanceModeManager maintenanceModeManager;
 
     @Autowired
-    public MenuController(UserAuthenticationService userAuthenticationService, MaintenanceModeManager maintenanceModeManager) {
+    public MenuController(UserAuthenticationService userAuthenticationService,
+                          QuestionDataService questionDataService,
+                          MaintenanceModeManager maintenanceModeManager) {
+
         this.userAuthenticationService = userAuthenticationService;
+        this.questionDataService = questionDataService;
         this.maintenanceModeManager = maintenanceModeManager;
     }
 
@@ -60,13 +68,6 @@ public class MenuController {
 
         return maintenanceModeManager.isMaintenanceModeEnabled() ? "maintenance" : "calculate";
     }
-    @GetMapping("/feedback")
-    public String getFeedback(Model model) {
-        String nickname = userAuthenticationService.getNicknameByAuth();
-        if (nickname.equals("failedUser")) return "failed-user-page";
-        model.addAttribute("userNickname", nickname);
-        return "feedback";
-    }
 
     @PostMapping("/calculate")
     public String doCalculate(@ModelAttribute(name = "binaryCalc") BasicBinary binaryCalc,
@@ -90,6 +91,36 @@ public class MenuController {
         model.addAttribute("binaryCalcConvert", binaryCalcConvert);
 
         return maintenanceModeManager.isMaintenanceModeEnabled() ? "maintenance" : "calculate";
+    }
+
+    @GetMapping("/feedback")
+    public String getFeedback(Model model) {
+
+        String nickname = userAuthenticationService.getNicknameByAuth();
+        if (nickname.equals("failedUser")) return "failed-user-page";
+        model.addAttribute("userNickname", nickname);
+
+        model.addAttribute("questions", questionDataService.findAll());
+
+        model.addAttribute("questionData", new QuestionData());
+
+        return maintenanceModeManager.isMaintenanceModeEnabled() ? "maintenance" : "feedback";
+    }
+
+    @PostMapping("/feedback")
+    public String processFeedback(@ModelAttribute(name = "questionData") QuestionData questionData, Model model) {
+
+        String nickname = userAuthenticationService.getNicknameByAuth();
+        if (nickname.equals("failedUser")) return "failed-user-page";
+        model.addAttribute("userNickname", nickname);
+
+        model.addAttribute("questions", questionDataService.findAll());
+
+        questionData.setUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+        questionDataService.saveQuestionData(questionData);
+        model.addAttribute("questionData", new QuestionData());
+
+        return maintenanceModeManager.isMaintenanceModeEnabled() ? "maintenance" : "redirect:/feedback";
     }
 
 
