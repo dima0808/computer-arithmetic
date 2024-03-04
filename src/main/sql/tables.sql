@@ -39,3 +39,25 @@ CREATE TABLE IF NOT EXISTS public.authorities
 
 ALTER TABLE IF EXISTS public.authorities
     OWNER to iqnbdiysrdssht;
+
+
+-- Table: public.feedback
+
+-- DROP TABLE IF EXISTS public.feedback;
+
+CREATE TABLE IF NOT EXISTS public.feedback
+(
+    id serial NOT NULL,
+    username character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    theme character varying(100) COLLATE pg_catalog."default",
+    question character varying(400) COLLATE pg_catalog."default" NOT NULL,
+    answer character varying(400) COLLATE pg_catalog."default",
+    question_date date NOT NULL,
+    answer_date date,
+    CONSTRAINT question_pkey PRIMARY KEY (id)
+)
+
+    TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.feedback
+    OWNER to iqnbdiysrdssht;

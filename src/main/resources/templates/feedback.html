@@ -139,47 +139,49 @@
             помилки. Відповіді прийдуть незабаром, ви зможете це побачити
             справа. Також, перевіряйте чи ваше питання вже хтось не задавав
           </p>
-          <label for="them-feed" class="request-form"
-            >Форма для звертання:</label
-          >
-          <input
-            placeholder="Тема"
-            id="them-feed"
-            type="text"
-            name="them-feed"
-            class="input-feed input-them"
-          />
-          <textarea
-            placeholder="Ваше послання нам"
-            id="them-feed"
-            type="text"
-            name="par-feed"
-            class="input-feed input-p"
-          ></textarea>
-          <div class="flex-end">
-            <button class="better-button-always-win">Надіслати</button>
-          </div>
+          <label for="theme" class="request-form">Форма для звертання:</label>
+
+          <form th:object="${questionData}" th:action="@{/feedback}" method="POST">
+
+            <input
+              placeholder="Тема (не обов'язково)"
+              id="theme"
+              type="text"
+              class="input-feed input-them"
+              th:field="*{theme}"/>
+
+            <label for="question"></label>
+            <textarea
+              placeholder="Повідомлення"
+              id="question"
+              name="par-feed"
+              class="input-feed input-p"
+              th:field="*{question}"></textarea>
+
+            <div class="flex-end">
+              <button class="better-button-always-win">Надіслати</button>
+            </div>
+
+          </form>
+
         </container>
         <container class="answers-container">
           <div class="container-space">
             <h2 class="header-news text-shadow2">Ваші повідомлення:</h2>
             <!-- start of correspondence -->
-            <div class="workspace">
+            <div th:each="tempQuestion : ${questions}" class="workspace">
               <div class="workspace-request">
                 <div class="diteil1 foto2">
-                  <h2 class="header-news h2-feed h-under">Я хочу Назара!!!</h2>
-                  <p class="p-news">
-                    Чула що він добре грає лігу, та дуже красивий. Надайте будь
-                    ласка його контакти.
-                  </p>
+                  <h2 class="header-news h2-feed h-under" th:text="${tempQuestion.theme}"></h2>
+                  <p class="p-news" th:text="${tempQuestion.question}"></p>
                   <div class="flex-between data-person">
-                    <p>Author</p>
-                    <p>01.01.2025</p>
+                    <p th:text="${tempQuestion.username}"></p>
+                    <p th:text="${tempQuestion.formattedQuestionDate}"></p>
                   </div>
                 </div>
               </div>
               <div class="workspace-answer">
-                <div class="diteil2 foto2">
+                <div class="diteil2 foto2" th:if="${tempQuestion.answer != null}">
                   <p class="p-news">
                     Ваші слухи були правдиві, ось його тг @tnteshka2245.
                   </p>
@@ -187,37 +189,15 @@
                     <p>VailaVibrator</p>
                     <p>01.01.2025</p>
                   </div>
+                </div>
+                <div class="diteil2 foto2" th:unless="${tempQuestion.answer != null}">
+                  <p class="p-news">
+                    Незабаром тут появиться відповідь.
+                  </p>
                 </div>
               </div>
             </div>
             <!-- end of correspondence -->
-            <div class="workspace">
-              <div class="workspace-request">
-                <div class="diteil1 foto2">
-                  <!-- <h2 class="header-news h2-feed h-under">Я хочу Назара!!!</h2> -->
-                  <p class="p-news">
-                    Чула що він добре грає лігу, та дуже красивий. Надайте будь
-                    ласка його контакти.
-                  </p>
-                  <div class="flex-between data-person">
-                    <p>Author</p>
-                    <p>01.01.2025</p>
-                  </div>
-                </div>
-              </div>
-              <div class="workspace-answer">
-                <div class="diteil2 foto2">
-                  <p class="p-news">
-                    Ваші слухи були правдиві, ось його тг @tnteshka2245.
-                  </p>
-                  <div class="flex-between data-person">
-                    <p>VailaVibrator</p>
-                    <p>01.01.2025</p>
-                  </div>
-                </div>
-              </div>
-              <!-- end of section -->
-            </div>
           </div>
         </container>
         <container class="admins-container">
