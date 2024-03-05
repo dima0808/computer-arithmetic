@@ -107,8 +107,8 @@ body {
   background-color: var(--color-light);
   position: relative;
 }
-main {
-  margin-bottom: 9rem;
+.main {
+  min-height: 92vh !important;
 }
 
 .container {
@@ -458,10 +458,6 @@ button {
   width: 2.4rem;
 }
 
-.footer-soc1als-item {
-  height: 2.4rem;
-}
-
 .footer-soc1als-link:link,
 .footer-soc1als-link:visited {
   fill: #333;
@@ -478,10 +474,10 @@ button {
 
 .footer {
   --footerLogoWidth: 20.77%;
+  padding: 0.8rem 0;
 }
 
 .footer-extra {
-  padding-block: 15px;
   background-color: var(--color-dark-alternate);
 }
 
@@ -493,6 +489,7 @@ button {
 .footer-copyright {
   font-size: 14px;
   display: flex;
+
   column-gap: 0.3rem;
 }
 
@@ -518,4 +515,13 @@ button {
 .none {
   visibility: hidden;
   grid-row: 2;
+}
+.flex-align-end {
+  align-items: end;
+}
+
+.block-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }

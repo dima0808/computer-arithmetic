@@ -6,7 +6,7 @@
 }
 
 .min-content-height {
-  min-height: 79vh;
+  min-height: 92vh;
 }
 
 .none {
@@ -139,7 +139,7 @@
   align-items: center;
   flex-direction: column;
   padding-block: 3rem;
-  height: 43rem;
+  height: 37rem;
   border-radius: 30px;
 }
 

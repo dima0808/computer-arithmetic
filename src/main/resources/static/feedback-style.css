@@ -8,7 +8,7 @@
 }
 .feed {
   background-color: #fbfbfe;
-  padding-top: 15.2rem;
+  padding-top: 12.5rem;
   min-height: 78vh;
 }
 .request-container {
@@ -16,6 +16,11 @@
   grid-template-columns: 1fr;
   gap: 0.6rem;
   max-height: 44rem;
+}
+.request-container2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.6rem;
 }
 .header-news {
   color: #8973c8;
@@ -53,6 +58,7 @@
   height: 3.8rem;
   padding-inline: 0.5rem;
   color: #444;
+  resize: none;
   border: 2px solid var(--primary-color);
   border-radius: 5px;
   padding: 4px 10px;
@@ -80,7 +86,9 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  padding-bottom: 1rem;
 }
+
 .input-p {
   width: 100%;
   height: 150px; /* Встановіть бажану висоту */
@@ -95,6 +103,7 @@
   padding: 1.6rem 0 0.8rem 0;
 }
 .answers-container {
+  grid-column: 2;
   display: grid;
   grid-template-columns: 1fr;
   gap: 15%;
@@ -127,4 +136,26 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
+}
+.workspace-answer {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.2rem;
+}
+.delete-a {
+  color: white;
+  font-size: 3rem;
+  margin-top: 1.2rem;
+  height: 4rem;
+  background-color: #f03e3e;
+  border-radius: 5px;
+  border: none;
+  transition: background-color 0.6s ease;
+  width: 4rem;
+}
+
+.trash-icon {
+  width: 3rem;
+  height: 3rem;
+  margin-top: 0.5rem;
 }
