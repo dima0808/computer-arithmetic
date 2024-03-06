@@ -95,6 +95,10 @@ public class QuestionData {
         return answerDate;
     }
 
+    public String getFormattedAnswerDate() {
+        return answerDate.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+    }
+
     public void setAnswerDate(LocalDate answerDate) {
         this.answerDate = answerDate;
     }

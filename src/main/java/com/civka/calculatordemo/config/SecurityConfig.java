@@ -32,6 +32,8 @@ public class SecurityConfig {
                 configurer
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers("/maintenance/**").hasRole("ADMIN")
+                        .requestMatchers("/feedback/answer/**").hasRole("ADMIN")
+                        .requestMatchers("/feedback/**").authenticated()
                         .requestMatchers("/afdks/**").authenticated()
                         .requestMatchers("/css/**", "/img/**", "/font/**", "/scripts/**").permitAll()
                         .anyRequest().permitAll()

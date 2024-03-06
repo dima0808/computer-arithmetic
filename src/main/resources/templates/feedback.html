@@ -39,6 +39,9 @@
         <li class="header-menu-item">
           <a th:href="@{/#news}" class="header-menu-link">Новини</a>
         </li>
+        <li class="header-menu-item">
+          <a th:href="@{/feedback}" class="header-menu-link">Feedback</a>
+        </li>
         <li sec:authorize="hasRole('ADMIN')" class="header-menu-item">
           <a style="color: #8973c8" th:href="@{/admin}" class="header-menu-link"
             >Панель керування</a
@@ -134,20 +137,16 @@
       <div sec:authorize="!hasRole('ADMIN')">
         <div class="feed-container">
           <container class="request-container">
-            <h2 class="header-news">Запитайте нас що вас турбує</h2>
+            <h2 class="header-news">Зв'язок з нами</h2>
             <p class="p-news space-p">
-              Тут ви можете запитати про те що вас тубує, або повідомити про
-              помилки. Відповіді прийдуть незабаром, ви зможете це побачити
-              справа. Також, перевіряйте чи ваше питання вже хтось не задавав
+              Тут ви можете запитати нас про те що вас тубує, повідомити
+              про помилки або написати якесь побажання. Відповіді прийдуть незабаром,
+              Ви зможете це побачити справа.
             </p>
             <label for="theme" class="request-form">Форма для звертання:</label>
 
-            <form
-              th:object="${questionData}"
-              th:action="@{/feedback}"
-              method="POST"
-              class="request-container2"
-            >
+            <form th:object="${questionData}" th:action="@{/feedback}" method="POST" class="request-container2">
+
               <input
                 placeholder="Тема (не обов'язково)"
                 id="theme"
@@ -173,9 +172,8 @@
           <container class="answers-container">
             
             <div class="container-space">
-              <h2 class="header-news text-shadow2">Ваші повідомлення:</h2>
-              <!-- start of correspondence -->
-              <div th:each="tempQuestion : ${questions}" class="workspace">
+              <h2 class="header-news text-shadow2">Ваші повідомлення</h2>
+              <div th:each="tempQuestion : ${questions}" th:if="${tempQuestion.username == username}" class="workspace">
                 <div class="workspace-request">
                   <div class="diteil1 foto2">
                     <h2
@@ -189,83 +187,72 @@
                     </div>
                   </div>
                 </div>
-                <!-- Замість нього форму -->
                 <div class="workspace-answer">
-                  <div
-                    class="diteil2 foto2"
-                    th:if="${tempQuestion.answer != null}"
-                  >
-                    <p class="p-news">
-                      Ваші слухи були правдиві, ось його тг @tnteshka2245.
-                    </p>
+                  <div class="diteil2 foto2" th:if="${tempQuestion.answer != null}">
+                    <p class="p-news" th:text="${tempQuestion.answer}"></p>
                     <div class="flex-between data-person">
-                      <p>VailaVibrator</p>
-                      <p>01.01.2025</p>
+                      <p>admin</p>
+                      <p th:text="${tempQuestion.formattedAnswerDate}"></p>
                     </div>
                   </div>
-                  <div
-                    class="diteil2 foto2"
-                    th:unless="${tempQuestion.answer != null}"
-                  >
+                  <div class="diteil2 foto2" th:unless="${tempQuestion.answer != null}">
                     <p class="p-news">Незабаром тут появиться відповідь.</p>
                   </div>
                 </div>
               </div>
               </div>
-              <!-- end of correspondence -->
-            </div>
           </container>
         </div>
+        </div>
+
         <div sec:authorize="hasRole('ADMIN')">
           <div class="feed-container">
 
             <container class="admins-container">
               <div class="container-space">
-              <h2 class="header-news text-shadow2"> Нові запити:</h2>
-              <!-- start of correspondence -->
-              <div th:each="tempQuestion : ${questions}" class="workspace">
-                <div class="workspace-request">
-                  <div class="diteil1 foto2">
-                    <h2
-                    class="header-news h2-feed h-under"
-                    th:text="${tempQuestion.theme}"
-                    ></h2>
-                    <p class="p-news" th:text="${tempQuestion.question}"></p>
-                    <div class="flex-between data-person">
-                      <p th:text="${tempQuestion.username}"></p>
-                      <p th:text="${tempQuestion.formattedQuestionDate}"></p>
+              <h2 class="header-news text-shadow2"> Без відповіді</h2>
+                <div th:each="tempQuestion : ${questions}" th:if="${tempQuestion.answer == null}" class="workspace">
+                  <div class="workspace-request">
+                    <div class="diteil1 foto2">
+                      <h2 class="header-news h2-feed h-under" th:text="${tempQuestion.theme}"></h2>
+                      <p class="p-news" th:text="${tempQuestion.question}"></p>
+
+                      <div class="flex-between data-person">
+                        <p th:text="${tempQuestion.username}"></p>
+                        <p th:text="${tempQuestion.formattedQuestionDate}"></p>
+                      </div>
                     </div>
                   </div>
-                </div>
+                  <form class="diteil2" th:action="@{/feedback/answer}" method="POST">
 
+                    <input type="hidden" th:value="${tempQuestion.id}" name="questionId">
 
-                <form class="diteil2">
+                    <label for="answer"></label>
+                    <textarea
+                    placeholder="Відповідь"
+                    id="answer"
+                    name="answer"
+                    class="input-feed input-p"></textarea>
 
-                  <textarea
-                  placeholder="Відповідь роботязі"
-                  id="answer"
-                  name="par2-feed"
-                  class="input-feed input-p">
-                  </textarea>
-
-                  <div class="flex-between flex-align-end"> 
-                    <a class="delete-a "><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="trash-icon block-center">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
-                    </svg>
-                    </a>
-                    <button class="better-button-always-win">Надіслати</button>
-                  </div> 
-                </form>
+                    <div class="flex-between flex-align-end">
+                      <a class="delete-a" th:href="@{'/feedback/delete/' + ${tempQuestion.id}}"
+                         onclick="if (!(confirm('Ви дійсно хочете видалити це повідомлення?'))) return false">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="trash-icon block-center">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                        </svg>
+                      </a>
+                      <button class="better-button-always-win">Надіслати</button>
+                    </div>
+                  </form>
               </div>
-              <!-- end of correspondence -->
+                <img style="width: 200px;" th:src="@{/images/no-questions.png}" th:if="${isNoQuestions}">
             </div>
             </container>
 
             <container class="answers-container">
               <div class="container-space">
-              <h2 class="header-news text-shadow2">Готові повідомлення:</h2>
-              <!-- start of correspondence -->
-              <div th:each="tempQuestion : ${questions}" class="workspace">
+              <h2 class="header-news text-shadow2">З відповіддю</h2>
+              <div th:each="tempQuestion : ${questions}" th:if="${tempQuestion.answer != null}" class="workspace">
                 <div class="workspace-request">
                   <div class="diteil1 foto2">
                     <h2
@@ -280,31 +267,20 @@
                   </div>
                 </div>
                 <div class="workspace-answer">
-                  <div
-                  class="diteil2 foto2"
-                    th:if="${tempQuestion.answer != null}"
-                  >
-                    <p class="p-news">
-                      Ваші слухи були правдиві, ось його тг @tnteshka2245.
-                    </p>
+                  <div class="diteil2 foto2" th:if="${tempQuestion.answer != null}">
+                    <p class="p-news" th:text="${tempQuestion.answer}"></p>
                     <div class="flex-between data-person">
-                      <p>VailaVibrator</p>
-                      <p>01.01.2025</p>
+                      <p>admin</p>
+                      <p th:text="${tempQuestion.formattedAnswerDate}"></p>
                     </div>
                   </div>
-                  <div
-                    class="diteil2 foto2"
-                    th:unless="${tempQuestion.answer != null}"
-                  >
+                  <div class="diteil2 foto2" th:unless="${tempQuestion.answer != null}">
                     <p class="p-news">Незабаром тут появиться відповідь.</p>
                   </div>
                 </div>
               </div>
-              <!-- end of correspondence -->
             </div>
           </container>
-
-          
         </div>
         </div>
         

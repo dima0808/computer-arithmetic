@@ -8,4 +8,6 @@ import java.util.List;
 public interface QuestionDataRepository extends JpaRepository<QuestionData, Integer> {
 
     List<QuestionData> findAllByOrderByQuestionDateDesc();
+
+    List<QuestionData> findByUsername(String username);
 }
