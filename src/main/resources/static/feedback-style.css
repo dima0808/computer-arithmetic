@@ -1,0 +1,161 @@
+.feed-container {
+  max-width: 130rem;
+  display: grid;
+  gap: 9rem;
+
+  grid-template-columns: 1fr 1fr;
+  margin: 0 auto;
+}
+.feed {
+  background-color: #fbfbfe;
+  padding-top: 12.5rem;
+  min-height: 78vh;
+}
+.request-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.6rem;
+  max-height: 44rem;
+}
+.request-container2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.6rem;
+}
+.header-news {
+  color: #8973c8;
+  font-size: 3.2rem;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+}
+.h2-feed {
+  font-size: 2.2rem;
+}
+.h-under {
+  border-bottom: 2px solid var(--primary-color);
+}
+.p-news {
+  font-size: 1.6rem;
+  line-height: 1.6;
+  color: #555;
+}
+.request-form {
+  color: #8973c8;
+  font-size: 2.4rem;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  font-weight: 600;
+}
+.data-person {
+  text-align: end;
+  color: #8973c8;
+  font-weight: 600;
+
+  padding-right: 1rem;
+}
+
+.input-feed {
+  height: 3.8rem;
+  padding-inline: 0.5rem;
+  color: #444;
+  resize: none;
+  border: 2px solid var(--primary-color);
+  border-radius: 5px;
+  padding: 4px 10px;
+  font-size: 16px;
+  line-height: 1.4;
+}
+.better-button-always-win {
+  text-transform: uppercase;
+
+  color: #fff;
+  margin-top: 1.2rem;
+  height: 4rem;
+  background-color: #7b68b4;
+  border-radius: 5px;
+  border: none;
+  transition: background-color 0.6s ease;
+  width: 33.3%;
+}
+.better-button-always-win:hover,
+.better-button-always-win:active {
+  background-color: #9586c3;
+  animation: colorChange 0.2s alternate-reverse;
+}
+.container-space {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-bottom: 1rem;
+}
+
+.input-p {
+  width: 100%;
+  height: 150px; /* Встановіть бажану висоту */
+  resize: vertical; /* Дозволяє користувачу змінювати висоту */
+  font-family: var(--font-family-base);
+  font-weight: 500;
+  resize: none;
+
+  color: #444;
+}
+.space-p {
+  padding: 1.6rem 0 0.8rem 0;
+}
+.answers-container {
+  grid-column: 2;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15%;
+}
+.diteil1 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.6rem;
+  background-color: #fff;
+  border: 2px solid var(--primary-color);
+  border-radius: 15px;
+  border-bottom-right-radius: 0;
+  min-height: 16rem;
+  padding: 1rem 2.5rem;
+}
+.diteil2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.4rem;
+  margin-left: 5%;
+  background-color: #f5f6fc;
+  border-radius: 15px;
+  border: 2px solid var(--primary-color);
+  border-top: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  padding: 0.8rem 2.3rem;
+}
+.admins-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+.workspace-answer {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.2rem;
+}
+.delete-a {
+  color: white;
+  font-size: 3rem;
+  margin-top: 1.2rem;
+  height: 4rem;
+  background-color: #f03e3e;
+  border-radius: 5px;
+  border: none;
+  transition: background-color 0.6s ease;
+  width: 4rem;
+}
+
+.trash-icon {
+  width: 3rem;
+  height: 3rem;
+  margin-top: 0.5rem;
+}

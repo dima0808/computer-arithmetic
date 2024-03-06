@@ -29,6 +29,9 @@
         <li class="header-menu-item">
             <a th:href="@{/#news}" class="header-menu-link">Новини</a>
         </li>
+        <li class="header-menu-item">
+            <a th:href="@{/feedback}" class="header-menu-link">Feedback</a>
+        </li>
         <li sec:authorize="hasRole('ADMIN')" class="header-menu-item">
             <a style="color: #8973c8" th:href="@{/admin}" class="header-menu-link">Панель керування</a>
         </li>

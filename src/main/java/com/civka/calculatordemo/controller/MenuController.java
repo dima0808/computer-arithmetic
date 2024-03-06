@@ -21,11 +21,13 @@ import java.util.List;
 @Controller
 public class MenuController {
 
-    private final MaintenanceModeManager maintenanceModeManager;
     private final UserAuthenticationService userAuthenticationService;
+    private final MaintenanceModeManager maintenanceModeManager;
 
     @Autowired
-    public MenuController(UserAuthenticationService userAuthenticationService, MaintenanceModeManager maintenanceModeManager) {
+    public MenuController(UserAuthenticationService userAuthenticationService,
+                          MaintenanceModeManager maintenanceModeManager) {
+
         this.userAuthenticationService = userAuthenticationService;
         this.maintenanceModeManager = maintenanceModeManager;
     }
@@ -84,7 +86,6 @@ public class MenuController {
 
         return maintenanceModeManager.isMaintenanceModeEnabled() ? "maintenance" : "calculate";
     }
-
 
     @PostMapping("/processForm")
     public String doLabForm(@ModelAttribute(name = "labData") LabData labData, Model model) {
