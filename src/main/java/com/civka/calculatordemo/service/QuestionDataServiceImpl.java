@@ -24,6 +24,11 @@ public class QuestionDataServiceImpl implements QuestionDataService {
     }
 
     @Override
+    public List<QuestionData> findByUsername(String username) {
+        return questionDataRepository.findByUsername(username);
+    }
+
+    @Override
     public QuestionData findById(Integer id) {
         Optional<QuestionData> questionData = questionDataRepository.findById(id);
         return questionData.orElse(null);

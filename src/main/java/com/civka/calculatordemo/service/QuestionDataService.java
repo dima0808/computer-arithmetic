@@ -8,6 +8,8 @@ public interface QuestionDataService {
 
     List<QuestionData> findAll();
 
+    List<QuestionData> findByUsername(String username);
+
     QuestionData findById(Integer id);
 
     QuestionData saveQuestionData(QuestionData questionData);

@@ -31,6 +31,9 @@
       <li class="header-menu-item">
         <a href="#news" class="header-menu-link">Новини</a>
       </li>
+        <li class="header-menu-item">
+            <a th:href="@{/feedback}" class="header-menu-link">Feedback</a>
+        </li>
         <li sec:authorize="hasRole('ADMIN')" class="header-menu-item">
             <a style="color: #8973c8" th:href="@{/admin}" class="header-menu-link">Панель керування</a>
         </li>
@@ -275,6 +278,24 @@
                     <div class="img-div-news element-animation">
                         <img
                                 class="img-news"
+                                src="/images/news/news6.jpg"
+                                alt="monke laptop"
+                        />
+                    </div>
+                    <div class="text-news element-animation">
+                        <h3 class="header-news">Добавлений зворотній зв'язок</h3>
+                        <p class="p-news">
+                            Тепер ви можете <a class="purple" th:href="@{/feedback}">написати нам</a>!
+                            У вас є можливість сповістити нас про ваші побажання або повідомити про помилку.
+                        </p>
+                        <p class="data-news">06.03.2024</p>
+                    </div>
+                </div>
+
+                <div class="grid-news">
+                    <div class="img-div-news element-animation">
+                        <img
+                                class="img-news"
                                 src="/images/news/news5.jpg"
                                 alt="open the noor"
                         />
@@ -282,7 +303,7 @@
                     <div class="text-news element-animation">
                         <h3 class="header-news">Система акаунтів</h3>
                         <p class="p-news">
-                            Тепер Ви можете <a class="purple" th:href="@{/register}">зареєструватись</a> на нашому сайті!<br>
+                            Тепер ви можете <a class="purple" th:href="@{/register}">зареєструватись</a> на нашому сайті!<br>
                             Після автентифікації у вас буде можливість завантажити AFDK схеми. Також пізніше з'явиться опція
                             зворотного зв'язку, яка буде також доступна лише з автентифікацією.
                         </p>
@@ -324,8 +345,8 @@
                         Був доданий AFDK для перетворення з ПК в модифікований ОК/ДК, а також AFDK для суми в ОК/ДК.
                         Невдовзі появиться можливість завантажити ці схеми AFDK (.AFP).<br>
                         Також було виправлено помилку зі зсувом модифікованого ОК вліво та помилку з обчисленням суми в ДК,
-                        тому якщо Ви вже згенерували варіант — рекомендуємо перегенерувати його знову. Якщо замітили десь
-                        незрозумілу помилку — повідомте нас через "Зворотний зв'язок". Якщо Ви не бачите такої вкладки — прочитайте
+                        тому якщо ви вже згенерували варіант — рекомендуємо перегенерувати його знову. Якщо замітили десь
+                        незрозумілу помилку — повідомте нас через "Зворотний зв'язок". Якщо ви не бачите такої вкладки — прочитайте
                         це речення знову.
                         </p>
                         <p class="data-news">08.02.2024</p>
