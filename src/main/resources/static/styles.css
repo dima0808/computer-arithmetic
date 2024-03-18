@@ -41,6 +41,8 @@
 html {
   font-size: 62.5%;
   height: 100%;
+  overflow-x: hidden;
+
   scroll-behavior: smooth;
 }
 
@@ -102,10 +104,11 @@ svg * {
 body {
   font-family: var(--font-family-base);
   font-weight: 500;
-  font-size: 15px;
+  font-size: 1.5rem;
   line-height: 1.75;
   background-color: var(--color-light);
   position: relative;
+  overflow-x: hidden;
 }
 .main {
   min-height: 92vh !important;
@@ -139,12 +142,26 @@ h6 {
   width: 100%;
 
   z-index: 9999;
-  display: flex;
 
+  transition: all 300ms ease-in-out;
+}
+.header2 {
+  position: relative;
+  display: flex;
+  gap: 3rem;
   padding: 0 2.9rem 0 4.8rem;
   align-items: center;
+}
+.main-nav {
+  display: flex;
+
   justify-content: space-between;
-  transition: all 300ms ease-in-out;
+  width: 100%;
+}
+.header-help {
+  width: 100%;
+  display: flex;
+  justify-content: end;
 }
 .logo-link {
   display: flex;
@@ -286,6 +303,23 @@ h6 {
 .plumbum:active {
   color: #5637b0;
 }
+/***********************************/
+/*******THE MONILE NAVIGATION*******/
+/***********************************/
+.icon-mobile-nav {
+  height: 4.8rem;
+  width: 4.8rem;
+}
+.btn-mobile-nav {
+  display: none;
+  background: none;
+  cursor: pointer;
+  border: none;
+}
+.icon-mobile-nav[name="close-outline"] {
+  display: none;
+}
+
 /******************************************
    THE OLD NAVIGATION
    *****************************************
