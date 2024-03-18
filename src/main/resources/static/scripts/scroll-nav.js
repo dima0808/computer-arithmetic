@@ -1,3 +1,23 @@
+// open nav
+const btnNavel = document.querySelector(".btn-mobile-nav");
+const headerEl = document.querySelector(".header");
+const htmlEl = document.querySelector("html");
+
+btnNavel.addEventListener("click", function () {
+  headerEl.classList.toggle("nav-open");
+  if (htmlEl.style.overflowY === "hidden") {
+    htmlEl.style.overflowY = "auto";
+  } else {
+    htmlEl.style.overflowY = "hidden";
+  }
+});
+
+function handleNewsLinkClick() {
+  headerEl.classList.remove("nav-open");
+  htmlEl.style.overflowY = "auto";
+}
+
+// nav`s scroll
 const body = document.body;
 let lastScroll = 0;
 

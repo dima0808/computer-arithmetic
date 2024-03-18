@@ -18,7 +18,7 @@
   background-color: #fbfbfe;
   border-radius: 35px;
   padding: 2rem;
-  max-width: 50%;
+  max-width: 83%;
   display: flex;
   align-items: center;
   color: #333;
@@ -40,10 +40,6 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 4.2rem;
-}
-
-.content-info {
-  max-width: 50%;
 }
 
 .calculate-form-input {
@@ -196,7 +192,8 @@ input:disabled + .radio-tile {
 }
 
 .info-main {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   column-gap: 14rem;
 }
 
@@ -365,71 +362,4 @@ strong {
   opacity: 1;
   transition: all 1s;
   transform: translateY(0%);
-}
-
-@media (max-width: 1280px) {
-  .description {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-}
-
-@media (max-width: 1010px) {
-  .info-main {
-    column-gap: 2rem;
-  }
-  .header-menu-list {
-    column-gap: 2rem;
-  }
-}
-
-@media (max-width: 767px) {
-  .info-main {
-    flex-direction: column;
-    align-items: center;
-    row-gap: 2rem;
-  }
-
-  .revers {
-    flex-direction: column-reverse;
-  }
-
-  .info-text,
-  .explanation,
-  .autors {
-    padding-block: 2rem;
-  }
-
-  .calculate-body,
-  .content-info {
-    max-width: 100%;
-    margin: 0.5rem;
-  }
-
-  .foto {
-    width: 300px;
-    height: 300px;
-  }
-
-  .autor .foto {
-    width: 200px;
-    height: 200px;
-  }
-
-  .autor {
-    width: 34rem;
-  }
-
-  .header {
-    margin-top: 1rem;
-  }
-
-  .header-menu-list {
-    display: none;
-  }
-
-  .burger-menu {
-    padding-right: 1rem;
-  }
 }

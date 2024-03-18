@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CivKA</title>
     <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/queries.css" />
     <link rel="stylesheet" href="/feedback-style.css" />
 
     <link
@@ -20,118 +21,169 @@
 
   <body>
     <header class="header">
-      <ul class="header-menu-list left-header">
-        <li class="header-menu-item">
-          <a th:href="@{/}" class="logo-link">
-            <img
-              src="/images/logo-44.png"
-              alt="Civka Logo"
-              class="header-logo-image"
-              width="80"
-              height="80"
-              loading="lazy"
-            />
-          </a>
-        </li>
-        <li class="header-menu-item">
-          <a th:href="@{/calculate}" class="header-menu-link">Розрахунок</a>
-        </li>
-        <li class="header-menu-item">
-          <a th:href="@{/#news}" class="header-menu-link">Новини</a>
-        </li>
-        <li class="header-menu-item">
-          <a th:href="@{/feedback}" class="header-menu-link">Feedback</a>
-        </li>
-        <li sec:authorize="hasRole('ADMIN')" class="header-menu-item">
-          <a style="color: #8973c8" th:href="@{/admin}" class="header-menu-link"
-            >Панель керування</a
-          >
-        </li>
-      </ul>
-      <ul class="header-menu-list right-header">
-        <li class="header-menu-item">
-          <a
-            href="https://send.monobank.ua/jar/8mtbdEWgid"
-            class="head-link header-link-donate"
-            target="_blank"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="svg-nav"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
-              />
-            </svg>
-            Підтримати
-          </a>
-        </li>
-        <li class="header-menu-item" sec:authorize="!isAuthenticated()">
-          <a th:href="@{/login}" class="head-link header-link-login">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="user-nav svg-nav"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z"
-              />
-            </svg>
-            Логін
-          </a>
-        </li>
-        <li class="header-menu-item" sec:authorize="isAuthenticated()">
-          <a href="#" class="head-new-user-nav plumbum"
-            ><svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="user-logined svg-nav"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
-              />
-            </svg>
+      <div class="header2">
+        <a th:href="@{/}" class="logo-link">
+          <img
+            src="/images/logo-44.png"
+            alt="Civka Logo"
+            class="header-logo-image"
+            width="80"
+            height="80"
+            loading="lazy"
+          />
+        </a>
+        <div class="header-help">
+          <div class="main-nav">
+            <ul class="header-menu-list left-header">
+              <li class="header-menu-item">
+                <a th:href="@{/calculate}" class="header-menu-link"
+                  >Розрахунок</a
+                >
+              </li>
+              <li class="header-menu-item">
+                <a
+                  href="/#news"
+                  class="header-menu-link"
+                  onclick="handleNewsLinkClick()"
+                  >Новини</a
+                >
+              </li>
+              <li class="header-menu-item">
+                <a th:href="@{/feedback}" class="header-menu-link">Feedback</a>
+              </li>
+              <li sec:authorize="hasRole('ADMIN')" class="header-menu-item">
+                <a
+                  style="color: #8973c8"
+                  th:href="@{/admin}"
+                  class="header-menu-link"
+                  >Панель керування</a
+                >
+              </li>
+            </ul>
+            <ul class="header-menu-list right-header">
+              <li class="header-menu-item">
+                <a
+                  href="https://send.monobank.ua/jar/8mtbdEWgid"
+                  class="head-link header-link-donate"
+                  target="_blank"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="svg-nav"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
+                    />
+                  </svg>
+                  Підтримати
+                </a>
+              </li>
+              <li class="header-menu-item" sec:authorize="!isAuthenticated()">
+                <a th:href="@{/login}" class="head-link header-link-login">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="user-nav svg-nav"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z"
+                    />
+                  </svg>
+                  Логін
+                </a>
+              </li>
+              <li class="header-menu-item" sec:authorize="isAuthenticated()">
+                <a href="#" class="head-new-user-nav plumbum">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="user-logined svg-nav"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+                    />
+                  </svg>
 
-            <span th:text="${userNickname}"></span
-          ></a>
-          <form th:action="@{/logout}" method="POST">
-            <input type="submit" class="visually-hidden" id="logout-button" />
-            <label for="logout-button" class="head-new-user-nav2 plumbum">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="user-exit svg-nav"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15"
-                />
-              </svg>
-            </label>
-          </form>
-        </li>
-      </ul>
+                  <span th:text="${userNickname}"></span>
+                </a>
+                <form th:action="@{/logout}" method="POST">
+                  <input
+                    type="submit"
+                    class="visually-hidden"
+                    id="logout-button"
+                  />
+                  <label for="logout-button" class="head-new-user-nav2 plumbum">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      class="user-exit svg-nav"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15"
+                      />
+                    </svg>
+                  </label>
+                </form>
+              </li>
+            </ul>
+          </div>
+          <button class="btn-mobile-nav">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              name="menu-outline"
+              stroke="currentColor"
+              class="icon-mobile-nav"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+              />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              name="close-outline"
+              stroke="currentColor"
+              class="icon-mobile-nav"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 18 18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
     </header>
+    <script src="/scripts/scroll-nav.js"></script>
 
     <main class="feed main">
       <div sec:authorize="!hasRole('ADMIN')">
@@ -139,14 +191,18 @@
           <container class="request-container">
             <h2 class="header-news">Зв'язок з нами</h2>
             <p class="p-news space-p">
-              Тут ви можете запитати нас про те що вас тубує, повідомити
-              про помилки або написати якесь побажання. Відповіді прийдуть незабаром,
-              Ви зможете це побачити справа.
+              Тут ви можете запитати нас про те що вас тубує, повідомити про
+              помилки або написати якесь побажання. Відповіді прийдуть
+              незабаром, Ви зможете це побачити справа.
             </p>
             <label for="theme" class="request-form">Форма для звертання:</label>
 
-            <form th:object="${questionData}" th:action="@{/feedback}" method="POST" class="request-container2">
-
+            <form
+              th:object="${questionData}"
+              th:action="@{/feedback}"
+              method="POST"
+              class="request-container2"
+            >
               <input
                 placeholder="Тема (не обов'язково)"
                 id="theme"
@@ -171,10 +227,13 @@
             </form>
           </container>
           <container class="answers-container">
-            
             <div class="container-space">
               <h2 class="header-news text-shadow2">Ваші повідомлення</h2>
-              <div th:each="tempQuestion : ${questions}" th:if="${tempQuestion.username == username}" class="workspace">
+              <div
+                th:each="tempQuestion : ${questions}"
+                th:if="${tempQuestion.username == username}"
+                class="workspace"
+              >
                 <div class="workspace-request">
                   <div class="diteil1 foto2">
                     <h2
@@ -189,77 +248,123 @@
                   </div>
                 </div>
                 <div class="workspace-answer">
-                  <div class="diteil2 foto2" th:if="${tempQuestion.answer != null}">
+                  <div
+                    class="diteil2 foto2"
+                    th:if="${tempQuestion.answer != null}"
+                  >
                     <p class="p-news" th:text="${tempQuestion.answer}"></p>
                     <div class="flex-between data-person">
                       <p>admin</p>
                       <p th:text="${tempQuestion.formattedAnswerDate}"></p>
                     </div>
                   </div>
-                  <div class="diteil2 foto2" th:unless="${tempQuestion.answer != null}">
+                  <div
+                    class="diteil2 foto2"
+                    th:unless="${tempQuestion.answer != null}"
+                  >
                     <p class="p-news">Незабаром тут появиться відповідь.</p>
                   </div>
                 </div>
               </div>
-              <img style="width: 200px;" th:src="@{/images/no-questions.png}" th:if="${userQuestionsIsEmpty}">
-              </div>
+              <img
+                style="width: 200px"
+                th:src="@{/images/no-questions.png}"
+                th:if="${userQuestionsIsEmpty}"
+              />
+            </div>
           </container>
         </div>
-        </div>
+      </div>
 
-        <div sec:authorize="hasRole('ADMIN')">
-          <div class="feed-container">
-
-            <container class="admins-container">
-              <div class="container-space">
-              <h2 class="header-news text-shadow2"> Без відповіді</h2>
-                <div th:each="tempQuestion : ${questions}" th:if="${tempQuestion.answer == null}" class="workspace">
-                  <div class="workspace-request">
-                    <div class="diteil1 foto2">
-                      <h2 class="header-news h2-feed h-under" th:text="${tempQuestion.theme}"></h2>
-                      <p class="p-news" th:text="${tempQuestion.question}"></p>
-
-                      <div class="flex-between data-person">
-                        <p th:text="${tempQuestion.username}"></p>
-                        <p th:text="${tempQuestion.formattedQuestionDate}"></p>
-                      </div>
-                    </div>
-                  </div>
-                  <form class="diteil2" th:action="@{/feedback/answer}" method="POST">
-
-                    <input type="hidden" th:value="${tempQuestion.id}" name="questionId">
-
-                    <label for="answer"></label>
-                    <textarea
-                    placeholder="Відповідь"
-                    id="answer"
-                    name="answer"
-                    class="input-feed input-p"></textarea>
-
-                    <div class="flex-between flex-align-end">
-                      <a class="delete-a" th:href="@{'/feedback/delete/' + ${tempQuestion.id}}"
-                         onclick="if (!(confirm('Ви дійсно хочете видалити це повідомлення?'))) return false">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="trash-icon block-center">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
-                        </svg>
-                      </a>
-                      <button class="better-button-always-win">Надіслати</button>
-                    </div>
-                  </form>
-              </div>
-                <img style="width: 200px;" th:src="@{/images/no-questions.png}" th:if="${isNoQuestions}">
-            </div>
-            </container>
-
-            <container class="answers-container">
-              <div class="container-space">
-              <h2 class="header-news text-shadow2">З відповіддю</h2>
-              <div th:each="tempQuestion : ${questions}" th:if="${tempQuestion.answer != null}" class="workspace">
+      <div sec:authorize="hasRole('ADMIN')">
+        <div class="feed-container">
+          <container class="admins-container">
+            <div class="container-space">
+              <h2 class="header-news text-shadow2">Без відповіді</h2>
+              <div
+                th:each="tempQuestion : ${questions}"
+                th:if="${tempQuestion.answer == null}"
+                class="workspace"
+              >
                 <div class="workspace-request">
                   <div class="diteil1 foto2">
                     <h2
-                    class="header-news h2-feed h-under"
-                    th:text="${tempQuestion.theme}"
+                      class="header-news h2-feed h-under"
+                      th:text="${tempQuestion.theme}"
+                    ></h2>
+                    <p class="p-news" th:text="${tempQuestion.question}"></p>
+
+                    <div class="flex-between data-person">
+                      <p th:text="${tempQuestion.username}"></p>
+                      <p th:text="${tempQuestion.formattedQuestionDate}"></p>
+                    </div>
+                  </div>
+                </div>
+                <form
+                  class="diteil2"
+                  th:action="@{/feedback/answer}"
+                  method="POST"
+                >
+                  <input
+                    type="hidden"
+                    th:value="${tempQuestion.id}"
+                    name="questionId"
+                  />
+
+                  <label for="answer"></label>
+                  <textarea
+                    placeholder="Відповідь"
+                    id="answer"
+                    name="answer"
+                    class="input-feed input-p"
+                  ></textarea>
+
+                  <div class="flex-between flex-align-end">
+                    <a
+                      class="delete-a"
+                      th:href="@{'/feedback/delete/' + ${tempQuestion.id}}"
+                      onclick="if (!(confirm('Ви дійсно хочете видалити це повідомлення?'))) return false"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="trash-icon block-center"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"
+                        />
+                      </svg>
+                    </a>
+                    <button class="better-button-always-win">Надіслати</button>
+                  </div>
+                </form>
+              </div>
+              <img
+                style="width: 200px"
+                th:src="@{/images/no-questions.png}"
+                th:if="${isNoQuestions}"
+              />
+            </div>
+          </container>
+
+          <container class="answers-container">
+            <div class="container-space">
+              <h2 class="header-news text-shadow2">З відповіддю</h2>
+              <div
+                th:each="tempQuestion : ${questions}"
+                th:if="${tempQuestion.answer != null}"
+                class="workspace"
+              >
+                <div class="workspace-request">
+                  <div class="diteil1 foto2">
+                    <h2
+                      class="header-news h2-feed h-under"
+                      th:text="${tempQuestion.theme}"
                     ></h2>
                     <p class="p-news" th:text="${tempQuestion.question}"></p>
                     <div class="flex-between data-person">
@@ -269,14 +374,20 @@
                   </div>
                 </div>
                 <div class="workspace-answer">
-                  <div class="diteil2 foto2" th:if="${tempQuestion.answer != null}">
+                  <div
+                    class="diteil2 foto2"
+                    th:if="${tempQuestion.answer != null}"
+                  >
                     <p class="p-news" th:text="${tempQuestion.answer}"></p>
                     <div class="flex-between data-person">
                       <p>admin</p>
                       <p th:text="${tempQuestion.formattedAnswerDate}"></p>
                     </div>
                   </div>
-                  <div class="diteil2 foto2" th:unless="${tempQuestion.answer != null}">
+                  <div
+                    class="diteil2 foto2"
+                    th:unless="${tempQuestion.answer != null}"
+                  >
                     <p class="p-news">Незабаром тут появиться відповідь.</p>
                   </div>
                 </div>
@@ -284,9 +395,8 @@
             </div>
           </container>
         </div>
-        </div>
-        
-      </main>
+      </div>
+    </main>
     <footer class="footer">
       <div class="footer-extra">
         <div class="footer-extra-inner container">
