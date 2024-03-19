@@ -1,704 +1,688 @@
 <!DOCTYPE html>
 <html
-  lang="en"
-  xmlns:th="http://www.thymeleaf.org"
-  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+        lang="en"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 >
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CivKA</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CivKA</title>
 
-    <link rel="stylesheet" href="/styles.css" />
-    <link rel="stylesheet" href="/index-styles.css" />
-    <link rel="stylesheet" href="/queries.css" />
-    <link
-      rel="shortcut icon"
-      href="/images/title-foto3.png"
-      type="image/x-icon"
-    />
-  </head>
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/index-styles.css" />
+  <link rel="stylesheet" href="/queries.css" />
+  <link
+          rel="shortcut icon"
+          href="/images/title-foto3.png"
+          type="image/x-icon"
+  />
+</head>
 
-  <body>
-    <header class="header">
-      <div class="header2">
-        <a th:href="@{/}" class="logo-link">
-          <img
-            src="/images/logo-44.png"
-            alt="Civka Logo"
-            class="header-logo-image"
-            width="80"
-            height="80"
-            loading="lazy"
-          />
-        </a>
-        <div class="header-help">
-          <div class="main-nav">
-            <ul class="header-menu-list left-header">
-              <li class="header-menu-item">
-                <a th:href="@{/calculate}" class="header-menu-link"
-                  >Розрахунок</a
-                >
-              </li>
-              <li class="header-menu-item">
-                <a
-                  href="/#news"
-                  class="header-menu-link"
-                  onclick="handleNewsLinkClick()"
-                  >Новини</a
-                >
-              </li>
-              <li class="header-menu-item">
-                <a th:href="@{/feedback}" class="header-menu-link">Feedback</a>
-              </li>
-              <li sec:authorize="hasRole('ADMIN')" class="header-menu-item">
-                <a
-                  style="color: #8973c8"
-                  th:href="@{/admin}"
-                  class="header-menu-link"
-                  >Панель керування</a
-                >
-              </li>
-            </ul>
-            <ul class="header-menu-list right-header">
-              <li class="header-menu-item">
-                <a
-                  href="https://send.monobank.ua/jar/8mtbdEWgid"
-                  class="head-link header-link-donate"
-                  target="_blank"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="svg-nav"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
-                    />
-                  </svg>
-                  Підтримати
-                </a>
-              </li>
-              <li class="header-menu-item" sec:authorize="!isAuthenticated()">
-                <a th:href="@{/login}" class="head-link header-link-login">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="user-nav svg-nav"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z"
-                    />
-                  </svg>
-                  Логін
-                </a>
-              </li>
-              <li class="header-menu-item" sec:authorize="isAuthenticated()">
-                <a href="#" class="head-new-user-nav plumbum">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="user-logined svg-nav"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
-                    />
-                  </svg>
-
-                  <span th:text="${userNickname}"></span>
-                </a>
-                <form th:action="@{/logout}" method="POST">
-                  <input
-                    type="submit"
-                    class="visually-hidden"
-                    id="logout-button"
-                  />
-                  <label for="logout-button" class="head-new-user-nav2 plumbum">
-                    <svg
+<body>
+<header class="header">
+  <div class="header2">
+    <a th:href="@{/}" class="logo-link">
+      <img
+              src="/images/logo-44.png"
+              alt="Civka Logo"
+              class="header-logo-image"
+              width="80"
+              height="80"
+              loading="lazy"
+      />
+    </a>
+    <div class="header-help">
+      <div class="main-nav">
+        <ul class="header-menu-list left-header">
+          <li class="header-menu-item">
+            <a th:href="@{/calculate}" class="header-menu-link"
+            >Розрахунок</a
+            >
+          </li>
+          <li class="header-menu-item">
+            <a
+                    href="/#news"
+                    class="header-menu-link"
+                    onclick="handleNewsLinkClick()"
+            >Новини</a
+            >
+          </li>
+          <li class="header-menu-item">
+            <a th:href="@{/feedback}" class="header-menu-link">Feedback</a>
+          </li>
+          <li sec:authorize="hasRole('ADMIN')" class="header-menu-item">
+            <a
+                    style="color: #8973c8"
+                    th:href="@{/admin}"
+                    class="header-menu-link"
+            >Панель керування</a
+            >
+          </li>
+        </ul>
+        <ul class="header-menu-list right-header">
+          <li class="header-menu-item">
+            <a
+                    href="https://send.monobank.ua/jar/8mtbdEWgid"
+                    class="head-link header-link-donate"
+                    target="_blank"
+            >
+              <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke-width="1.5"
                       stroke="currentColor"
-                      class="user-exit svg-nav"
-                    >
-                      <path
+                      class="svg-nav"
+              >
+                <path
                         stroke-linecap="round"
                         stroke-linejoin="round"
-                        d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15"
-                      />
-                    </svg>
-                  </label>
-                </form>
-              </li>
-            </ul>
-          </div>
-          <button class="btn-mobile-nav">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              name="menu-outline"
-              stroke="currentColor"
-              class="icon-mobile-nav"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-              />
-            </svg>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              name="close-outline"
-              stroke="currentColor"
-              class="icon-mobile-nav"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M6 18 18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
-        </div>
-      </div>
-    </header>
-    <script src="/scripts/scroll-nav.js"></script>
-    <main class="content">
-      <section class="info-text">
-        <div class="info-main container">
-          <div class="content-info">
-            <h2 class="h2">Вривайся в Комп'ютерну Арифметику!</h2>
-            <p class="p">
-              Ви випадково натрапляєте на цей захопливий веб-сайт, який вам
-              допоможе зі звіренням результатів ваших лабораторних робіт. Ви
-              легко й швидко можете згенерувати потрібні вам завдання, будучи
-              вільними від гірких розрахунків.
-            </p>
-          </div>
-          <div class="img-info">
-            <img
-              src="/images/foto-in-section/foto1.jpg"
-              alt="Foto helicopter"
-              class="foto"
-              width="400"
-              height="400"
-              loading="lazy"
-            />
-          </div>
-        </div>
-      </section>
-      <section class="info-donate" id="donate">
-        <div class="info-main container pb9">
-          <div class="img-info">
-            <img
-              src="/images/foto-in-section/foto2.jpg"
-              alt="Foto helicopter"
-              class="foto"
-              width="400"
-              height="400"
-              loading="lazy"
-            />
-          </div>
-          <div class="content-info">
-            <h2 class="h2">Подякуй нам за роботу</h2>
-            <p class="p mb10">Шановні друзі та користувачі нашого сайту!</p>
-            <p class="p mb10">
-              Ми звертаємося до вас з великим проханням про підтримку. Хост
-              сайту не безкоштовний, тому ваша підтримка - це не лише визнання
-              нашої роботи, але й можливість для вас користуватись
-              представленими матеріалами. Ми хочемо надавати вам контент, який
-              дійсно цікавий та корисний. Нехай ваші враження від користування
-              нашим сайтом будуть теплими та позитивними.
-            </p>
-            <p class="p mb10 color-donate"><i>З повагою, Команда CivKA</i></p>
-            <div class="button-donate">
-              <a
-                class="section-link-donate"
-                href="https://send.monobank.ua/jar/8mtbdEWgid"
-                target="_blank"
+                        d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
+                />
+              </svg>
+              Підтримати
+            </a>
+          </li>
+          <li class="header-menu-item" sec:authorize="!isAuthenticated()">
+            <a th:href="@{/login}" class="head-link header-link-login">
+              <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      class="user-nav svg-nav"
               >
+                <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z"
+                />
+              </svg>
+              Логін
+            </a>
+          </li>
+          <li class="header-menu-item" sec:authorize="isAuthenticated()">
+            <a href="#" class="head-new-user-nav plumbum">
+              <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      class="user-logined svg-nav"
+              >
+                <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+                />
+              </svg>
+
+              <span th:text="${userNickname}"></span>
+            </a>
+            <form th:action="@{/logout}" method="POST">
+              <input
+                      type="submit"
+                      class="visually-hidden"
+                      id="logout-button"
+              />
+              <label for="logout-button" class="head-new-user-nav2 plumbum">
                 <svg
-                  version="1.0"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="25px"
-                  height="25px"
-                  viewBox="0 0 1280.000000 1189.000000"
-                  preserveAspectRatio="xMidYMid meet"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="user-exit svg-nav"
                 >
-                  <metadata>
-                    Created by potrace 1.15, written by Peter Selinger 2001-2017
-                  </metadata>
-                  <g
-                    transform="translate(0.000000,1189.000000) scale(0.100000,-0.100000)"
-                    fill="#e64980"
-                    stroke="none"
-                  >
-                    <path
-                      d="M3250 11884 c-25 -2 -106 -11 -180 -20 -1485 -172 -2704 -1295 -3001
-                            -2764 -133 -660 -67 -1507 171 -2223 252 -753 675 -1411 1397 -2172 342 -360
-                            634 -630 1588 -1470 231 -203 488 -430 570 -505 1024 -920 1735 -1692 2346
-                            -2547 l130 -183 132 0 132 1 130 192 c557 822 1212 1560 2185 2461 191 178
-                            408 373 1027 923 956 852 1445 1343 1841 1850 643 825 968 1603 1064 2553 19
-                            196 17 665 -5 835 -105 805 -441 1497 -998 2054 -557 557 -1250 894 -2054 998
-                            -193 24 -613 24 -810 0 -733 -93 -1379 -387 -1920 -874 -191 -172 -406 -417
-                            -535 -610 -30 -45 -57 -82 -60 -82 -3 0 -30 37 -60 82 -129 193 -344 438 -535
-                            610 -531 478 -1170 773 -1878 867 -146 20 -562 34 -677 24z"
-                    />
-                  </g></svg
-                >Підтримати</a
-              >
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="explanation element-animation">
-        <div class="info-main container">
-          <div class="content-info text-align">
-            <h2 class="h2-explanation">До роботи</h2>
-            <p class="p mb16">
-              Для генерації ви вписуєте номер залікової книжки та вибираєте
-              номер лабораторної роботи. Варіант для роботи вираховується через
-              номер залікової книжки згідно методички. Після цього зможете
-              отримати готовий варіант роботи, з яким ви зможете звіритись.
-            </p>
-            <img
-              src="/images/foto-in-section/foto44.jpg"
-              alt="Gilgames"
-              class="foto br3 mt8"
-              width="300"
-              height="300"
-              loading="lazy"
-            />
-          </div>
-          <div class="calculate-body shadow-box">
-            <div class="form-calculate">
-              <h2 class="purple calculate-title title-medium text-align">
-                Введіть свої параметри
-              </h2>
-              <div class="calculate-description">
-                <p class="text-align wd-70">
-                  Коли ви заповните всі поля, натисність кнопку "Згенерувати".
-                </p>
-              </div>
-              <form
-                class="calculate-form"
-                th:object="${labData}"
-                th:action="@{/processForm}"
-                method="POST"
-              >
-                <div class="calculate-form-body">
-                  <label for="number" class="visually-hidden"
-                    >№ Залік.книги</label
-                  >
-                  <input
-                    required
-                    placeholder="№ Залікової книги (3603)"
-                    id="number"
-                    type="number"
-                    class="calculate-input input"
-                    th:field="*{creditNumber}"
+                  <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15"
                   />
+                </svg>
+              </label>
+            </form>
+          </li>
+        </ul>
+      </div>
+      <button class="btn-mobile-nav">
+        <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                name="menu-outline"
+                stroke="currentColor"
+                class="icon-mobile-nav"
+        >
+          <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+          />
+        </svg>
+        <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                name="close-outline"
+                stroke="currentColor"
+                class="icon-mobile-nav"
+        >
+          <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M6 18 18 6M6 6l12 12"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+<script src="/scripts/scroll-nav.js"></script>
+<main class="content">
+  <section class="info-text">
+    <div class="info-main container">
+      <div class="content-info">
+        <h2 class="h2">Вривайся в Комп'ютерну Арифметику!</h2>
+        <p class="p">
+          Ви випадково натрапляєте на цей захопливий веб-сайт, який вам
+          допоможе зі звіренням результатів ваших лабораторних робіт. Ви
+          легко й швидко можете згенерувати потрібні вам завдання, будучи
+          вільними від гірких розрахунків.
+        </p>
+      </div>
+      <div class="img-info">
+        <img
+                src="/images/foto-in-section/foto1.jpg"
+                alt="Foto helicopter"
+                class="foto"
+                width="400"
+                height="400"
+                loading="lazy"
+        />
+      </div>
+    </div>
+  </section>
+  <section class="info-donate" id="donate">
+    <div class="info-main container pb9">
+      <div class="img-info">
+        <img
+                src="/images/foto-in-section/foto2.jpg"
+                alt="Foto helicopter"
+                class="foto"
+                width="400"
+                height="400"
+                loading="lazy"
+        />
+      </div>
+      <div class="content-info">
+        <h2 class="h2">Подякуй нам за роботу</h2>
+        <p class="p mb10">Шановні друзі та користувачі нашого сайту!</p>
+        <p class="p mb10">
+          Ми звертаємося до вас з великим проханням про підтримку. Хост
+          сайту не безкоштовний, тому ваша підтримка - це не лише визнання
+          нашої роботи, але й можливість для вас користуватись
+          представленими матеріалами. Ми хочемо надавати вам контент, який
+          дійсно цікавий та корисний. Нехай ваші враження від користування
+          нашим сайтом будуть теплими та позитивними.
+        </p>
+        <p class="p mb10 color-donate"><i>З повагою, Команда CivKA</i></p>
+        <a
+                href="https://send.monobank.ua/jar/8mtbdEWgid"
+                class="head-link section-link-donate"
+                target="_blank"
+        >
+          <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="svg-nav"
+          >
+            <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
+            />
+          </svg>
+          Підтримати
+        </a>
+      </div>
+    </div>
+  </section>
+  <section class="explanation element-animation">
+    <div class="info-main container">
+      <div class="content-info text-align">
+        <h2 class="h2-explanation">До роботи</h2>
+        <p class="p mb16">
+          Для генерації ви вписуєте номер залікової книжки та вибираєте
+          номер лабораторної роботи. Варіант для роботи вираховується через
+          номер залікової книжки згідно методички. Після цього зможете
+          отримати готовий варіант роботи, з яким ви зможете звіритись.
+        </p>
+        <img
+                src="/images/foto-in-section/foto44.jpg"
+                alt="Gilgames"
+                class="foto br3 mt8"
+                width="300"
+                height="300"
+                loading="lazy"
+        />
+      </div>
+      <div class="calculate-body shadow-box">
+        <div class="form-calculate">
+          <h2 class="purple calculate-title title-medium text-align">
+            Введіть свої параметри
+          </h2>
+          <div class="calculate-description">
+            <p class="text-align wd-70">
+              Коли ви заповните всі поля, натисність кнопку "Згенерувати".
+            </p>
+          </div>
+          <form
+                  class="calculate-form"
+                  th:object="${labData}"
+                  th:action="@{/processForm}"
+                  method="POST"
+          >
+            <div class="calculate-form-body">
+              <label for="number" class="visually-hidden"
+              >№ Залік.книги</label
+              >
+              <input
+                      required
+                      placeholder="№ Залікової книги (3603)"
+                      id="number"
+                      type="number"
+                      class="calculate-input input"
+                      th:field="*{creditNumber}"
+              />
 
-                  <p>Виберіть номер лабораторної роботи:</p>
-                  <div class="radio-tile-group">
-                    <div class="input-container">
-                      <input
-                        type="radio"
-                        name="radio"
-                        id="lab1"
-                        value="1"
-                        th:field="*{labNumber}"
-                      />
-                      <div class="radio-tile">
-                        <label for="lab1">1</label>
-                      </div>
-                    </div>
-
-                    <div class="input-container">
-                      <input
-                        type="radio"
-                        name="radio"
-                        id="lab2"
-                        value="2"
-                        th:field="*{labNumber}"
-                      />
-                      <div class="radio-tile">
-                        <label for="lab2">2</label>
-                      </div>
-                    </div>
-
-                    <div class="input-container">
-                      <input
-                        type="radio"
-                        name="radio"
-                        id="lab3"
-                        value="3"
-                        th:field="*{labNumber}"
-                        disabled
-                      />
-                      <div class="radio-tile">
-                        <label for="lab3">3</label>
-                      </div>
-                    </div>
-
-                    <div class="input-container">
-                      <input
-                        type="radio"
-                        name="radio"
-                        id="lab4"
-                        value="4"
-                        th:field="*{labNumber}"
-                        disabled
-                      />
-                      <div class="radio-tile">
-                        <label for="lab4">4</label>
-                      </div>
-                    </div>
-
-                    <div class="input-container">
-                      <input
-                        type="radio"
-                        name="radio"
-                        id="lab5"
-                        value="5"
-                        th:field="*{labNumber}"
-                        disabled
-                      />
-                      <div class="radio-tile">
-                        <label for="lab5">5</label>
-                      </div>
-                    </div>
+              <p>Виберіть номер лабораторної роботи:</p>
+              <div class="radio-tile-group">
+                <div class="input-container">
+                  <input
+                          type="radio"
+                          name="radio"
+                          id="lab1"
+                          value="1"
+                          th:field="*{labNumber}"
+                  />
+                  <div class="radio-tile">
+                    <label for="lab1">1</label>
                   </div>
                 </div>
 
-                <button
-                  type="submit"
-                  class="calculate-button button transparent purple"
-                  title="Відправити"
-                >
-                  Згенерувати
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="news">
-        <h2 class="h2 text-align" id="news">Що нового?</h2>
-        <div class="news-container">
-          <div class="grid-news">
-            <div class="img-div-news element-animation">
-              <img
-                class="img-news"
-                src="/images/news/news6.jpg"
-                alt="monke laptop"
-              />
-            </div>
-            <div class="text-news element-animation">
-              <h3 class="header-news">Добавлений зворотній зв'язок</h3>
-              <p class="p-news">
-                Тепер ви можете
-                <a class="purple" th:href="@{/feedback}">написати нам</a>! У вас
-                є можливість сповістити нас про ваші побажання або повідомити
-                про помилку.
-              </p>
-              <p class="data-news">06.03.2024</p>
-            </div>
-          </div>
-
-          <div class="grid-news">
-            <div class="img-div-news element-animation">
-              <img
-                class="img-news"
-                src="/images/news/news5.jpg"
-                alt="open the noor"
-              />
-            </div>
-            <div class="text-news element-animation">
-              <h3 class="header-news">Система акаунтів</h3>
-              <p class="p-news">
-                Тепер ви можете
-                <a class="purple" th:href="@{/register}">зареєструватись</a> на
-                нашому сайті!<br />
-                Після автентифікації у вас буде можливість завантажити AFDK
-                схеми. Також пізніше з'явиться опція зворотного зв'язку, яка
-                буде також доступна лише з автентифікацією.
-              </p>
-              <p class="data-news">13.02.2024</p>
-            </div>
-          </div>
-
-          <div class="grid-news">
-            <div class="img-div-news element-animation">
-              <img
-                class="img-news"
-                src="/images/news/news4.jpg"
-                alt="monkee with calculator"
-              />
-            </div>
-            <div class="text-news element-animation">
-              <h3 class="header-news">Калькулятор. Друга лаба. Дизайн</h3>
-              <p class="p-news">
-                З головного - був доданий
-                <a class="purple" th:href="@{/calculate}"
-                  >бінарний калькулятор</a
-                >. Робить він багато: вочевидь додавання, множення, ділення та
-                довільні переведення з однієї системи числення в іншу. Були
-                додані AFDK файли (.AFP) до всіх множень у другій лабі.<br />
-                Також було оновлено дизайн сайту. Кнопка логіну поки що не
-                працює :)
-              </p>
-              <p class="data-news">10.02.2024</p>
-            </div>
-          </div>
-
-          <div class="grid-news">
-            <div class="img-div-news element-animation">
-              <img
-                class="img-news"
-                src="/images/news/news3.jpg"
-                alt="engineer"
-              />
-            </div>
-            <div class="text-news element-animation">
-              <h3 class="header-news">Оновлення першої лаби</h3>
-              <p class="p-news">
-                Був доданий AFDK для перетворення з ПК в модифікований ОК/ДК, а
-                також AFDK для суми в ОК/ДК. Невдовзі появиться можливість
-                завантажити ці схеми AFDK (.AFP).<br />
-                Також було виправлено помилку зі зсувом модифікованого ОК вліво
-                та помилку з обчисленням суми в ДК, тому якщо ви вже згенерували
-                варіант — рекомендуємо перегенерувати його знову. Якщо замітили
-                десь незрозумілу помилку — повідомте нас через "Зворотний
-                зв'язок". Якщо ви не бачите такої вкладки — прочитайте це
-                речення знову.
-              </p>
-              <p class="data-news">08.02.2024</p>
-            </div>
-          </div>
-
-          <div class="grid-news">
-            <div class="img-div-news element-animation">
-              <img
-                class="img-news"
-                src="/images/news/news1-1.jpg"
-                alt="Deadlines"
-              />
-            </div>
-            <div class="text-news element-animation">
-              <h3 class="header-news">Дедлайни по лабам</h3>
-              <p class="p-news">
-                Наша команда плідно працює над сайтом, скоро будуть додані
-                <strong>3-5</strong>
-                лабораторні роботи. Ваша підтримка дуже допомагає нам,
-                користуйтеся на здоров'я!
-              </p>
-              <p class="data-news">06.02.2024</p>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!--         <section class="autors">
-            <h1 class="h2 text-align" id="autors">Автори цього сайту</h1>
-            <div class="description container">
-                <div class="autor autor1 shadow-box">
-                    <img 
-                        src="images/foto-in-section/autor1.jpg" 
-                        alt="Autor Dimitri08"
-                        class="foto br50"
-                        width="150"
-                        height="150"
-                        loading="lazy"
-                    />
-                    <h2 class="h2-autor text-align">Dimitri08</h2>
-                    <p class="p text-align mb10">Писати мені в тг, якщо замітили помилку з обчисленнями, або якщо є проблеми з використанням. У разі чого, проєкт лежить на github.</p>
-                    <div class="footer-soc1als">
-                        <ul class="footer-soc1als-list">
-                            <li class="footer-soc1als-item">
-                                <a href="https://t.me/Dimitri0808" class="footer-soc1als-link" target="_blank">
-                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve" width="512">
-                                        <g id="Artboard">
-                                            <path style="fill-rule:evenodd;clip-rule:evenodd;" d="M12,0C5.373,0,0,5.373,0,12s5.373,12,12,12s12-5.373,12-12S18.627,0,12,0z    M17.562,8.161c-0.18,1.897-0.962,6.502-1.359,8.627c-0.168,0.9-0.5,1.201-0.82,1.23c-0.697,0.064-1.226-0.461-1.901-0.903   c-1.056-0.692-1.653-1.123-2.678-1.799c-1.185-0.781-0.417-1.21,0.258-1.911c0.177-0.184,3.247-2.977,3.307-3.23   c0.007-0.032,0.015-0.15-0.056-0.212s-0.174-0.041-0.248-0.024c-0.106,0.024-1.793,1.139-5.062,3.345   c-0.479,0.329-0.913,0.489-1.302,0.481c-0.428-0.009-1.252-0.242-1.865-0.442c-0.751-0.244-1.349-0.374-1.297-0.788   c0.027-0.216,0.324-0.437,0.892-0.663c3.498-1.524,5.831-2.529,6.998-3.015c3.333-1.386,4.025-1.627,4.477-1.635   C17.472,7.214,17.608,7.681,17.562,8.161z"/>
-                                        </g>
-                                    </svg>
-                                </a>
-                            </li>
-                            <li class="footer-soc1als-item">
-                                <a href="https://www.instagram.com/dima.mamchenko/" class="footer-soc1als-link" target="_blank">
-                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve" width="512">
-                                        <g>
-                                            <path d="M12,2.162c3.204,0,3.584,0.012,4.849,0.07c1.308,0.06,2.655,0.358,3.608,1.311c0.962,0.962,1.251,2.296,1.311,3.608   c0.058,1.265,0.07,1.645,0.07,4.849c0,3.204-0.012,3.584-0.07,4.849c-0.059,1.301-0.364,2.661-1.311,3.608   c-0.962,0.962-2.295,1.251-3.608,1.311c-1.265,0.058-1.645,0.07-4.849,0.07s-3.584-0.012-4.849-0.07   c-1.291-0.059-2.669-0.371-3.608-1.311c-0.957-0.957-1.251-2.304-1.311-3.608c-0.058-1.265-0.07-1.645-0.07-4.849   c0-3.204,0.012-3.584,0.07-4.849c0.059-1.296,0.367-2.664,1.311-3.608c0.96-0.96,2.299-1.251,3.608-1.311   C8.416,2.174,8.796,2.162,12,2.162 M12,0C8.741,0,8.332,0.014,7.052,0.072C5.197,0.157,3.355,0.673,2.014,2.014   C0.668,3.36,0.157,5.198,0.072,7.052C0.014,8.332,0,8.741,0,12c0,3.259,0.014,3.668,0.072,4.948c0.085,1.853,0.603,3.7,1.942,5.038   c1.345,1.345,3.186,1.857,5.038,1.942C8.332,23.986,8.741,24,12,24c3.259,0,3.668-0.014,4.948-0.072   c1.854-0.085,3.698-0.602,5.038-1.942c1.347-1.347,1.857-3.184,1.942-5.038C23.986,15.668,24,15.259,24,12   c0-3.259-0.014-3.668-0.072-4.948c-0.085-1.855-0.602-3.698-1.942-5.038c-1.343-1.343-3.189-1.858-5.038-1.942   C15.668,0.014,15.259,0,12,0z"/>
-                                            <path d="M12,5.838c-3.403,0-6.162,2.759-6.162,6.162c0,3.403,2.759,6.162,6.162,6.162s6.162-2.759,6.162-6.162   C18.162,8.597,15.403,5.838,12,5.838z M12,16c-2.209,0-4-1.791-4-4s1.791-4,4-4s4,1.791,4,4S14.209,16,12,16z"/>
-                                            <circle cx="18.406" cy="5.594" r="1.44"/>
-                                        </g>
-                                    </svg>
-                                </a>
-                            </li>
-                            <li class="footer-soc1als-item">
-                                <a href="https://discordapp.com/users/465838450197921814/" class="footer-soc1als-link" target="_blank">
-                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve" width="512">
-                                        <g>
-                                            <path d="M20.317,4.37c-1.53-0.702-3.17-1.219-4.885-1.515c-0.031-0.006-0.062,0.009-0.079,0.037   c-0.211,0.375-0.445,0.865-0.608,1.249c-1.845-0.276-3.68-0.276-5.487,0C9.095,3.748,8.852,3.267,8.641,2.892   C8.624,2.864,8.593,2.85,8.562,2.855C6.848,3.15,5.208,3.667,3.677,4.37C3.664,4.375,3.652,4.385,3.645,4.397   c-3.111,4.648-3.964,9.182-3.546,13.66c0.002,0.022,0.014,0.043,0.031,0.056c2.053,1.508,4.041,2.423,5.993,3.029   c0.031,0.01,0.064-0.002,0.084-0.028c0.462-0.63,0.873-1.295,1.226-1.994c0.021-0.041,0.001-0.09-0.042-0.106   c-0.653-0.248-1.274-0.55-1.872-0.892c-0.047-0.028-0.051-0.095-0.008-0.128c0.126-0.094,0.252-0.192,0.372-0.291   c0.022-0.018,0.052-0.022,0.078-0.01c3.928,1.793,8.18,1.793,12.061,0c0.026-0.012,0.056-0.009,0.079,0.01   c0.12,0.099,0.246,0.198,0.373,0.292c0.044,0.032,0.041,0.1-0.007,0.128c-0.598,0.349-1.219,0.645-1.873,0.891   c-0.043,0.016-0.061,0.066-0.041,0.107c0.36,0.698,0.772,1.363,1.225,1.993c0.019,0.027,0.053,0.038,0.084,0.029   c1.961-0.607,3.95-1.522,6.002-3.029c0.018-0.013,0.029-0.033,0.031-0.055c0.5-5.177-0.838-9.674-3.548-13.66   C20.342,4.385,20.33,4.375,20.317,4.37z M8.02,15.331c-1.183,0-2.157-1.086-2.157-2.419s0.955-2.419,2.157-2.419   c1.211,0,2.176,1.095,2.157,2.419C10.177,14.246,9.221,15.331,8.02,15.331z M15.995,15.331c-1.182,0-2.157-1.086-2.157-2.419   s0.955-2.419,2.157-2.419c1.211,0,2.176,1.095,2.157,2.419C18.152,14.246,17.206,15.331,15.995,15.331z"/>
-                                        </g>
-                                    </svg>
-                                </a>
-                            </li>
-                            <li class="footer-soc1als-item">
-                                <a href="https://github.com/dima0808/" class="footer-soc1als-link" targer="_blank">
-                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve" width="512">
-                                        <g>
-                                            <path style="fill-rule:evenodd;clip-rule:evenodd;" d="M12,0.296c-6.627,0-12,5.372-12,12c0,5.302,3.438,9.8,8.206,11.387   c0.6,0.111,0.82-0.26,0.82-0.577c0-0.286-0.011-1.231-0.016-2.234c-3.338,0.726-4.043-1.416-4.043-1.416   C4.421,18.069,3.635,17.7,3.635,17.7c-1.089-0.745,0.082-0.729,0.082-0.729c1.205,0.085,1.839,1.237,1.839,1.237   c1.07,1.834,2.807,1.304,3.492,0.997C9.156,18.429,9.467,17.9,9.81,17.6c-2.665-0.303-5.467-1.332-5.467-5.93   c0-1.31,0.469-2.381,1.237-3.221C5.455,8.146,5.044,6.926,5.696,5.273c0,0,1.008-0.322,3.301,1.23   C9.954,6.237,10.98,6.104,12,6.099c1.02,0.005,2.047,0.138,3.006,0.404c2.29-1.553,3.297-1.23,3.297-1.23   c0.653,1.653,0.242,2.873,0.118,3.176c0.769,0.84,1.235,1.911,1.235,3.221c0,4.609-2.807,5.624-5.479,5.921   c0.43,0.372,0.814,1.103,0.814,2.222c0,1.606-0.014,2.898-0.014,3.293c0,0.319,0.216,0.694,0.824,0.576   c4.766-1.589,8.2-6.085,8.2-11.385C24,5.669,18.627,0.296,12,0.296z"/>
-                                            <path d="M4.545,17.526c-0.026,0.06-0.12,0.078-0.206,0.037c-0.087-0.039-0.136-0.121-0.108-0.18   c0.026-0.061,0.12-0.078,0.207-0.037C4.525,17.384,4.575,17.466,4.545,17.526L4.545,17.526z"/>
-                                            <path d="M5.031,18.068c-0.057,0.053-0.169,0.028-0.245-0.055c-0.079-0.084-0.093-0.196-0.035-0.249   c0.059-0.053,0.167-0.028,0.246,0.056C5.076,17.903,5.091,18.014,5.031,18.068L5.031,18.068z"/>
-                                            <path d="M5.504,18.759c-0.074,0.051-0.194,0.003-0.268-0.103c-0.074-0.107-0.074-0.235,0.002-0.286   c0.074-0.051,0.193-0.005,0.268,0.101C5.579,18.579,5.579,18.707,5.504,18.759L5.504,18.759z"/>
-                                            <path d="M6.152,19.427c-0.066,0.073-0.206,0.053-0.308-0.046c-0.105-0.097-0.134-0.234-0.068-0.307   c0.067-0.073,0.208-0.052,0.311,0.046C6.191,19.217,6.222,19.355,6.152,19.427L6.152,19.427z"/>
-                                            <path d="M7.047,19.814c-0.029,0.094-0.164,0.137-0.3,0.097C6.611,19.87,6.522,19.76,6.55,19.665   c0.028-0.095,0.164-0.139,0.301-0.096C6.986,19.609,7.075,19.719,7.047,19.814L7.047,19.814z"/>
-                                            <path d="M8.029,19.886c0.003,0.099-0.112,0.181-0.255,0.183c-0.143,0.003-0.26-0.077-0.261-0.174c0-0.1,0.113-0.181,0.256-0.184   C7.912,19.708,8.029,19.788,8.029,19.886L8.029,19.886z"/>
-                                            <path d="M8.943,19.731c0.017,0.096-0.082,0.196-0.224,0.222c-0.139,0.026-0.268-0.034-0.286-0.13   c-0.017-0.099,0.084-0.198,0.223-0.224C8.797,19.574,8.925,19.632,8.943,19.731L8.943,19.731z"/>
-                                        </g>
-                                    </svg>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                <div class="input-container">
+                  <input
+                          type="radio"
+                          name="radio"
+                          id="lab2"
+                          value="2"
+                          th:field="*{labNumber}"
+                  />
+                  <div class="radio-tile">
+                    <label for="lab2">2</label>
+                  </div>
                 </div>
-                <div class="autor autor2 shadow-box">
-                    <img 
-                        src="images/foto-in-section/autor2.jpg" 
-                        alt="Autor TNTshka"
-                        class="foto br50"
-                        width="150"
-                        height="150"
-                        loading="lazy"
-                    />
-                    <h2 class="h2-autor text-align">TNTeshka2245</h2>
-                    <p class="p mb10 text-align">Алмаз4 в <strong class=”blud”>League of Legends (TNTeshka#nazar)</strong> на весті, пишіть на дс, може пограємо, дівчата.</p>
-                    <div class="footer-soc1als">
-                        <ul class="footer-soc1als-list">
-                            <li class="footer-soc1als-item">
-                                <a href="https://t.me/TNTeshka2245" class="footer-soc1als-link" target="_blank">
-                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve" width="512">
-                                        <g id="Artboard">
-                                            <path style="fill-rule:evenodd;clip-rule:evenodd;" d="M12,0C5.373,0,0,5.373,0,12s5.373,12,12,12s12-5.373,12-12S18.627,0,12,0z    M17.562,8.161c-0.18,1.897-0.962,6.502-1.359,8.627c-0.168,0.9-0.5,1.201-0.82,1.23c-0.697,0.064-1.226-0.461-1.901-0.903   c-1.056-0.692-1.653-1.123-2.678-1.799c-1.185-0.781-0.417-1.21,0.258-1.911c0.177-0.184,3.247-2.977,3.307-3.23   c0.007-0.032,0.015-0.15-0.056-0.212s-0.174-0.041-0.248-0.024c-0.106,0.024-1.793,1.139-5.062,3.345   c-0.479,0.329-0.913,0.489-1.302,0.481c-0.428-0.009-1.252-0.242-1.865-0.442c-0.751-0.244-1.349-0.374-1.297-0.788   c0.027-0.216,0.324-0.437,0.892-0.663c3.498-1.524,5.831-2.529,6.998-3.015c3.333-1.386,4.025-1.627,4.477-1.635   C17.472,7.214,17.608,7.681,17.562,8.161z"/>
-                                        </g>
-                                    </svg>
-                                </a>
-                            </li>
-                            <li class="footer-soc1als-item">
-                                <a href="https://www.instagram.com/tnteshka2245/" class="footer-soc1als-link" target="_blank">
-                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve" width="512">
-                                        <g>
-                                            <path d="M12,2.162c3.204,0,3.584,0.012,4.849,0.07c1.308,0.06,2.655,0.358,3.608,1.311c0.962,0.962,1.251,2.296,1.311,3.608   c0.058,1.265,0.07,1.645,0.07,4.849c0,3.204-0.012,3.584-0.07,4.849c-0.059,1.301-0.364,2.661-1.311,3.608   c-0.962,0.962-2.295,1.251-3.608,1.311c-1.265,0.058-1.645,0.07-4.849,0.07s-3.584-0.012-4.849-0.07   c-1.291-0.059-2.669-0.371-3.608-1.311c-0.957-0.957-1.251-2.304-1.311-3.608c-0.058-1.265-0.07-1.645-0.07-4.849   c0-3.204,0.012-3.584,0.07-4.849c0.059-1.296,0.367-2.664,1.311-3.608c0.96-0.96,2.299-1.251,3.608-1.311   C8.416,2.174,8.796,2.162,12,2.162 M12,0C8.741,0,8.332,0.014,7.052,0.072C5.197,0.157,3.355,0.673,2.014,2.014   C0.668,3.36,0.157,5.198,0.072,7.052C0.014,8.332,0,8.741,0,12c0,3.259,0.014,3.668,0.072,4.948c0.085,1.853,0.603,3.7,1.942,5.038   c1.345,1.345,3.186,1.857,5.038,1.942C8.332,23.986,8.741,24,12,24c3.259,0,3.668-0.014,4.948-0.072   c1.854-0.085,3.698-0.602,5.038-1.942c1.347-1.347,1.857-3.184,1.942-5.038C23.986,15.668,24,15.259,24,12   c0-3.259-0.014-3.668-0.072-4.948c-0.085-1.855-0.602-3.698-1.942-5.038c-1.343-1.343-3.189-1.858-5.038-1.942   C15.668,0.014,15.259,0,12,0z"/>
-                                            <path d="M12,5.838c-3.403,0-6.162,2.759-6.162,6.162c0,3.403,2.759,6.162,6.162,6.162s6.162-2.759,6.162-6.162   C18.162,8.597,15.403,5.838,12,5.838z M12,16c-2.209,0-4-1.791-4-4s1.791-4,4-4s4,1.791,4,4S14.209,16,12,16z"/>
-                                            <circle cx="18.406" cy="5.594" r="1.44"/>
-                                        </g>
-                                    </svg>
-                                </a>
-                            </li>
-                            <li class="footer-soc1als-item">
-                                <a href="https://discordapp.com/users/532092199014498304/" class="footer-soc1als-link" target="_blank">
-                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve" width="512">
-                                        <g>
-                                            <path d="M20.317,4.37c-1.53-0.702-3.17-1.219-4.885-1.515c-0.031-0.006-0.062,0.009-0.079,0.037   c-0.211,0.375-0.445,0.865-0.608,1.249c-1.845-0.276-3.68-0.276-5.487,0C9.095,3.748,8.852,3.267,8.641,2.892   C8.624,2.864,8.593,2.85,8.562,2.855C6.848,3.15,5.208,3.667,3.677,4.37C3.664,4.375,3.652,4.385,3.645,4.397   c-3.111,4.648-3.964,9.182-3.546,13.66c0.002,0.022,0.014,0.043,0.031,0.056c2.053,1.508,4.041,2.423,5.993,3.029   c0.031,0.01,0.064-0.002,0.084-0.028c0.462-0.63,0.873-1.295,1.226-1.994c0.021-0.041,0.001-0.09-0.042-0.106   c-0.653-0.248-1.274-0.55-1.872-0.892c-0.047-0.028-0.051-0.095-0.008-0.128c0.126-0.094,0.252-0.192,0.372-0.291   c0.022-0.018,0.052-0.022,0.078-0.01c3.928,1.793,8.18,1.793,12.061,0c0.026-0.012,0.056-0.009,0.079,0.01   c0.12,0.099,0.246,0.198,0.373,0.292c0.044,0.032,0.041,0.1-0.007,0.128c-0.598,0.349-1.219,0.645-1.873,0.891   c-0.043,0.016-0.061,0.066-0.041,0.107c0.36,0.698,0.772,1.363,1.225,1.993c0.019,0.027,0.053,0.038,0.084,0.029   c1.961-0.607,3.95-1.522,6.002-3.029c0.018-0.013,0.029-0.033,0.031-0.055c0.5-5.177-0.838-9.674-3.548-13.66   C20.342,4.385,20.33,4.375,20.317,4.37z M8.02,15.331c-1.183,0-2.157-1.086-2.157-2.419s0.955-2.419,2.157-2.419   c1.211,0,2.176,1.095,2.157,2.419C10.177,14.246,9.221,15.331,8.02,15.331z M15.995,15.331c-1.182,0-2.157-1.086-2.157-2.419   s0.955-2.419,2.157-2.419c1.211,0,2.176,1.095,2.157,2.419C18.152,14.246,17.206,15.331,15.995,15.331z"/>
-                                        </g>
-                                    </svg>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+
+                <div class="input-container">
+                  <input
+                          type="radio"
+                          name="radio"
+                          id="lab3"
+                          value="3"
+                          th:field="*{labNumber}"
+                          disabled
+                  />
+                  <div class="radio-tile">
+                    <label for="lab3">3</label>
+                  </div>
                 </div>
-                <div class="autor autor3 shadow-box">
-                    <img 
-                        src="images/foto-in-section/autor3.jpg" 
-                        alt="Autor protein2005"
-                        class="foto br50"
-                        width="150"
-                        height="150"
-                        loading="lazy"
-                    />
-                    <h2 class="h2-autor text-align">protein2005</h2>
-                    <p class="p text-align mb10">Якщо є якісь приколи з дизайном (картинка поїхала і тд.), або у вас є побажання по дизайну, пишіть мені в тг.</p>
-                    <div class="footer-soc1als">
-                        <ul class="footer-soc1als-list">
-                            <li class="footer-soc1als-item">
-                                <a href="https://t.me/aIexey_sokolchyk" class="footer-soc1als-link" target="_blank">
-                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve" width="512">
-                                        <g id="Artboard">
-                                            <path style="fill-rule:evenodd;clip-rule:evenodd;" d="M12,0C5.373,0,0,5.373,0,12s5.373,12,12,12s12-5.373,12-12S18.627,0,12,0z    M17.562,8.161c-0.18,1.897-0.962,6.502-1.359,8.627c-0.168,0.9-0.5,1.201-0.82,1.23c-0.697,0.064-1.226-0.461-1.901-0.903   c-1.056-0.692-1.653-1.123-2.678-1.799c-1.185-0.781-0.417-1.21,0.258-1.911c0.177-0.184,3.247-2.977,3.307-3.23   c0.007-0.032,0.015-0.15-0.056-0.212s-0.174-0.041-0.248-0.024c-0.106,0.024-1.793,1.139-5.062,3.345   c-0.479,0.329-0.913,0.489-1.302,0.481c-0.428-0.009-1.252-0.242-1.865-0.442c-0.751-0.244-1.349-0.374-1.297-0.788   c0.027-0.216,0.324-0.437,0.892-0.663c3.498-1.524,5.831-2.529,6.998-3.015c3.333-1.386,4.025-1.627,4.477-1.635   C17.472,7.214,17.608,7.681,17.562,8.161z"/>
-                                        </g>
-                                    </svg>
-                                </a>
-                            </li>
-                            <li class="footer-soc1als-item">
-                                <a href="https://www.instagram.com/alexey_sokolchuk/" class="footer-soc1als-link" target="_blank">
-                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve" width="512">
-                                        <g>
-                                            <path d="M12,2.162c3.204,0,3.584,0.012,4.849,0.07c1.308,0.06,2.655,0.358,3.608,1.311c0.962,0.962,1.251,2.296,1.311,3.608   c0.058,1.265,0.07,1.645,0.07,4.849c0,3.204-0.012,3.584-0.07,4.849c-0.059,1.301-0.364,2.661-1.311,3.608   c-0.962,0.962-2.295,1.251-3.608,1.311c-1.265,0.058-1.645,0.07-4.849,0.07s-3.584-0.012-4.849-0.07   c-1.291-0.059-2.669-0.371-3.608-1.311c-0.957-0.957-1.251-2.304-1.311-3.608c-0.058-1.265-0.07-1.645-0.07-4.849   c0-3.204,0.012-3.584,0.07-4.849c0.059-1.296,0.367-2.664,1.311-3.608c0.96-0.96,2.299-1.251,3.608-1.311   C8.416,2.174,8.796,2.162,12,2.162 M12,0C8.741,0,8.332,0.014,7.052,0.072C5.197,0.157,3.355,0.673,2.014,2.014   C0.668,3.36,0.157,5.198,0.072,7.052C0.014,8.332,0,8.741,0,12c0,3.259,0.014,3.668,0.072,4.948c0.085,1.853,0.603,3.7,1.942,5.038   c1.345,1.345,3.186,1.857,5.038,1.942C8.332,23.986,8.741,24,12,24c3.259,0,3.668-0.014,4.948-0.072   c1.854-0.085,3.698-0.602,5.038-1.942c1.347-1.347,1.857-3.184,1.942-5.038C23.986,15.668,24,15.259,24,12   c0-3.259-0.014-3.668-0.072-4.948c-0.085-1.855-0.602-3.698-1.942-5.038c-1.343-1.343-3.189-1.858-5.038-1.942   C15.668,0.014,15.259,0,12,0z"/>
-                                            <path d="M12,5.838c-3.403,0-6.162,2.759-6.162,6.162c0,3.403,2.759,6.162,6.162,6.162s6.162-2.759,6.162-6.162   C18.162,8.597,15.403,5.838,12,5.838z M12,16c-2.209,0-4-1.791-4-4s1.791-4,4-4s4,1.791,4,4S14.209,16,12,16z"/>
-                                            <circle cx="18.406" cy="5.594" r="1.44"/>
-                                        </g>
-                                    </svg>
-                                </a>
-                            </li>
-                            <li class="footer-soc1als-item">
-                                <a href="https://discordapp.com/users/613746671595028497/" class="footer-soc1als-link" target="_blank">
-                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve" width="512">
-                                        <g>
-                                            <path d="M20.317,4.37c-1.53-0.702-3.17-1.219-4.885-1.515c-0.031-0.006-0.062,0.009-0.079,0.037   c-0.211,0.375-0.445,0.865-0.608,1.249c-1.845-0.276-3.68-0.276-5.487,0C9.095,3.748,8.852,3.267,8.641,2.892   C8.624,2.864,8.593,2.85,8.562,2.855C6.848,3.15,5.208,3.667,3.677,4.37C3.664,4.375,3.652,4.385,3.645,4.397   c-3.111,4.648-3.964,9.182-3.546,13.66c0.002,0.022,0.014,0.043,0.031,0.056c2.053,1.508,4.041,2.423,5.993,3.029   c0.031,0.01,0.064-0.002,0.084-0.028c0.462-0.63,0.873-1.295,1.226-1.994c0.021-0.041,0.001-0.09-0.042-0.106   c-0.653-0.248-1.274-0.55-1.872-0.892c-0.047-0.028-0.051-0.095-0.008-0.128c0.126-0.094,0.252-0.192,0.372-0.291   c0.022-0.018,0.052-0.022,0.078-0.01c3.928,1.793,8.18,1.793,12.061,0c0.026-0.012,0.056-0.009,0.079,0.01   c0.12,0.099,0.246,0.198,0.373,0.292c0.044,0.032,0.041,0.1-0.007,0.128c-0.598,0.349-1.219,0.645-1.873,0.891   c-0.043,0.016-0.061,0.066-0.041,0.107c0.36,0.698,0.772,1.363,1.225,1.993c0.019,0.027,0.053,0.038,0.084,0.029   c1.961-0.607,3.95-1.522,6.002-3.029c0.018-0.013,0.029-0.033,0.031-0.055c0.5-5.177-0.838-9.674-3.548-13.66   C20.342,4.385,20.33,4.375,20.317,4.37z M8.02,15.331c-1.183,0-2.157-1.086-2.157-2.419s0.955-2.419,2.157-2.419   c1.211,0,2.176,1.095,2.157,2.419C10.177,14.246,9.221,15.331,8.02,15.331z M15.995,15.331c-1.182,0-2.157-1.086-2.157-2.419   s0.955-2.419,2.157-2.419c1.211,0,2.176,1.095,2.157,2.419C18.152,14.246,17.206,15.331,15.995,15.331z"/>
-                                        </g>
-                                    </svg>
-                                </a>
-                            </li>
-                            <li class="footer-soc1als-item">
-                                <a href="https://www.youtube.com/channel/UCOSspPprGUe0UTskmuDbymA" class="footer-soc1als-link" target="_blank">
-                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve" width="512">
-                                        <g id="XMLID_184_">
-                                            <path d="M23.498,6.186c-0.276-1.039-1.089-1.858-2.122-2.136C19.505,3.546,12,3.546,12,3.546s-7.505,0-9.377,0.504   C1.591,4.328,0.778,5.146,0.502,6.186C0,8.07,0,12,0,12s0,3.93,0.502,5.814c0.276,1.039,1.089,1.858,2.122,2.136   C4.495,20.454,12,20.454,12,20.454s7.505,0,9.377-0.504c1.032-0.278,1.845-1.096,2.122-2.136C24,15.93,24,12,24,12   S24,8.07,23.498,6.186z M9.546,15.569V8.431L15.818,12L9.546,15.569z"/>
-                                        </g>
-                                    </svg>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+
+                <div class="input-container">
+                  <input
+                          type="radio"
+                          name="radio"
+                          id="lab4"
+                          value="4"
+                          th:field="*{labNumber}"
+                          disabled
+                  />
+                  <div class="radio-tile">
+                    <label for="lab4">4</label>
+                  </div>
                 </div>
+
+                <div class="input-container">
+                  <input
+                          type="radio"
+                          name="radio"
+                          id="lab5"
+                          value="5"
+                          th:field="*{labNumber}"
+                          disabled
+                  />
+                  <div class="radio-tile">
+                    <label for="lab5">5</label>
+                  </div>
+                </div>
+              </div>
             </div>
-        </section> -->
-    </main>
-    <script src="/scripts/slow-scroll.js"></script>
-    <footer class="footer">
-      <div class="footer-extra">
-        <div class="footer-extra-inner container">
-          <div class="footer-copyright">
-            © <time datetime="2024">2024</time>
-            <p class="p">CivKA.</p>
-            <p class="p">
-              Ми не відповідальні за ваші оцінки. Сайт створений лише з метою
-              перевірки знань та звірення відповідей.
-            </p>
-          </div>
+
+            <button
+                    type="submit"
+                    class="calculate-button button transparent purple"
+                    title="Відправити"
+            >
+              Згенерувати
+            </button>
+          </form>
         </div>
       </div>
-    </footer>
-  </body>
+    </div>
+  </section>
+  <section class="news">
+    <h2 class="h2 text-align" id="news">Що нового?</h2>
+    <div class="news-container">
+      <div class="grid-news">
+        <div class="img-div-news element-animation">
+          <img
+                  class="img-news"
+                  src="/images/news/news6.jpg"
+                  alt="monke laptop"
+          />
+        </div>
+        <div class="text-news element-animation">
+          <h3 class="header-news">Добавлений зворотній зв'язок</h3>
+          <p class="p-news">
+            Тепер ви можете
+            <a class="purple" th:href="@{/feedback}">написати нам</a>! У вас
+            є можливість сповістити нас про ваші побажання або повідомити
+            про помилку.
+          </p>
+          <p class="data-news">06.03.2024</p>
+        </div>
+      </div>
+
+      <div class="grid-news">
+        <div class="img-div-news element-animation">
+          <img
+                  class="img-news"
+                  src="/images/news/news5.jpg"
+                  alt="open the noor"
+          />
+        </div>
+        <div class="text-news element-animation">
+          <h3 class="header-news">Система акаунтів</h3>
+          <p class="p-news">
+            Тепер ви можете
+            <a class="purple" th:href="@{/register}">зареєструватись</a> на
+            нашому сайті!<br />
+            Після автентифікації у вас буде можливість завантажити AFDK
+            схеми. Також пізніше з'явиться опція зворотного зв'язку, яка
+            буде також доступна лише з автентифікацією.
+          </p>
+          <p class="data-news">13.02.2024</p>
+        </div>
+      </div>
+
+      <div class="grid-news">
+        <div class="img-div-news element-animation">
+          <img
+                  class="img-news"
+                  src="/images/news/news4.jpg"
+                  alt="monkee with calculator"
+          />
+        </div>
+        <div class="text-news element-animation">
+          <h3 class="header-news">Калькулятор. Друга лаба. Дизайн</h3>
+          <p class="p-news">
+            З головного - був доданий
+            <a class="purple" th:href="@{/calculate}"
+            >бінарний калькулятор</a
+            >. Робить він багато: вочевидь додавання, множення, ділення та
+            довільні переведення з однієї системи числення в іншу. Були
+            додані AFDK файли (.AFP) до всіх множень у другій лабі.<br />
+            Також було оновлено дизайн сайту. Кнопка логіну поки що не
+            працює :)
+          </p>
+          <p class="data-news">10.02.2024</p>
+        </div>
+      </div>
+
+      <div class="grid-news">
+        <div class="img-div-news element-animation">
+          <img
+                  class="img-news"
+                  src="/images/news/news3.jpg"
+                  alt="engineer"
+          />
+        </div>
+        <div class="text-news element-animation">
+          <h3 class="header-news">Оновлення першої лаби</h3>
+          <p class="p-news">
+            Був доданий AFDK для перетворення з ПК в модифікований ОК/ДК, а
+            також AFDK для суми в ОК/ДК. Невдовзі появиться можливість
+            завантажити ці схеми AFDK (.AFP).<br />
+            Також було виправлено помилку зі зсувом модифікованого ОК вліво
+            та помилку з обчисленням суми в ДК, тому якщо ви вже згенерували
+            варіант — рекомендуємо перегенерувати його знову. Якщо замітили
+            десь незрозумілу помилку — повідомте нас через "Зворотний
+            зв'язок". Якщо ви не бачите такої вкладки — прочитайте це
+            речення знову.
+          </p>
+          <p class="data-news">08.02.2024</p>
+        </div>
+      </div>
+
+      <div class="grid-news">
+        <div class="img-div-news element-animation">
+          <img
+                  class="img-news"
+                  src="/images/news/news1-1.jpg"
+                  alt="Deadlines"
+          />
+        </div>
+        <div class="text-news element-animation">
+          <h3 class="header-news">Дедлайни по лабам</h3>
+          <p class="p-news">
+            Наша команда плідно працює над сайтом, скоро будуть додані
+            <strong>3-5</strong>
+            лабораторні роботи. Ваша підтримка дуже допомагає нам,
+            користуйтеся на здоров'я!
+          </p>
+          <p class="data-news">06.02.2024</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--         <section class="autors">
+        <h1 class="h2 text-align" id="autors">Автори цього сайту</h1>
+        <div class="description container">
+            <div class="autor autor1 shadow-box">
+                <img
+                    src="images/foto-in-section/autor1.jpg"
+                    alt="Autor Dimitri08"
+                    class="foto br50"
+                    width="150"
+                    height="150"
+                    loading="lazy"
+                />
+                <h2 class="h2-autor text-align">Dimitri08</h2>
+                <p class="p text-align mb10">Писати мені в тг, якщо замітили помилку з обчисленнями, або якщо є проблеми з використанням. У разі чого, проєкт лежить на github.</p>
+                <div class="footer-soc1als">
+                    <ul class="footer-soc1als-list">
+                        <li class="footer-soc1als-item">
+                            <a href="https://t.me/Dimitri0808" class="footer-soc1als-link" target="_blank">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve" width="512">
+                                    <g id="Artboard">
+                                        <path style="fill-rule:evenodd;clip-rule:evenodd;" d="M12,0C5.373,0,0,5.373,0,12s5.373,12,12,12s12-5.373,12-12S18.627,0,12,0z    M17.562,8.161c-0.18,1.897-0.962,6.502-1.359,8.627c-0.168,0.9-0.5,1.201-0.82,1.23c-0.697,0.064-1.226-0.461-1.901-0.903   c-1.056-0.692-1.653-1.123-2.678-1.799c-1.185-0.781-0.417-1.21,0.258-1.911c0.177-0.184,3.247-2.977,3.307-3.23   c0.007-0.032,0.015-0.15-0.056-0.212s-0.174-0.041-0.248-0.024c-0.106,0.024-1.793,1.139-5.062,3.345   c-0.479,0.329-0.913,0.489-1.302,0.481c-0.428-0.009-1.252-0.242-1.865-0.442c-0.751-0.244-1.349-0.374-1.297-0.788   c0.027-0.216,0.324-0.437,0.892-0.663c3.498-1.524,5.831-2.529,6.998-3.015c3.333-1.386,4.025-1.627,4.477-1.635   C17.472,7.214,17.608,7.681,17.562,8.161z"/>
+                                    </g>
+                                </svg>
+                            </a>
+                        </li>
+                        <li class="footer-soc1als-item">
+                            <a href="https://www.instagram.com/dima.mamchenko/" class="footer-soc1als-link" target="_blank">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve" width="512">
+                                    <g>
+                                        <path d="M12,2.162c3.204,0,3.584,0.012,4.849,0.07c1.308,0.06,2.655,0.358,3.608,1.311c0.962,0.962,1.251,2.296,1.311,3.608   c0.058,1.265,0.07,1.645,0.07,4.849c0,3.204-0.012,3.584-0.07,4.849c-0.059,1.301-0.364,2.661-1.311,3.608   c-0.962,0.962-2.295,1.251-3.608,1.311c-1.265,0.058-1.645,0.07-4.849,0.07s-3.584-0.012-4.849-0.07   c-1.291-0.059-2.669-0.371-3.608-1.311c-0.957-0.957-1.251-2.304-1.311-3.608c-0.058-1.265-0.07-1.645-0.07-4.849   c0-3.204,0.012-3.584,0.07-4.849c0.059-1.296,0.367-2.664,1.311-3.608c0.96-0.96,2.299-1.251,3.608-1.311   C8.416,2.174,8.796,2.162,12,2.162 M12,0C8.741,0,8.332,0.014,7.052,0.072C5.197,0.157,3.355,0.673,2.014,2.014   C0.668,3.36,0.157,5.198,0.072,7.052C0.014,8.332,0,8.741,0,12c0,3.259,0.014,3.668,0.072,4.948c0.085,1.853,0.603,3.7,1.942,5.038   c1.345,1.345,3.186,1.857,5.038,1.942C8.332,23.986,8.741,24,12,24c3.259,0,3.668-0.014,4.948-0.072   c1.854-0.085,3.698-0.602,5.038-1.942c1.347-1.347,1.857-3.184,1.942-5.038C23.986,15.668,24,15.259,24,12   c0-3.259-0.014-3.668-0.072-4.948c-0.085-1.855-0.602-3.698-1.942-5.038c-1.343-1.343-3.189-1.858-5.038-1.942   C15.668,0.014,15.259,0,12,0z"/>
+                                        <path d="M12,5.838c-3.403,0-6.162,2.759-6.162,6.162c0,3.403,2.759,6.162,6.162,6.162s6.162-2.759,6.162-6.162   C18.162,8.597,15.403,5.838,12,5.838z M12,16c-2.209,0-4-1.791-4-4s1.791-4,4-4s4,1.791,4,4S14.209,16,12,16z"/>
+                                        <circle cx="18.406" cy="5.594" r="1.44"/>
+                                    </g>
+                                </svg>
+                            </a>
+                        </li>
+                        <li class="footer-soc1als-item">
+                            <a href="https://discordapp.com/users/465838450197921814/" class="footer-soc1als-link" target="_blank">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve" width="512">
+                                    <g>
+                                        <path d="M20.317,4.37c-1.53-0.702-3.17-1.219-4.885-1.515c-0.031-0.006-0.062,0.009-0.079,0.037   c-0.211,0.375-0.445,0.865-0.608,1.249c-1.845-0.276-3.68-0.276-5.487,0C9.095,3.748,8.852,3.267,8.641,2.892   C8.624,2.864,8.593,2.85,8.562,2.855C6.848,3.15,5.208,3.667,3.677,4.37C3.664,4.375,3.652,4.385,3.645,4.397   c-3.111,4.648-3.964,9.182-3.546,13.66c0.002,0.022,0.014,0.043,0.031,0.056c2.053,1.508,4.041,2.423,5.993,3.029   c0.031,0.01,0.064-0.002,0.084-0.028c0.462-0.63,0.873-1.295,1.226-1.994c0.021-0.041,0.001-0.09-0.042-0.106   c-0.653-0.248-1.274-0.55-1.872-0.892c-0.047-0.028-0.051-0.095-0.008-0.128c0.126-0.094,0.252-0.192,0.372-0.291   c0.022-0.018,0.052-0.022,0.078-0.01c3.928,1.793,8.18,1.793,12.061,0c0.026-0.012,0.056-0.009,0.079,0.01   c0.12,0.099,0.246,0.198,0.373,0.292c0.044,0.032,0.041,0.1-0.007,0.128c-0.598,0.349-1.219,0.645-1.873,0.891   c-0.043,0.016-0.061,0.066-0.041,0.107c0.36,0.698,0.772,1.363,1.225,1.993c0.019,0.027,0.053,0.038,0.084,0.029   c1.961-0.607,3.95-1.522,6.002-3.029c0.018-0.013,0.029-0.033,0.031-0.055c0.5-5.177-0.838-9.674-3.548-13.66   C20.342,4.385,20.33,4.375,20.317,4.37z M8.02,15.331c-1.183,0-2.157-1.086-2.157-2.419s0.955-2.419,2.157-2.419   c1.211,0,2.176,1.095,2.157,2.419C10.177,14.246,9.221,15.331,8.02,15.331z M15.995,15.331c-1.182,0-2.157-1.086-2.157-2.419   s0.955-2.419,2.157-2.419c1.211,0,2.176,1.095,2.157,2.419C18.152,14.246,17.206,15.331,15.995,15.331z"/>
+                                    </g>
+                                </svg>
+                            </a>
+                        </li>
+                        <li class="footer-soc1als-item">
+                            <a href="https://github.com/dima0808/" class="footer-soc1als-link" targer="_blank">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve" width="512">
+                                    <g>
+                                        <path style="fill-rule:evenodd;clip-rule:evenodd;" d="M12,0.296c-6.627,0-12,5.372-12,12c0,5.302,3.438,9.8,8.206,11.387   c0.6,0.111,0.82-0.26,0.82-0.577c0-0.286-0.011-1.231-0.016-2.234c-3.338,0.726-4.043-1.416-4.043-1.416   C4.421,18.069,3.635,17.7,3.635,17.7c-1.089-0.745,0.082-0.729,0.082-0.729c1.205,0.085,1.839,1.237,1.839,1.237   c1.07,1.834,2.807,1.304,3.492,0.997C9.156,18.429,9.467,17.9,9.81,17.6c-2.665-0.303-5.467-1.332-5.467-5.93   c0-1.31,0.469-2.381,1.237-3.221C5.455,8.146,5.044,6.926,5.696,5.273c0,0,1.008-0.322,3.301,1.23   C9.954,6.237,10.98,6.104,12,6.099c1.02,0.005,2.047,0.138,3.006,0.404c2.29-1.553,3.297-1.23,3.297-1.23   c0.653,1.653,0.242,2.873,0.118,3.176c0.769,0.84,1.235,1.911,1.235,3.221c0,4.609-2.807,5.624-5.479,5.921   c0.43,0.372,0.814,1.103,0.814,2.222c0,1.606-0.014,2.898-0.014,3.293c0,0.319,0.216,0.694,0.824,0.576   c4.766-1.589,8.2-6.085,8.2-11.385C24,5.669,18.627,0.296,12,0.296z"/>
+                                        <path d="M4.545,17.526c-0.026,0.06-0.12,0.078-0.206,0.037c-0.087-0.039-0.136-0.121-0.108-0.18   c0.026-0.061,0.12-0.078,0.207-0.037C4.525,17.384,4.575,17.466,4.545,17.526L4.545,17.526z"/>
+                                        <path d="M5.031,18.068c-0.057,0.053-0.169,0.028-0.245-0.055c-0.079-0.084-0.093-0.196-0.035-0.249   c0.059-0.053,0.167-0.028,0.246,0.056C5.076,17.903,5.091,18.014,5.031,18.068L5.031,18.068z"/>
+                                        <path d="M5.504,18.759c-0.074,0.051-0.194,0.003-0.268-0.103c-0.074-0.107-0.074-0.235,0.002-0.286   c0.074-0.051,0.193-0.005,0.268,0.101C5.579,18.579,5.579,18.707,5.504,18.759L5.504,18.759z"/>
+                                        <path d="M6.152,19.427c-0.066,0.073-0.206,0.053-0.308-0.046c-0.105-0.097-0.134-0.234-0.068-0.307   c0.067-0.073,0.208-0.052,0.311,0.046C6.191,19.217,6.222,19.355,6.152,19.427L6.152,19.427z"/>
+                                        <path d="M7.047,19.814c-0.029,0.094-0.164,0.137-0.3,0.097C6.611,19.87,6.522,19.76,6.55,19.665   c0.028-0.095,0.164-0.139,0.301-0.096C6.986,19.609,7.075,19.719,7.047,19.814L7.047,19.814z"/>
+                                        <path d="M8.029,19.886c0.003,0.099-0.112,0.181-0.255,0.183c-0.143,0.003-0.26-0.077-0.261-0.174c0-0.1,0.113-0.181,0.256-0.184   C7.912,19.708,8.029,19.788,8.029,19.886L8.029,19.886z"/>
+                                        <path d="M8.943,19.731c0.017,0.096-0.082,0.196-0.224,0.222c-0.139,0.026-0.268-0.034-0.286-0.13   c-0.017-0.099,0.084-0.198,0.223-0.224C8.797,19.574,8.925,19.632,8.943,19.731L8.943,19.731z"/>
+                                    </g>
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="autor autor2 shadow-box">
+                <img
+                    src="images/foto-in-section/autor2.jpg"
+                    alt="Autor TNTshka"
+                    class="foto br50"
+                    width="150"
+                    height="150"
+                    loading="lazy"
+                />
+                <h2 class="h2-autor text-align">TNTeshka2245</h2>
+                <p class="p mb10 text-align">Алмаз4 в <strong class=”blud”>League of Legends (TNTeshka#nazar)</strong> на весті, пишіть на дс, може пограємо, дівчата.</p>
+                <div class="footer-soc1als">
+                    <ul class="footer-soc1als-list">
+                        <li class="footer-soc1als-item">
+                            <a href="https://t.me/TNTeshka2245" class="footer-soc1als-link" target="_blank">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve" width="512">
+                                    <g id="Artboard">
+                                        <path style="fill-rule:evenodd;clip-rule:evenodd;" d="M12,0C5.373,0,0,5.373,0,12s5.373,12,12,12s12-5.373,12-12S18.627,0,12,0z    M17.562,8.161c-0.18,1.897-0.962,6.502-1.359,8.627c-0.168,0.9-0.5,1.201-0.82,1.23c-0.697,0.064-1.226-0.461-1.901-0.903   c-1.056-0.692-1.653-1.123-2.678-1.799c-1.185-0.781-0.417-1.21,0.258-1.911c0.177-0.184,3.247-2.977,3.307-3.23   c0.007-0.032,0.015-0.15-0.056-0.212s-0.174-0.041-0.248-0.024c-0.106,0.024-1.793,1.139-5.062,3.345   c-0.479,0.329-0.913,0.489-1.302,0.481c-0.428-0.009-1.252-0.242-1.865-0.442c-0.751-0.244-1.349-0.374-1.297-0.788   c0.027-0.216,0.324-0.437,0.892-0.663c3.498-1.524,5.831-2.529,6.998-3.015c3.333-1.386,4.025-1.627,4.477-1.635   C17.472,7.214,17.608,7.681,17.562,8.161z"/>
+                                    </g>
+                                </svg>
+                            </a>
+                        </li>
+                        <li class="footer-soc1als-item">
+                            <a href="https://www.instagram.com/tnteshka2245/" class="footer-soc1als-link" target="_blank">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve" width="512">
+                                    <g>
+                                        <path d="M12,2.162c3.204,0,3.584,0.012,4.849,0.07c1.308,0.06,2.655,0.358,3.608,1.311c0.962,0.962,1.251,2.296,1.311,3.608   c0.058,1.265,0.07,1.645,0.07,4.849c0,3.204-0.012,3.584-0.07,4.849c-0.059,1.301-0.364,2.661-1.311,3.608   c-0.962,0.962-2.295,1.251-3.608,1.311c-1.265,0.058-1.645,0.07-4.849,0.07s-3.584-0.012-4.849-0.07   c-1.291-0.059-2.669-0.371-3.608-1.311c-0.957-0.957-1.251-2.304-1.311-3.608c-0.058-1.265-0.07-1.645-0.07-4.849   c0-3.204,0.012-3.584,0.07-4.849c0.059-1.296,0.367-2.664,1.311-3.608c0.96-0.96,2.299-1.251,3.608-1.311   C8.416,2.174,8.796,2.162,12,2.162 M12,0C8.741,0,8.332,0.014,7.052,0.072C5.197,0.157,3.355,0.673,2.014,2.014   C0.668,3.36,0.157,5.198,0.072,7.052C0.014,8.332,0,8.741,0,12c0,3.259,0.014,3.668,0.072,4.948c0.085,1.853,0.603,3.7,1.942,5.038   c1.345,1.345,3.186,1.857,5.038,1.942C8.332,23.986,8.741,24,12,24c3.259,0,3.668-0.014,4.948-0.072   c1.854-0.085,3.698-0.602,5.038-1.942c1.347-1.347,1.857-3.184,1.942-5.038C23.986,15.668,24,15.259,24,12   c0-3.259-0.014-3.668-0.072-4.948c-0.085-1.855-0.602-3.698-1.942-5.038c-1.343-1.343-3.189-1.858-5.038-1.942   C15.668,0.014,15.259,0,12,0z"/>
+                                        <path d="M12,5.838c-3.403,0-6.162,2.759-6.162,6.162c0,3.403,2.759,6.162,6.162,6.162s6.162-2.759,6.162-6.162   C18.162,8.597,15.403,5.838,12,5.838z M12,16c-2.209,0-4-1.791-4-4s1.791-4,4-4s4,1.791,4,4S14.209,16,12,16z"/>
+                                        <circle cx="18.406" cy="5.594" r="1.44"/>
+                                    </g>
+                                </svg>
+                            </a>
+                        </li>
+                        <li class="footer-soc1als-item">
+                            <a href="https://discordapp.com/users/532092199014498304/" class="footer-soc1als-link" target="_blank">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve" width="512">
+                                    <g>
+                                        <path d="M20.317,4.37c-1.53-0.702-3.17-1.219-4.885-1.515c-0.031-0.006-0.062,0.009-0.079,0.037   c-0.211,0.375-0.445,0.865-0.608,1.249c-1.845-0.276-3.68-0.276-5.487,0C9.095,3.748,8.852,3.267,8.641,2.892   C8.624,2.864,8.593,2.85,8.562,2.855C6.848,3.15,5.208,3.667,3.677,4.37C3.664,4.375,3.652,4.385,3.645,4.397   c-3.111,4.648-3.964,9.182-3.546,13.66c0.002,0.022,0.014,0.043,0.031,0.056c2.053,1.508,4.041,2.423,5.993,3.029   c0.031,0.01,0.064-0.002,0.084-0.028c0.462-0.63,0.873-1.295,1.226-1.994c0.021-0.041,0.001-0.09-0.042-0.106   c-0.653-0.248-1.274-0.55-1.872-0.892c-0.047-0.028-0.051-0.095-0.008-0.128c0.126-0.094,0.252-0.192,0.372-0.291   c0.022-0.018,0.052-0.022,0.078-0.01c3.928,1.793,8.18,1.793,12.061,0c0.026-0.012,0.056-0.009,0.079,0.01   c0.12,0.099,0.246,0.198,0.373,0.292c0.044,0.032,0.041,0.1-0.007,0.128c-0.598,0.349-1.219,0.645-1.873,0.891   c-0.043,0.016-0.061,0.066-0.041,0.107c0.36,0.698,0.772,1.363,1.225,1.993c0.019,0.027,0.053,0.038,0.084,0.029   c1.961-0.607,3.95-1.522,6.002-3.029c0.018-0.013,0.029-0.033,0.031-0.055c0.5-5.177-0.838-9.674-3.548-13.66   C20.342,4.385,20.33,4.375,20.317,4.37z M8.02,15.331c-1.183,0-2.157-1.086-2.157-2.419s0.955-2.419,2.157-2.419   c1.211,0,2.176,1.095,2.157,2.419C10.177,14.246,9.221,15.331,8.02,15.331z M15.995,15.331c-1.182,0-2.157-1.086-2.157-2.419   s0.955-2.419,2.157-2.419c1.211,0,2.176,1.095,2.157,2.419C18.152,14.246,17.206,15.331,15.995,15.331z"/>
+                                    </g>
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="autor autor3 shadow-box">
+                <img
+                    src="images/foto-in-section/autor3.jpg"
+                    alt="Autor protein2005"
+                    class="foto br50"
+                    width="150"
+                    height="150"
+                    loading="lazy"
+                />
+                <h2 class="h2-autor text-align">protein2005</h2>
+                <p class="p text-align mb10">Якщо є якісь приколи з дизайном (картинка поїхала і тд.), або у вас є побажання по дизайну, пишіть мені в тг.</p>
+                <div class="footer-soc1als">
+                    <ul class="footer-soc1als-list">
+                        <li class="footer-soc1als-item">
+                            <a href="https://t.me/aIexey_sokolchyk" class="footer-soc1als-link" target="_blank">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve" width="512">
+                                    <g id="Artboard">
+                                        <path style="fill-rule:evenodd;clip-rule:evenodd;" d="M12,0C5.373,0,0,5.373,0,12s5.373,12,12,12s12-5.373,12-12S18.627,0,12,0z    M17.562,8.161c-0.18,1.897-0.962,6.502-1.359,8.627c-0.168,0.9-0.5,1.201-0.82,1.23c-0.697,0.064-1.226-0.461-1.901-0.903   c-1.056-0.692-1.653-1.123-2.678-1.799c-1.185-0.781-0.417-1.21,0.258-1.911c0.177-0.184,3.247-2.977,3.307-3.23   c0.007-0.032,0.015-0.15-0.056-0.212s-0.174-0.041-0.248-0.024c-0.106,0.024-1.793,1.139-5.062,3.345   c-0.479,0.329-0.913,0.489-1.302,0.481c-0.428-0.009-1.252-0.242-1.865-0.442c-0.751-0.244-1.349-0.374-1.297-0.788   c0.027-0.216,0.324-0.437,0.892-0.663c3.498-1.524,5.831-2.529,6.998-3.015c3.333-1.386,4.025-1.627,4.477-1.635   C17.472,7.214,17.608,7.681,17.562,8.161z"/>
+                                    </g>
+                                </svg>
+                            </a>
+                        </li>
+                        <li class="footer-soc1als-item">
+                            <a href="https://www.instagram.com/alexey_sokolchuk/" class="footer-soc1als-link" target="_blank">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve" width="512">
+                                    <g>
+                                        <path d="M12,2.162c3.204,0,3.584,0.012,4.849,0.07c1.308,0.06,2.655,0.358,3.608,1.311c0.962,0.962,1.251,2.296,1.311,3.608   c0.058,1.265,0.07,1.645,0.07,4.849c0,3.204-0.012,3.584-0.07,4.849c-0.059,1.301-0.364,2.661-1.311,3.608   c-0.962,0.962-2.295,1.251-3.608,1.311c-1.265,0.058-1.645,0.07-4.849,0.07s-3.584-0.012-4.849-0.07   c-1.291-0.059-2.669-0.371-3.608-1.311c-0.957-0.957-1.251-2.304-1.311-3.608c-0.058-1.265-0.07-1.645-0.07-4.849   c0-3.204,0.012-3.584,0.07-4.849c0.059-1.296,0.367-2.664,1.311-3.608c0.96-0.96,2.299-1.251,3.608-1.311   C8.416,2.174,8.796,2.162,12,2.162 M12,0C8.741,0,8.332,0.014,7.052,0.072C5.197,0.157,3.355,0.673,2.014,2.014   C0.668,3.36,0.157,5.198,0.072,7.052C0.014,8.332,0,8.741,0,12c0,3.259,0.014,3.668,0.072,4.948c0.085,1.853,0.603,3.7,1.942,5.038   c1.345,1.345,3.186,1.857,5.038,1.942C8.332,23.986,8.741,24,12,24c3.259,0,3.668-0.014,4.948-0.072   c1.854-0.085,3.698-0.602,5.038-1.942c1.347-1.347,1.857-3.184,1.942-5.038C23.986,15.668,24,15.259,24,12   c0-3.259-0.014-3.668-0.072-4.948c-0.085-1.855-0.602-3.698-1.942-5.038c-1.343-1.343-3.189-1.858-5.038-1.942   C15.668,0.014,15.259,0,12,0z"/>
+                                        <path d="M12,5.838c-3.403,0-6.162,2.759-6.162,6.162c0,3.403,2.759,6.162,6.162,6.162s6.162-2.759,6.162-6.162   C18.162,8.597,15.403,5.838,12,5.838z M12,16c-2.209,0-4-1.791-4-4s1.791-4,4-4s4,1.791,4,4S14.209,16,12,16z"/>
+                                        <circle cx="18.406" cy="5.594" r="1.44"/>
+                                    </g>
+                                </svg>
+                            </a>
+                        </li>
+                        <li class="footer-soc1als-item">
+                            <a href="https://discordapp.com/users/613746671595028497/" class="footer-soc1als-link" target="_blank">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve" width="512">
+                                    <g>
+                                        <path d="M20.317,4.37c-1.53-0.702-3.17-1.219-4.885-1.515c-0.031-0.006-0.062,0.009-0.079,0.037   c-0.211,0.375-0.445,0.865-0.608,1.249c-1.845-0.276-3.68-0.276-5.487,0C9.095,3.748,8.852,3.267,8.641,2.892   C8.624,2.864,8.593,2.85,8.562,2.855C6.848,3.15,5.208,3.667,3.677,4.37C3.664,4.375,3.652,4.385,3.645,4.397   c-3.111,4.648-3.964,9.182-3.546,13.66c0.002,0.022,0.014,0.043,0.031,0.056c2.053,1.508,4.041,2.423,5.993,3.029   c0.031,0.01,0.064-0.002,0.084-0.028c0.462-0.63,0.873-1.295,1.226-1.994c0.021-0.041,0.001-0.09-0.042-0.106   c-0.653-0.248-1.274-0.55-1.872-0.892c-0.047-0.028-0.051-0.095-0.008-0.128c0.126-0.094,0.252-0.192,0.372-0.291   c0.022-0.018,0.052-0.022,0.078-0.01c3.928,1.793,8.18,1.793,12.061,0c0.026-0.012,0.056-0.009,0.079,0.01   c0.12,0.099,0.246,0.198,0.373,0.292c0.044,0.032,0.041,0.1-0.007,0.128c-0.598,0.349-1.219,0.645-1.873,0.891   c-0.043,0.016-0.061,0.066-0.041,0.107c0.36,0.698,0.772,1.363,1.225,1.993c0.019,0.027,0.053,0.038,0.084,0.029   c1.961-0.607,3.95-1.522,6.002-3.029c0.018-0.013,0.029-0.033,0.031-0.055c0.5-5.177-0.838-9.674-3.548-13.66   C20.342,4.385,20.33,4.375,20.317,4.37z M8.02,15.331c-1.183,0-2.157-1.086-2.157-2.419s0.955-2.419,2.157-2.419   c1.211,0,2.176,1.095,2.157,2.419C10.177,14.246,9.221,15.331,8.02,15.331z M15.995,15.331c-1.182,0-2.157-1.086-2.157-2.419   s0.955-2.419,2.157-2.419c1.211,0,2.176,1.095,2.157,2.419C18.152,14.246,17.206,15.331,15.995,15.331z"/>
+                                    </g>
+                                </svg>
+                            </a>
+                        </li>
+                        <li class="footer-soc1als-item">
+                            <a href="https://www.youtube.com/channel/UCOSspPprGUe0UTskmuDbymA" class="footer-soc1als-link" target="_blank">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve" width="512">
+                                    <g id="XMLID_184_">
+                                        <path d="M23.498,6.186c-0.276-1.039-1.089-1.858-2.122-2.136C19.505,3.546,12,3.546,12,3.546s-7.505,0-9.377,0.504   C1.591,4.328,0.778,5.146,0.502,6.186C0,8.07,0,12,0,12s0,3.93,0.502,5.814c0.276,1.039,1.089,1.858,2.122,2.136   C4.495,20.454,12,20.454,12,20.454s7.505,0,9.377-0.504c1.032-0.278,1.845-1.096,2.122-2.136C24,15.93,24,12,24,12   S24,8.07,23.498,6.186z M9.546,15.569V8.431L15.818,12L9.546,15.569z"/>
+                                    </g>
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section> -->
+</main>
+<script src="/scripts/slow-scroll.js"></script>
+<footer class="footer">
+  <div class="footer-extra">
+    <div class="footer-extra-inner container">
+      <div class="footer-copyright">
+        © <time datetime="2024">2024</time>
+        <p class="p">CivKA.</p>
+        <p class="p">
+          Ми не відповідальні за ваші оцінки. Сайт створений лише з метою
+          перевірки знань та звірення відповідей.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
 </html>
