@@ -1,8 +1,8 @@
-package com.civka.calculatordemo.utils.multiply;
+package com.civka.calculatordemo.utils;
 
 import java.util.List;
 
-public abstract class AbstractMultiplier {
+public abstract class AbstractOperation {
 
     protected final String x;
     protected final String y;
@@ -17,7 +17,7 @@ public abstract class AbstractMultiplier {
 
     protected String result;
 
-    public AbstractMultiplier(int operandsBitRate, String x, String y) {
+    public AbstractOperation(int operandsBitRate, String x, String y) {
         this.x = x;
         this.y = y;
         this.n = operandsBitRate;

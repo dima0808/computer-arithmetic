@@ -7,7 +7,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Multiply 4</title>
+    <title>Divide 2</title>
     <link rel="stylesheet" href="/multiply-result-styles.css" />
     <link rel="stylesheet" href="/styles.css" />
     <link rel="stylesheet" href="/queries.css" />
@@ -182,6 +182,7 @@
       </div>
     </header>
     <script src="/scripts/scroll-nav.js"></script>
+
     <div class="main">
       <p>1) Номер залікової книжки:</p>
 
@@ -204,16 +205,14 @@
             <th class="fw300" rowspan="2"><i>a</i><sub>2</sub></th>
             <th class="fw300" rowspan="2"><i>a</i><sub>1</sub></th>
             <th rowspan="2">
-              Cпросіб множення, <br />
+              Cпросіб ділення, <br />
               розрядність <br />операндів
             </th>
-            <th colspan="3">Значення додатних операндів</th>
-            <th rowspan="2">Повна <br />операція</th>
+            <th colspan="2">Додатні дробові операнди</th>
           </tr>
           <tr>
             <th class="fw300"><i>X</i></th>
             <th class="fw300"><i>Y</i></th>
-            <th class="fw300"><i>G</i></th>
           </tr>
         </thead>
 
@@ -223,12 +222,10 @@
             <td><span th:text="${a.get(1)}"></span></td>
             <td><span th:text="${a.get(0)}"></span></td>
             <td>
-              <span>4</span>-й, <span th:text="${fourthMultiply.n}"></span>
+              <span>2</span>-й, <span th:text="${secondDivide.n}"></span>
             </td>
-            <td>,<span th:text="${fourthMultiply.x}"></span></td>
-            <td>,<span th:text="${fourthMultiply.y}"></span></td>
-            <td><span>-</span></td>
-            <td><i>F = XY</i></td>
+            <td>,<span th:text="${secondDivide.x}"></span></td>
+            <td>,<span th:text="${secondDivide.y}"></span></td>
           </tr>
         </tbody>
       </table>
@@ -236,20 +233,20 @@
       <br />
       <br />
 
-      <p>3) Операційна схема множення:</p>
+      <p>3) Операційна схема ділення:</p>
       <img
-        height="350"
-        th:src="'/images/lab2/multiply-4/op-schema-n=' + ${fourthMultiply.n} + '.png'"
+        height="270"
+        th:src="'/images/lab3/divide-2/op-schema-n=' + ${secondDivide.n} + '.png'"
         alt="operational schema"
       />
 
       <br />
       <br />
 
-      <p>4) Функціональний мікроалгоритм множення:</p>
+      <p>4) Функціональний мікроалгоритм ділення:</p>
       <img
-        height="600"
-        th:src="'/images/lab2/multiply-4/func-alg-n=' + ${fourthMultiply.n} + '.png'"
+        height="500"
+        th:src="'/images/lab3/divide-2/func-alg-n=' + ${secondDivide.n} + '.png'"
         alt="functional micro-algorithm"
       />
 
@@ -261,27 +258,28 @@
         <thead>
           <tr>
             <th class="number-center-row">№</th>
-            <th>
-              RG<sub>1</sub>
+            <th class="number-center-row">
+              RG<sub>3</sub>
               <br />
               <div class="number">
-                <span th:text="${fourthMultiply.n * 2 + 1}"></span>
-                <span style="padding-left: 10px">1</span>
+                <span th:text="${secondDivide.n + 1}"></span>
+                <span style="padding-left: 15px">1</span>
               </div>
             </th>
-            <th>
+            <th class="number-center-row right-punctuation">SM(p)</th>
+            <th class="left-punctuation">
               RG<sub>2</sub>
               <br />
               <div class="number">
-                <span th:text="${fourthMultiply.n}"></span>
+                <span th:text="${secondDivide.n * 2 + 1}"></span>
                 <span style="padding-left: 13px">1</span>
               </div>
             </th>
             <th>
-              RG<sub>3</sub>
+              RG<sub>1</sub>
               <br />
               <div class="number">
-                <span th:text="${fourthMultiply.n * 2 + 1}"></span>
+                <span th:text="${secondDivide.n * 2 + 1}"></span>
                 <span style="padding-left: 20px; padding-right: 1px">1</span>
               </div>
             </th>
@@ -291,63 +289,58 @@
 
         <tbody>
           <tr>
-            <td class="number-center-row" th:text="0"></td>
-            <td th:text="${fourthMultiply.rg1}"></td>
-            <td
-              th:utext="${'<b>' + fourthMultiply.rg2.charAt(0) + '</b>' + fourthMultiply.rg2.substring(1)}"
-            ></td>
-            <td class="number-center-row" th:text="${fourthMultiply.rg3}"></td>
-            <td
-              class="micro-operation"
-              th:utext="${fourthMultiply.valuesDescription}"
-            ></td>
+            <td class="number-center-row">0</td>
+            <td class="number-center-row" th:text="${secondDivide.rg3}"></td>
+            <td class="number-center-row right-punctuation">-</td>
+            <td class="left-punctuation" th:utext="${'<b>' + secondDivide.rg2.charAt(0) + '</b>' + secondDivide.rg2.substring(1)}"></td>
+            <td th:utext="${secondDivide.rg1}"></td>
+            <td class="micro-operation" th:utext="${secondDivide.valuesDescription}"></td>
           </tr>
 
-          <tr th:each="tempRow, iterationStat : ${fourthMultiply.makeTable()}">
-            <td
-              class="number-center-row"
-              th:utext="${iterationStat.index + 1}"
-            ></td>
-            <td th:utext="${tempRow.get(0)}"></td>
-            <td th:utext="${tempRow.get(1)}"></td>
-            <td class="number-center-row" th:utext="${tempRow.get(2)}"></td>
-            <td class="micro-operation" th:utext="${tempRow.get(3)}"></td>
+          <tr th:each="tempRow, iterationStat : ${secondDivide.makeTable()}">
+            <td class="number-center-row" th:utext="${iterationStat.index + 1}"></td>
+            <td class="number-center-row" th:utext="${tempRow.get(0)}"></td>
+            <td class="number-center-row right-punctuation" th:utext="${tempRow.get(1)}"></td>
+            <td class="left-punctuation" th:utext="${tempRow.get(2)}"></td>
+            <td th:utext="${tempRow.get(3)}"></td>
+            <td class="micro-operation" th:utext="${tempRow.get(4)}"></td>
           </tr>
         </tbody>
       </table>
 
       <br />
       <p>
-        <i><span>X ⋅ Y</span></i> =
-        <span th:text="',' + ${fourthMultiply.result}"></span>
+        <i><span>X / Y</span></i> =
+        <span th:text="'0,' + ${secondDivide.result.substring(1)}"></span>
       </p>
 
       <br />
       <br />
 
-      <p>6) Функціональна схема множення:</p>
+      <p>6) Функціональна схема ділення:</p>
       <img
-        height="350"
-        th:src="'/images/lab2/multiply-4/func-schema-n=' + ${fourthMultiply.n} + '.png'"
-        alt="functional schema"
+              height="400"
+              th:src="'/images/lab3/divide-2/func-schema-n=' + ${secondDivide.n} + '.png'"
+              alt="functional schema"
       />
       <br />
       <br />
       <p>
-        𝑅: скидання даних в регістрах на 0<br />
-        𝑆𝑈𝑀: збереження даних в регістр RG<sub>1</sub><br />
-        𝑊: збереження даних в регістр RG<sub>2</sub> та RG<sub>3</sub><br />
-        𝑆: зсув вліво регістра RG<sub>2</sub> та вправо регістра RG<sub>3</sub
-        ><br />
-
-        <br />
+        <i>RESET</i> : скидання даних в регістрах на 0<br />
+        <i>W<sub>1</sub></i> : збереження даних в регістр RG<sub>1</sub><br />
+        <i>W<sub>2</sub></i> : збереження даних в регістр RG<sub>2</sub><br />
+        <i>W<sub>3</sub></i> : збереження даних в регістр RG<sub>3</sub><br />
+        <i>SL</i> : зсув вліво регістра RG<sub>3</sub><br />
+        <i>SR</i> : зсув вправо регістра RG<sub>1</sub><br />
       </p>
 
-      <p>7) Структурний мікроалгоритм множення:</p>
+      <br />
+
+      <p>7) Структурний мікроалгоритм ділення:</p>
       <img
-        height="580"
-        src="/images/lab2/multiply-4/struct-alg.png"
-        alt="structural micro-algorithm"
+              height="390"
+              src="/images/lab3/divide-2/struct-alg.png"
+              alt="structural micro-algorithm"
       />
 
       <br />
@@ -357,26 +350,24 @@
       <p>8) Схема алгоритму:</p>
       <p>
         <a
-          sec:authorize="isAuthenticated()"
-          style="text-decoration: underline; color: #5637b0"
-          th:href="@{'/afdks/lab2/fourth-multiply-n=' + ${fourthMultiply.n} + '.AFP'}"
-          download
-          >Завантажити схему AFDK</a
-        >
+                sec:authorize="isAuthenticated()"
+                style="text-decoration: underline; color: #5637b0"
+                th:href="@{'/afdks/lab3/second-divide-n=' + ${secondDivide.n} + '.AFP'}"
+                download
+        >Завантажити схему AFDK</a>
         <a
-          sec:authorize="!isAuthenticated()"
-          style="text-decoration: underline; color: #5637b0"
-          th:href="@{/login}"
-          >Завантажити схему AFDK</a
+                sec:authorize="!isAuthenticated()"
+                style="text-decoration: underline; color: #5637b0"
+                th:href="@{/login}"
+        >Завантажити схему AFDK</a
         >
-        <span sec:authorize="!isAuthenticated()"
-          >(лише для авторизованих користувачів)</span
+        <span sec:authorize="!isAuthenticated()">(лише для авторизованих користувачів)</span
         >
       </p>
       <img
-        height="580"
-        th:src="'/images/lab2/multiply-4/fourth-multiply-n=' + ${fourthMultiply.n} + '.png'"
-        alt="AFDK schema"
+              height="580"
+              th:src="'/images/lab3/divide-2/second-divide-n=' + ${secondDivide.n} + '.png'"
+              alt="AFDK schema"
       />
     </div>
   </body>
