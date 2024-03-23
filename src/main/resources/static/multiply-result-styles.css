@@ -26,6 +26,7 @@ body {
 
 table, th, td {
     border: 2px solid black;
+    font-family: 'Droid Sans Mono', monospace;
 }
 
 th, td {
@@ -35,6 +36,14 @@ th, td {
 
 td {
     text-align: right;
+}
+
+.right-punctuation {
+    border-right: 2px dotted black;
+}
+
+.left-punctuation {
+    border-left: 2px dotted black;
 }
 
 .number {

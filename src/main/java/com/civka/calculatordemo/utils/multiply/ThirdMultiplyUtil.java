@@ -1,11 +1,12 @@
 package com.civka.calculatordemo.utils.multiply;
 
+import com.civka.calculatordemo.utils.AbstractOperation;
 import com.civka.calculatordemo.utils.BasicBinary;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ThirdMultiplyUtil extends AbstractMultiplier {
+public class ThirdMultiplyUtil extends AbstractOperation {
 
     private int ct;
 

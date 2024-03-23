@@ -1,11 +1,12 @@
 package com.civka.calculatordemo.utils.multiply;
 
+import com.civka.calculatordemo.utils.AbstractOperation;
 import com.civka.calculatordemo.utils.BasicBinary;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FourthMultiplyUtil extends AbstractMultiplier {
+public class FourthMultiplyUtil extends AbstractOperation {
 
     public FourthMultiplyUtil(int operandsBitRate, String x, String y) {
         super(operandsBitRate, x, y);

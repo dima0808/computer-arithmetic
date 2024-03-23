@@ -5,6 +5,8 @@ import com.civka.calculatordemo.maintenance.MaintenanceModeManager;
 import com.civka.calculatordemo.service.UserAuthenticationService;
 import com.civka.calculatordemo.utils.BasicBinary;
 import com.civka.calculatordemo.utils.MachineCodeUtil;
+import com.civka.calculatordemo.utils.divide.FirstDivideUtil;
+import com.civka.calculatordemo.utils.divide.SecondDivideUtil;
 import com.civka.calculatordemo.utils.multiply.FirstMultiplyUtil;
 import com.civka.calculatordemo.utils.multiply.FourthMultiplyUtil;
 import com.civka.calculatordemo.utils.multiply.SecondMultiplyUtil;
@@ -103,6 +105,8 @@ public class MenuController {
         String y;
         String f;
         String g;
+        int operandsBitRate;
+
         switch (labData.getLabNumber()) {
             case 1:
                 f = String.format("1%d%d%d%d1", a.get(6), a.get(5), a.get(4), a.get(3));
@@ -158,7 +162,6 @@ public class MenuController {
 
                 return "sum";
             case 2:
-                int operandsBitRate;
                 switch (String.format("%d%d%d", a.get(2), a.get(1), a.get(0))) {
 
                     case "000", "100" -> {
@@ -232,6 +235,69 @@ public class MenuController {
                 }
 
             case 3:
+                if (a.get(0) == 0) {
+                    switch (String.format("%d%d", a.get(2), a.get(1))) {
+                        case "00" -> {
+                            operandsBitRate = 7;
+                            x = String.format("1%d%d%d101", a.get(5), a.get(4), a.get(3));
+                            y = "1111101";
+                        }
+                        case "01" -> {
+                            operandsBitRate = 6;
+                            x = String.format("10%d%d%d1", a.get(5), a.get(4), a.get(3));
+                            y = "110111";
+                        }
+                        case "10" -> {
+                            operandsBitRate = 5;
+                            x = String.format("10%d%d%d", a.get(5), a.get(4), a.get(3));
+                            y = "11011";
+                        }
+                        case "11" -> {
+                            operandsBitRate = 4;
+                            x = String.format("1%d%d%d", a.get(5), a.get(4), a.get(3));
+                            y = "1111";
+                        }
+                        default -> {
+                            operandsBitRate = 0;
+                            x = "";
+                            y = "";
+                        }
+                    }
+                    FirstDivideUtil firstDivideUtil = new FirstDivideUtil(operandsBitRate, x, y);
+                    model.addAttribute("firstDivide", firstDivideUtil);
+                    return "divide-1";
+                } else {
+                    switch (String.format("%d%d", a.get(2), a.get(1))) {
+                        case "00" -> {
+                            operandsBitRate = 5;
+                            x = String.format("10%d%d%d", a.get(5), a.get(4), a.get(3));
+                            y = "11011";
+                        }
+                        case "01" -> {
+                            operandsBitRate = 6;
+                            x = String.format("10%d%d%d0", a.get(5), a.get(4), a.get(3));
+                            y = "110011";
+                        }
+                        case "10" -> {
+                            operandsBitRate = 7;
+                            x = String.format("10%d%d%d01", a.get(5), a.get(4), a.get(3));
+                            y = "1110101";
+                        }
+                        case "11" -> {
+                            operandsBitRate = 4;
+                            x = String.format("0%d%d%d", a.get(5), a.get(4), a.get(3));
+                            y = "1110";
+                        }
+                        default -> {
+                            operandsBitRate = 0;
+                            x = "";
+                            y = "";
+                        }
+                    }
+                    SecondDivideUtil secondDivideUtil = new SecondDivideUtil(operandsBitRate, x, y);
+                    model.addAttribute("secondDivide", secondDivideUtil);
+                    return "divide-2";
+                }
             case 4:
             case 5:
             default: return null;
