@@ -572,21 +572,13 @@
       <p>В ОК:</p>
       <p>
         <a
-          sec:authorize="isAuthenticated()"
+
           style="text-decoration: underline; color: #5637b0"
           th:href="@{/afdks/lab1/PK15-to-OK16.AFP}"
           download
           >Завантажити схему AFDK</a
         >
-        <a
-          sec:authorize="!isAuthenticated()"
-          style="text-decoration: underline; color: #5637b0"
-          th:href="@{/login}"
-          >Завантажити схему AFDK</a
-        >
-        <span sec:authorize="!isAuthenticated()"
-          >(лише для авторизованих користувачів)</span
-        >
+
       </p>
       <img
         height="500"
@@ -596,21 +588,12 @@
       <p>В ДК:</p>
       <p>
         <a
-          sec:authorize="isAuthenticated()"
           style="text-decoration: underline; color: #5637b0"
           th:href="@{/afdks/lab1/PK15-to-DK16.AFP}"
           download
           >Завантажити схему AFDK</a
         >
-        <a
-          sec:authorize="!isAuthenticated()"
-          style="text-decoration: underline; color: #5637b0"
-          th:href="@{/login}"
-          >Завантажити схему AFDK</a
-        >
-        <span sec:authorize="!isAuthenticated()"
-          >(лише для авторизованих користувачів)</span
-        >
+
       </p>
       <img
         height="500"
@@ -637,7 +620,6 @@
       </p>
       <p>
         <a
-          sec:authorize="isAuthenticated()"
           style="text-decoration: underline; color: #5637b0"
           th:if="${a.get(0)} == 1"
           th:href="@{'/afdks/lab1/PK15-sum-to-OK16.AFP'}"
@@ -645,22 +627,13 @@
           >Завантажити схему AFDK</a
         >
         <a
-          sec:authorize="isAuthenticated()"
           style="text-decoration: underline; color: #5637b0"
           th:if="${a.get(0)} == 0"
           th:href="@{'/afdks/lab1/PK15-sum-to-DK16.AFP'}"
           download
           >Завантажити схему AFDK</a
         >
-        <a
-          sec:authorize="!isAuthenticated()"
-          style="text-decoration: underline; color: #5637b0"
-          th:href="@{/login}"
-          >Завантажити схему AFDK</a
-        >
-        <span sec:authorize="!isAuthenticated()"
-          >(лише для авторизованих користувачів)</span
-        >
+
       </p>
       <img
         height="850"

@@ -357,21 +357,12 @@
       <p>8) Схема алгоритму:</p>
       <p>
         <a
-          sec:authorize="isAuthenticated()"
           style="text-decoration: underline; color: #5637b0"
           th:href="@{'/afdks/lab2/fourth-multiply-n=' + ${fourthMultiply.n} + '.AFP'}"
           download
           >Завантажити схему AFDK</a
         >
-        <a
-          sec:authorize="!isAuthenticated()"
-          style="text-decoration: underline; color: #5637b0"
-          th:href="@{/login}"
-          >Завантажити схему AFDK</a
-        >
-        <span sec:authorize="!isAuthenticated()"
-          >(лише для авторизованих користувачів)</span
-        >
+
       </p>
       <img
         height="580"

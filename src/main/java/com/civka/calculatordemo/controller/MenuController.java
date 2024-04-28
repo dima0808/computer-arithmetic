@@ -1,8 +1,6 @@
 package com.civka.calculatordemo.controller;
 
 import com.civka.calculatordemo.entity.LabData;
-import com.civka.calculatordemo.maintenance.MaintenanceModeManager;
-import com.civka.calculatordemo.service.UserAuthenticationService;
 import com.civka.calculatordemo.utils.BasicBinary;
 import com.civka.calculatordemo.utils.MachineCodeUtil;
 import com.civka.calculatordemo.utils.divide.FirstDivideUtil;
@@ -11,7 +9,6 @@ import com.civka.calculatordemo.utils.multiply.FirstMultiplyUtil;
 import com.civka.calculatordemo.utils.multiply.FourthMultiplyUtil;
 import com.civka.calculatordemo.utils.multiply.SecondMultiplyUtil;
 import com.civka.calculatordemo.utils.multiply.ThirdMultiplyUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,58 +20,32 @@ import java.util.List;
 @Controller
 public class MenuController {
 
-    private final UserAuthenticationService userAuthenticationService;
-    private final MaintenanceModeManager maintenanceModeManager;
-
-    @Autowired
-    public MenuController(UserAuthenticationService userAuthenticationService,
-                          MaintenanceModeManager maintenanceModeManager) {
-
-        this.userAuthenticationService = userAuthenticationService;
-        this.maintenanceModeManager = maintenanceModeManager;
-    }
-
     @GetMapping("/")
     public String getMainPage(Model model) {
 
-        String nickname = userAuthenticationService.getNicknameByAuth();
-        if (nickname.equals("failedUser")) return "failed-user-page";
-        model.addAttribute("userNickname", nickname);
+        model.addAttribute("labData", new LabData(1488));
 
-        model.addAttribute("labData", userAuthenticationService.getLabDataByAuth());
-
-        return maintenanceModeManager.isMaintenanceModeEnabled() ? "maintenance" : "index";
+        return "index";
     }
 
     @GetMapping("/calculate")
     public String getCalculate(Model model) {
 
-        String nickname = userAuthenticationService.getNicknameByAuth();
-        if (nickname.equals("failedUser")) return "failed-user-page";
-        model.addAttribute("userNickname", nickname);
-
-        model.addAttribute("labData", userAuthenticationService.getLabDataByAuth());
+        model.addAttribute("labData", new LabData(1488));
 
         model.addAttribute("binaryCalc", new BasicBinary());
-
         BasicBinary binaryCalcConvert = new BasicBinary();
         binaryCalcConvert.setConvertFrom("2");
         binaryCalcConvert.setConvertTo("10");
         model.addAttribute("binaryCalcConvert", binaryCalcConvert);
 
-        return maintenanceModeManager.isMaintenanceModeEnabled() ? "maintenance" : "calculate";
+        return "calculate";
     }
 
     @PostMapping("/calculate")
     public String doCalculate(@ModelAttribute(name = "binaryCalc") BasicBinary binaryCalc,
                               @ModelAttribute(name = "binaryCalcConvert") BasicBinary binaryCalcConvert,
                               Model model) {
-
-        String nickname = userAuthenticationService.getNicknameByAuth();
-        if (nickname.equals("failedUser")) return "failed-user-page";
-        model.addAttribute("userNickname", nickname);
-
-        model.addAttribute("labData", userAuthenticationService.getLabDataByAuth());
 
         model.addAttribute("resultBinaryCalc", binaryCalc);
         model.addAttribute("binaryCalc", binaryCalc);
@@ -86,15 +57,11 @@ public class MenuController {
         }
         model.addAttribute("binaryCalcConvert", binaryCalcConvert);
 
-        return maintenanceModeManager.isMaintenanceModeEnabled() ? "maintenance" : "calculate";
+        return "calculate";
     }
 
     @PostMapping("/processForm")
     public String doLabForm(@ModelAttribute(name = "labData") LabData labData, Model model) {
-
-        String nickname = userAuthenticationService.getNicknameByAuth();
-        if (nickname.equals("failedUser")) return "failed-user-page";
-        model.addAttribute("userNickname", nickname);
 
         List<Integer> a = labData.getA(7);
 
